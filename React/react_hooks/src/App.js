@@ -7,6 +7,8 @@ import HookUseReducer1 from './components/UseReducer1';
 import HookUseReducer2 from './components/UseReducer2';
 import Picture from './components/Picture';
 import ItemIndex from './pages/Item';
+import RTable from './pages/RTable'
+
 import { HashRouter as Router, Link, Route } from 'react-router-dom';
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
           <Link to="/HookUseReducer2" style={{margin:'0 10px'}}>UseReducer2</Link> 
           <Link to="/picture" style={{margin:'0 10px'}}>pictureSelect组件</Link>
           <Link to="/itemIndex" style={{margin:'0 10px'}}>SeacherItem组件</Link>
+          <Link to="/RTable" style={{margin:'0 10px'}}>RTable组件</Link>
 
           <hr/>
           <Route path="/" exact component={Home}></Route>
@@ -27,6 +30,7 @@ function App() {
           <Route path="/HookUseReducer2" component={HookUseReducer2}></Route>
           <Route path="/picture" component={Picture}></Route>
           <Route path="/itemIndex" component={ItemIndex}></Route>
+          <Route path="/RTable" component={RTable}></Route>
         </div>
     </Router>
   );
