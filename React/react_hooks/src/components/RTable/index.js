@@ -1,7 +1,7 @@
 import React from 'react'
 
- function RTable({dataSource,columns,rowSelection}) {
-     const {type=null,selectedRowKeys,onChange} = rowSelection;
+ function RTable({dataSource=[],columns=[],rowSelection={}}) {
+     const {type="",selectedRowKeys,onChange} = rowSelection;
 
      // 每一个选中时
      function onSelectChange(Keys){
@@ -34,6 +34,7 @@ import React from 'react'
                           checked={selectedRowKeys.length === dataSource.length }
                           disabled={ type==='radio'}
                           onChange={()=>checkedAll(selectedRowKeys)}
+                          style={{marginRight:10}}
                     />}
                   {columns.map(c=><th key={c.key}>{c.title}</th>)}
                 </thead>
@@ -47,6 +48,7 @@ import React from 'react'
                                 checked={selectedRowKeys.includes(+d.key)}
                                 onChange={()=>onSelectChange(+d.key)}
                                 name="radio"
+                                style={{marginRight:10}}
                             />}
                         {columns.map(c=><td key={d.key}>{d[c.dataIndex]}</td>)}
                         </tr>

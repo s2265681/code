@@ -15,6 +15,12 @@ const dataSource = [
       age: 42,
       address: '西湖区湖底公园1号',
     },
+    {
+      key: '3',
+      name: '胡彦祖',
+      age: 42,
+      address: '西湖区湖底公园1号',
+    },
   ];
   
   const columns = [
