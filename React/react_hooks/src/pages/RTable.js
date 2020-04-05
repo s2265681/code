@@ -105,6 +105,7 @@ const Index = () => {
       title: "类型",
       dataIndex: "type",
       key: "type",
+      width: 120,
       render(t, r, i) {
         // console.log(t,r,i)
         return (
@@ -118,6 +119,8 @@ const Index = () => {
       title: "操作",
       dataIndex: "work",
       key: "work",
+      width: 120,
+      fixed: 'right',
       render(t, r, i) {
         // console.log(t,r,i)
         return (
@@ -236,12 +239,17 @@ const Index = () => {
           isTheme={isTheme ? "sepia(.6)" : ""}
           expandable = {isExtend?{ 
             expandedRowRender: record => <span style={{color:'rgb(100, 155, 0)'}}>{record.description}</span>,
-            onExpand:(key)=>onExpand(key)
+            onExpand:(key)=>onExpand(key),
+            rowExpandable: record => record.name !== '王祖蓝',
            }:''}
-          rowSelection={{  
-             rowKey:"id"
-            }}
          
+          rowSelection={{
+            type: selectionType,
+            selectedRowKeys,
+            rowKey: "id",
+            onChange: selectedRowKeys => setSelectKeys(selectedRowKeys)
+          }}
+          scroll={{ y: 240 }} 
         />
       </div>
 

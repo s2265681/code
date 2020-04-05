@@ -8,7 +8,8 @@ function RTable({
   borderd = false,
   loading = false,
   isTheme = "",
-  expandable = undefined // 展开行
+  expandable = undefined, // 展开行
+  scroll={}  // 设置滚动
 }) {
   const { type = "", selectedRowKeys, onChange, rowKey } = rowSelection;
   // 数据管理
@@ -92,6 +93,7 @@ function RTable({
 
   return (
     <div style={{ display: "flex", justifyContent: "center", filter: isTheme }}>
+      <div style={{overflowY: 'scroll' , maxHeight: '140px'}} >
       <table
         style={{
           borderTop: borderd ? "#999 1px solid" : "",
@@ -110,6 +112,10 @@ function RTable({
               background: "#eee"
             }}
           >
+          {expandable && (
+            <span style={{ display: "inline-block", width: 20 }}></span>
+          )}
+
             {type && (
               <input
                 type={type}
@@ -120,21 +126,19 @@ function RTable({
               />
             )}
 
-            {expandable && (
-              <span style={{ display: "inline-block", width: 20 }}></span>
-            )}
 
-            {columns.map(c => {
+            {/* 设置table的columns */}
+            {columns.map(({width,title,sorter,key}) => {
               return (
-                <th key={c.key}>
-                  {c.title} &nbsp;
-                  {c && c.sorter instanceof Object ? (
+                <th key={key} style={{width}}>
+                  {title} &nbsp;
+                  {sorter instanceof Object ? (
                     <span
-                      onClick={() => order(c.sorter)}
+                      onClick={() => order(sorter)}
                       style={{ cursor: "pointer" }}
                     >
                       {isAscOrder ? "^" : "v"}
-                      {() => order(c.sorter)}
+                      {() => order(sorter)}
                     </span>
                   ) : (
                     ""
@@ -145,8 +149,10 @@ function RTable({
           </tr>
         </thead>
 
-        <tbody>
+        <tbody >
           {_dataSource.map((d, didx) => {
+            const  dRowKey =  +d[rowKey];
+            const  rowKeyOrIndex =  rowKey ? dRowKey : didx;
             return (
               <>
                 <tr
@@ -158,16 +164,17 @@ function RTable({
                   onMouseOver={() => getColor(didx)}
                   onMouseOut={() => getColor()}
                 >
-                  {expandable &&  (
+                  {expandable&&  (
                     <span
                       style={{ 
                           display: "inline-block",
                           width: 20,
                           cursor:'pointer'
                          }}
-                      onClick={() => _onExpand(rowKey ? +d[rowKey] : didx , rowKey)}
+                      onClick={() => _onExpand(rowKeyOrIndex , rowKey)}
                     >
-                      {isExpend[rowKey ? +d[rowKey] : didx]?'-':'+'} 
+                   
+                      {  expandable.rowExpandable(d) && ( isExpend[rowKeyOrIndex]?'-':'+' )} 
                     </span>
                   )}
 
@@ -175,10 +182,10 @@ function RTable({
                     <input
                       type={type}
                       checked={selectedRowKeys.includes(
-                        rowKey ? +d[rowKey] : didx
+                        rowKeyOrIndex
                       )}
                       onChange={() =>
-                        onSelectChange(rowKey ? +d[rowKey] : didx)
+                        onSelectChange(rowKeyOrIndex)
                       }
                       name="radio"
                       style={{ marginRight: 10 }}
@@ -186,11 +193,11 @@ function RTable({
                   )}
 
                   {columns.map(c => (
-                    <td key={didx}>{renderSource(c, d, didx)}</td>
+                    <td key={didx} style={{width:c&&c.width}}>{renderSource(c, d, didx)}</td>
                   ))}
                 </tr>
                 {/* 展开行 */}
-                {expandable&&expandable && isExpend[rowKey ? +d[rowKey] : didx] && (
+                {expandable&&expandable && isExpend[rowKeyOrIndex] && (
                       <tr
                         style={{
                           borderBottom: borderd ? "#999 1px solid" : ""
@@ -207,6 +214,7 @@ function RTable({
           })}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
