@@ -115,8 +115,6 @@ const Item = () =>{
   const [initChoose, setChoose] = useState([])
   const [itemList , setItemList] = useState(itemData)
 
-  console.log(itemList,'itemList')
-
   useEffect(() => {
     let initArr = [];
     Object.keys(searchItem).forEach(el=>{
@@ -127,7 +125,7 @@ const Item = () =>{
       initArr.push(initObj)
     })
     setChoose(initArr)
-  }, [initChoose])
+  }, [])
   
   // 选择筛选条件
   function chooseItem(lab,k,elI){
@@ -143,7 +141,7 @@ const Item = () =>{
     setChoose(initChoose.slice())
   }
 
-  console.log(initChoose,'initChoose')
+  // console.log(initChoose,'initChoose')
 
   return(
     <div>
