@@ -7,24 +7,64 @@ const dataSource = [
     name: "胡彦斌",
     age: 32,
     address: "西湖区湖底公园1号",
-    type: 1
+    type: 1,
+    description:'胡彦斌是西湖区湖底公园1号的'
   },
   {
     id: "2",
     name: "胡彦祖",
     age: 42,
     address: "西湖区湖底公园1号",
-    type: 2
+    type: 2,
+    description:'胡彦祖是西湖区湖底公园1号的'
   },
   {
     id: "3",
     name: "王祖蓝",
     age: 22,
     address: "西湖区湖底公园1号",
-    type: 3
+    type: 3,
+    description:'王祖蓝是西湖区湖底公园1号的'
   }
 ];
 
+// columns
+const columns1 = [
+  {
+    title: "姓名",
+    dataIndex: "name",
+    key: "name"
+  },
+  {
+    title: "年龄",
+    dataIndex: "age",
+    key: "age",
+    sorter: {
+      compare: (a, b) => a.age - b.age
+    }
+  },
+  {
+    title: "住址",
+    dataIndex: "address",
+    key: "address"
+  },
+  {
+    title: "类型",
+    dataIndex: "type",
+    key: "type",
+    render(t, r, i) {
+      // console.log(t,r,i)
+      return (
+        <span style={{ color: "#f00" }}>
+          {t === 1 ? "蔬菜" : t === 2 ? "水果" : "主食"}
+        </span>
+      );
+    }
+  }
+];
+
+
+  
 const Index = () => {
   // 设置选中类型
   const [selectionType, setSelectionType] = useState("checkbox");
@@ -38,9 +78,11 @@ const Index = () => {
   const [isTheme, setTheme] = useState(false);
   // 添加删除数据
   const [_dataSource, setDataSource] = useState(dataSource);
+  // 设置table是否展开
+  const [isExtend,setExtend] = useState(true);
 
   // columns
-  const columns = [
+  const columns2 = [
     {
       title: "姓名",
       dataIndex: "name",
@@ -79,7 +121,7 @@ const Index = () => {
       render(t, r, i) {
         // console.log(t,r,i)
         return (
-          <span style={{ color: "#00f" }} onClick={() => deleteRow(r.id)}>
+          <span style={{ color: "#00f" }} onClick={deleteRow.bind(this,r.id)}>
             删除
           </span>
         );
@@ -87,6 +129,7 @@ const Index = () => {
     }
   ];
 
+  
   // 每次selectionType变化时候,清空selectedRowKeys
   useEffect(() => {
     setSelectKeys([]);
@@ -97,11 +140,12 @@ const Index = () => {
     let newData = [
       ..._dataSource,
       {
-        id: +_dataSource.length,
+        id: String( _dataSource.length+1),
         name: "胡彦斌",
         age: 32,
         address: "西湖区湖底公园1号",
-        type: 1
+        type: 1,
+        description:'王祖蓝是西湖区湖底公园1号的'
       }
     ];
     console.log(newData, "newData");
@@ -114,6 +158,11 @@ const Index = () => {
     let res = _dataSource.filter(e => e.id !== id);
     console.log(res, "res");
     setDataSource(res.slice());
+  }
+
+  // 展开行 [key]
+  function onExpand(key){
+     console.log(key,'arr key isexpend')
   }
 
   console.log("chooseKey", selectedRowKeys);
@@ -130,11 +179,11 @@ const Index = () => {
         <li>实现鼠标悬浮改变当前行样式</li>
         <li>页面是否加载中loading</li>
         <li>新增删除一行</li>
+        <li>实现可展开功能</li>
       </ul>
       <h3>未实现的功能</h3>
       <ul>
         <li>实现一个自定义筛选filterDropdown</li>
-        <li>实现可展开功能</li>
         <li>实现单元格可编辑功能</li>
         <li>表格的分页设置</li>
       </ul>
@@ -151,7 +200,7 @@ const Index = () => {
         <br />
         <RTable
           dataSource={dataSource}
-          columns={columns}
+          columns={columns1}
           rowSelection={{
             type: selectionType,
             selectedRowKeys,
@@ -175,20 +224,24 @@ const Index = () => {
           </button>
           <button onClick={() => setTheme(!isTheme)}>是否添加滤镜</button>
           <button onClick={() => addRow()}>添加一行</button>
+          <button onClick={() => setExtend(!isExtend)}>设置/取消展开行</button>
+
         </div>
         <br />
         <RTable
           dataSource={_dataSource}
-          columns={columns}
-          rowSelection={{
-            type: selectionType,
-            selectedRowKeys,
-            rowKey: "id",
-            onChange: selectedRowKeys => setSelectKeys(selectedRowKeys)
-          }}
+          columns={columns2}
           borderd={tableStyle.borderd}
           loading={isLoading}
           isTheme={isTheme ? "sepia(.6)" : ""}
+          expandable = {isExtend?{ 
+            expandedRowRender: record => <span style={{color:'rgb(100, 155, 0)'}}>{record.description}</span>,
+            onExpand:(key)=>onExpand(key)
+           }:''}
+          rowSelection={{  
+             rowKey:"id"
+            }}
+         
         />
       </div>
 

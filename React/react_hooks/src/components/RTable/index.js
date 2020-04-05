@@ -7,17 +7,19 @@ function RTable({
   rowSelection = {},
   borderd = false,
   loading = false,
-  isTheme=''
+  isTheme = "",
+  expandable = undefined // 展开行
 }) {
   const { type = "", selectedRowKeys, onChange, rowKey } = rowSelection;
   // 数据管理
   const [_dataSource, setSourceData] = useState(dataSource);
-  console.log(dataSource,'dataSource111')
-  console.log(_dataSource,'dataSource222')
   // 设置排序
   const [isAscOrder, setOrder] = useState(false);
   // 设置鼠标滑入变色
   const [isColorIndex, getColor] = useState();
+  // 设置展开值
+  const [isExpend, setIsExpend] = useState({})
+
 
   // const trRef = useRef(null);
   // 初始化
@@ -27,9 +29,9 @@ function RTable({
     }
   }, []);
 
-  useEffect(()=>{
-    setSourceData(dataSource)
-  },[dataSource])
+  useEffect(() => {
+    setSourceData(dataSource);
+  }, [dataSource]);
 
   // 每一个选中时
   function onSelectChange(Keys) {
@@ -76,19 +78,30 @@ function RTable({
     }
   }
 
+  // 展开行配置 必须搭配rowSelection.rowKey否则按index删除的时候会有问题
+  function _onExpand(key) {
+     console.log(key)
+    if(isExpend[key]){
+       isExpend[key] = false
+    }else{
+      isExpend[key] = true
+    }
+    setIsExpend(isExpend)
+    expandable&&expandable.onExpand(key)
+  }
+
   return (
-    <div style={{ display: "flex", justifyContent: "center"  , filter: isTheme,}}>
+    <div style={{ display: "flex", justifyContent: "center", filter: isTheme }}>
       <table
         style={{
           borderTop: borderd ? "#999 1px solid" : "",
           borderBottom: borderd ? "#666 1px solid" : "",
-          filter: loading ? "opacity(0.5)" :  "",
-        
+          filter: loading ? "opacity(0.5)" : "",
           position: "relative"
         }}
       >
-       {/* Loading */}
-       {loading && <span className="Loading">Loading...</span>}
+        {/* Loading */}
+        {loading && <span className="Loading">Loading...</span>}
 
         <thead>
           <tr
@@ -106,6 +119,11 @@ function RTable({
                 style={{ marginRight: 10 }}
               />
             )}
+
+            {expandable && (
+              <span style={{ display: "inline-block", width: 20 }}></span>
+            )}
+
             {columns.map(c => {
               return (
                 <th key={c.key}>
@@ -126,39 +144,68 @@ function RTable({
             })}
           </tr>
         </thead>
-        
+
         <tbody>
           {_dataSource.map((d, didx) => {
             return (
-              <tr
-                key={d.key}
-                style={{
-                  borderBottom: borderd ? "#999 1px solid" : "",
-                  background: isColorIndex === didx ? "#eee" : ""
-                }}
-                onMouseOver={() => getColor(didx)}
-                onMouseOut={() => getColor()}
-              >
-                {type && (
-                  <input
-                    type={type}
-                    checked={selectedRowKeys.includes(
-                      rowKey ? +d[rowKey] : didx
-                    )}
-                    onChange={() => onSelectChange(rowKey ? +d[rowKey] : didx)}
-                    name="radio"
-                    style={{ marginRight: 10 }}
-                  />
-                )}
-                {columns.map(c => (
-                  <td key={didx}>{renderSource(c, d, didx)}</td>
-                ))}
-               
-              </tr>
+              <>
+                <tr
+                  key={d.key}
+                  style={{
+                    borderBottom: borderd ? "#999 1px solid" : "",
+                    background: isColorIndex === didx ? "#eee" : ""
+                  }}
+                  onMouseOver={() => getColor(didx)}
+                  onMouseOut={() => getColor()}
+                >
+                  {expandable &&  (
+                    <span
+                      style={{ 
+                          display: "inline-block",
+                          width: 20,
+                          cursor:'pointer'
+                         }}
+                      onClick={() => _onExpand(rowKey ? +d[rowKey] : didx , rowKey)}
+                    >
+                      {isExpend[rowKey ? +d[rowKey] : didx]?'-':'+'} 
+                    </span>
+                  )}
+
+                  {type && (
+                    <input
+                      type={type}
+                      checked={selectedRowKeys.includes(
+                        rowKey ? +d[rowKey] : didx
+                      )}
+                      onChange={() =>
+                        onSelectChange(rowKey ? +d[rowKey] : didx)
+                      }
+                      name="radio"
+                      style={{ marginRight: 10 }}
+                    />
+                  )}
+
+                  {columns.map(c => (
+                    <td key={didx}>{renderSource(c, d, didx)}</td>
+                  ))}
+                </tr>
+                {/* 展开行 */}
+                {expandable&&expandable && isExpend[rowKey ? +d[rowKey] : didx] && (
+                      <tr
+                        style={{
+                          borderBottom: borderd ? "#999 1px solid" : ""
+                        }}
+                      >
+                        <td colspan={columns.length + 1}> 
+                            {expandable&&expandable.expandedRowRender(d)}
+                         </td>
+                      </tr>
+                    )
+                  }
+              </>
             );
           })}
         </tbody>
-        
       </table>
     </div>
   );
