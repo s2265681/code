@@ -25,6 +25,22 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 3,
     description:'王祖蓝是西湖区湖底公园1号的'
+  },
+  {
+    id: "4",
+    name: "王祖蓝",
+    age: 22,
+    address: "西湖区湖底公园1号",
+    type: 3,
+    description:'王祖蓝是西湖区湖底公园1号的'
+  },
+  {
+    id: "5",
+    name: "王祖蓝",
+    age: 22,
+    address: "西湖区湖底公园1号",
+    type: 3,
+    description:'王祖蓝是西湖区湖底公园1号的'
   }
 ];
 
@@ -86,12 +102,14 @@ const Index = () => {
     {
       title: "姓名",
       dataIndex: "name",
-      key: "name"
+      key: "name",
+      width: 120,
     },
     {
       title: "年龄",
       dataIndex: "age",
       key: "age",
+      width: 120,
       sorter: {
         compare: (a, b) => a.age - b.age
       }
@@ -99,7 +117,8 @@ const Index = () => {
     {
       title: "住址",
       dataIndex: "address",
-      key: "address"
+      key: "address",
+      width: 130
     },
     {
       title: "类型",
@@ -183,9 +202,11 @@ const Index = () => {
         <li>页面是否加载中loading</li>
         <li>新增删除一行</li>
         <li>实现可展开功能</li>
+        <li>Table、scroll滚动</li>
       </ul>
       <h3>未实现的功能</h3>
       <ul>
+        <li>实现左右栏定位+滑动浏览</li>
         <li>实现一个自定义筛选filterDropdown</li>
         <li>实现单元格可编辑功能</li>
         <li>表格的分页设置</li>
@@ -249,7 +270,7 @@ const Index = () => {
             rowKey: "id",
             onChange: selectedRowKeys => setSelectKeys(selectedRowKeys)
           }}
-          scroll={{ y: 240 }} 
+          scroll={{ y: 150  }} 
         />
       </div>
 
