@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-function PictureSelect({ pictures, value, onChange }) {
+function PictureSelect({ pictures=[], value=[], onChange }) {
   const [isChecked, setChecked] = useState(false);
 
   useEffect(() => {
-    console.log("up");
     if (value.length === pictures.length) {
       setChecked(true);
     } else {
       setChecked(false);
     }
-  }, pictures);
+  }, [pictures]);
 
   // every
   function ereryChange(i) {

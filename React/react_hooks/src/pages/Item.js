@@ -119,7 +119,7 @@ const Item = () =>{
 
   useEffect(() => {
     let initArr = [];
-    Object.keys(searchItem).map(el=>{
+    Object.keys(searchItem).forEach(el=>{
       let initObj ={};
       let label = searchItem[el].label
       initObj.label = label
@@ -127,7 +127,7 @@ const Item = () =>{
       initArr.push(initObj)
     })
     setChoose(initArr)
-  }, initChoose)
+  }, [initChoose])
   
   // 选择筛选条件
   function chooseItem(lab,k,elI){

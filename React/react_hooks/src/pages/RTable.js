@@ -2,44 +2,61 @@
 import React,{useState,useEffect} from 'react';
 import RTable from '../components/RTable/index'
 
+
+const columns = [
+  {
+    title: '姓名',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: '年龄',
+    dataIndex: 'age',
+    key: 'age',
+    sorter: {
+      compare: (a, b) => a.age - b.age
+    },
+  },
+  {
+    title: '住址',
+    dataIndex: 'address',
+    key: 'address',
+  },
+  {
+    title: '类型',
+    dataIndex: 'type',
+    key: 'type',
+    render(t, r ,i){
+      // console.log(t,r,i)
+      return <span style={{color:'#f00'}}>{t===1?'蔬菜':t===2?"水果":"主食"}</span>
+    }
+  },
+];
+
 const dataSource = [
     {
-      key: '1',
+      id: '1',
       name: '胡彦斌',
       age: 32,
       address: '西湖区湖底公园1号',
+      type:1
     },
     {
-      key: '2',
+      id: '2',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号',
+      type:2
     },
     {
-      key: '3',
-      name: '胡彦祖',
-      age: 42,
+      id: '3',
+      name: '王祖蓝',
+      age: 22,
       address: '西湖区湖底公园1号',
+      type:3
     },
   ];
   
-  const columns = [
-    {
-      title: '姓名',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: '年龄',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: '住址',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
   
 const Index = ()=> {
   const [selectionType, setSelectionType] = useState('checkbox');
@@ -49,6 +66,7 @@ const Index = ()=> {
   useEffect(() => {
     setSelectKeys([])
   }, [selectionType])
+
 
   console.log('chooseKey', selectedRowKeys)
     return(
@@ -67,9 +85,9 @@ const Index = ()=> {
                rowSelection={{
                  type : selectionType,
                  selectedRowKeys,
+                 rowKey:'id',
                  onChange:(selectedRowKeys)=> setSelectKeys(selectedRowKeys)
                }}
-               
             />
         </div>
     )
