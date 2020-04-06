@@ -3,6 +3,11 @@
 .App {
   text-align: center;
   margin-top: 30px;
+  display: flex;
+}
+
+.menu{
+  border-right:#eee 1px solid;
 }
 
 .App-logo {

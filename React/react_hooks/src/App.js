@@ -1,32 +1,61 @@
-import React from 'react';
+import React from "react";
 // import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 import ReactHooks from "./components/ReactHooks";
-import Home from './pages/Home';
-import HookUseReducer1 from './components/UseReducer1';
-import HookUseReducer2 from './components/UseReducer2';
-import Picture from './components/Picture';
-import ItemIndex from './pages/Item';
-import RTable from './pages/RTable'
+import Home from "./pages/Home";
+import HookUseReducer1 from "./components/UseReducer1";
+import HookUseReducer2 from "./components/UseReducer2";
+import Picture from "./components/Picture";
+import ItemIndex from "./pages/Item";
+import RTable from "./pages/RTable";
 
-import { HashRouter as Router, Link, Route } from 'react-router-dom';
+import { HashRouter as Router, Link, Route } from "react-router-dom";
 
 function App() {
   return (
-      <Router>
-        <div className="App">
-          <h3>React Hooks</h3>
-          <Link to="/" style={{margin:'0 10px'}}>Home</Link> 
-          <Link to="/ReactHooks" style={{margin:'0 10px'}}>ReactHook</Link>   
-          <Link to="/HookUseReducer1" style={{margin:'0 10px'}}>UseReducer1</Link> 
-          <Link to="/HookUseReducer2" style={{margin:'0 10px'}}>UseReducer2</Link> 
-          <Link to="/picture" style={{margin:'0 10px'}}>pictureSelect组件</Link>
-          <Link to="/itemIndex" style={{margin:'0 10px'}}>SeacherItem组件</Link>
-          <hr/>
-          <br/>
-          <h3>React 仿 Antd</h3>
-          <Link to="/RTable" style={{margin:'0 10px'}}>RTable组件</Link>
-          <hr/>
+    <Router>
+      <div className="App">
+        <div className="menu">
+          <h3 style={{ width: 200 }}>导航</h3>
+
+          <div class="dropdown" style={{ height: "50px", width: "200px" }}>
+            <a class="dropdown-toggle" href="#">
+              React Hooks 仿 Antd
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <Link to="/RTable">RTable组件</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div class="dropdown" style={{ height: "50px", width: "200px" }}>
+            <a class="dropdown-toggle" href="#">
+              React Hooks
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <Link to="/">Home</Link>
+              </li>
+              <li class="dropdown-item">
+                <Link to="/ReactHooks">ReactHooks</Link>
+              </li>
+              <li class="dropdown-item">
+                <Link to="/HookUseReducer1">HookUseReducer1</Link>
+              </li>
+              <li class="dropdown-item">
+                <Link to="/HookUseReducer2">HookUseReducer2</Link>
+              </li>
+              <li class="dropdown-item">
+                <Link to="/picture">picture</Link>
+              </li>
+              <li class="dropdown-item">
+                <Link to="/itemIndex">itemIndex</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="content">
           <Route path="/" exact component={Home}></Route>
           <Route path="/ReactHooks" component={ReactHooks}></Route>
           <Route path="/HookUseReducer1" component={HookUseReducer1}></Route>
@@ -35,6 +64,7 @@ function App() {
           <Route path="/itemIndex" component={ItemIndex}></Route>
           <Route path="/RTable" component={RTable}></Route>
         </div>
+      </div>
     </Router>
   );
 }

@@ -117,8 +117,7 @@ const Index = () => {
     {
       title: "住址",
       dataIndex: "address",
-      key: "address",
-      width: 130
+      key: "address"
     },
     {
       title: "类型",
@@ -190,11 +189,14 @@ const Index = () => {
   console.log("chooseKey", selectedRowKeys);
   console.log(_dataSource, "_dataSource");
   return (
-    <div>
+    <div style={{display:'flex'}}>
+
+    <div className="left">
       <h2>React hooks仿Antd组件开发---Table组件</h2>
       <h3>已实现的功能</h3>
       <ul>
         <li>选中状态，自定义实现</li>
+        <li>点击行是否选中rowChoosed</li>
         <li>根据字段排序sorter</li>
         <li>数据返回值render渲染处理</li>
         <li>实现table加border，空着table样式</li>
@@ -203,6 +205,7 @@ const Index = () => {
         <li>新增删除一行</li>
         <li>实现可展开功能</li>
         <li>Table、scroll滚动</li>
+        <li>引用aqua初步美化样式</li>
       </ul>
       <h3>未实现的功能</h3>
       <ul>
@@ -212,6 +215,8 @@ const Index = () => {
         <li>表格的分页设置</li>
       </ul>
       <br />
+    </div>
+    <div className="right">
       {/* Table1 实现了切换选中类型，sorter排序，render渲染处理*/}
       <div className="Table1">
         <h3>Table1</h3>
@@ -229,6 +234,7 @@ const Index = () => {
             type: selectionType,
             selectedRowKeys,
             rowKey: "id",
+            rowChoosed:true,
             onChange: selectedRowKeys => setSelectKeys(selectedRowKeys)
           }}
         />
@@ -263,29 +269,22 @@ const Index = () => {
             onExpand:(key)=>onExpand(key),
             rowExpandable: record => record.name !== '王祖蓝',
            }:''}
-         
-          rowSelection={{
-            type: selectionType,
-            selectedRowKeys,
-            rowKey: "id",
-            onChange: selectedRowKeys => setSelectKeys(selectedRowKeys)
-          }}
           scroll={{ y: 150  }} 
         />
       </div>
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+      </div>
     </div>
   );
 };

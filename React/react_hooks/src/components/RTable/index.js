@@ -11,7 +11,7 @@ function RTable({
   expandable = undefined, // 展开行
   scroll = {} // 设置滚动
 }) {
-  const { type = "", selectedRowKeys, onChange, rowKey } = rowSelection;
+  const { type = "", selectedRowKeys, onChange, rowKey, rowChoosed=false } = rowSelection;
   // 数据管理
   const [_dataSource, setSourceData] = useState(dataSource);
   // 设置排序
@@ -113,7 +113,7 @@ function RTable({
             style={{
               display: "flex",
               height: "40px",
-              lineHeight: "40px"
+              alignItems: 'center'
             }}
           >
             {expandable && (
@@ -132,10 +132,10 @@ function RTable({
                 checked={selectedRowKeys.length === _dataSource.length}
                 disabled={type === "radio"}
                 onChange={() => checkedAll(selectedRowKeys)}
+                className="form-check-input bounce"
                 style={{
                   marginLeft: 10,
-                  display: "block",
-                  height: "40px"
+                  display: "block"
                 }}
               />
             )}
@@ -171,6 +171,7 @@ function RTable({
               const rowKeyOrIndex = rowKey ? dRowKey : didx;
               return (
                 <>
+                <label for={rowChoosed ? `check+${rowKeyOrIndex}`: ''}  >
                   <tr
                     key={d.key}
                     style={{
@@ -179,7 +180,9 @@ function RTable({
                       justifyContent: "center",
                       alignItems: "center",
                       borderBottom: borderd ? "#999 1px solid" : "",
-                      background: isColorIndex === didx ? "#eee" : ""
+                      background: isColorIndex === didx ? "#eee" : "",
+                      cursor:type?'pointer':''
+
                     }}
                     onMouseOver={() => getColor(didx)}
                     onMouseOut={() => getColor()}
@@ -205,19 +208,22 @@ function RTable({
                         checked={selectedRowKeys.includes(rowKeyOrIndex)}
                         onChange={() => onSelectChange(rowKeyOrIndex)}
                         name="radio"
+                        id={`check+${rowKeyOrIndex}`}
+                        className="form-check-input bounce"
                         style={{
-                          marginLeft: 10,
-                          height: "40px"
+                          marginLeft: 10
                         }}
                       />
                     )}
 
                     {columns.map(c => (
+                 
                       <td key={didx} style={{ width: (c && c.width) || 120 }}>
                         {renderSource(c, d, didx)}
                       </td>
                     ))}
                   </tr>
+                  </label>
                   {/* 展开行 */}
                   {expandable && expandable && isExpend[rowKeyOrIndex] && (
                     <tr
