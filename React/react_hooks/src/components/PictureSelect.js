@@ -50,7 +50,7 @@ function PictureSelect({ pictures=[], value=[], onChange }) {
             allChoose();
           }}
         />
-        <span>已选择:{value.length}个</span>
+        <span>已选择:{value&&value.length}个</span>
         <br />
       </div>
       {pictures.map((el, idx) => (
@@ -58,7 +58,7 @@ function PictureSelect({ pictures=[], value=[], onChange }) {
           <input
             type="checkbox"
             id={idx}
-            checked={value.includes(el.id)}
+            checked={value&&value.includes(el.id)}
             key={idx}
             onChange={() => ereryChange(el.id)}
           />

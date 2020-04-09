@@ -18,7 +18,7 @@ export default function Index({
     return () => {
       stop();
     };
-  }, []);
+  }, [autoplay,initIdx]);
 
   // run 开始
   function run(curIdx) {

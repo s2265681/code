@@ -1,6 +1,7 @@
 import React from "react";
 // import logo from './logo.svg';
 import "./App.css";
+import UseForm from './pages/UseForm'
 import ReactHooks from "./components/ReactHooks";
 import Home from "./pages/Home";
 import HookUseReducer1 from "./components/UseReducer1";
@@ -41,6 +42,9 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
               <li class="dropdown-item">
+              <Link to="/UseForm">UseForm</Link>
+            </li>
+              <li class="dropdown-item">
                 <Link to="/ReactHooks">ReactHooks</Link>
               </li>
               <li class="dropdown-item">
@@ -60,6 +64,7 @@ function App() {
         </div>
         <div className="content">
           <Route path="/" exact component={Home}></Route>
+          <Route path="/UseForm" component={UseForm}></Route>
           <Route path="/ReactHooks" component={ReactHooks}></Route>
           <Route path="/HookUseReducer1" component={HookUseReducer1}></Route>
           <Route path="/HookUseReducer2" component={HookUseReducer2}></Route>
