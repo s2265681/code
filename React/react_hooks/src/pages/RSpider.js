@@ -1,18 +1,31 @@
 import React from "react";
 import RTable from "../components/RSpider/index";
+import './splider.css'
 
 export default function RSpider() {
     return (
-        <div>
+        <div className="container">
              <RTable
                 autoplay
                 initIdx={0}
                 deployTime={2000} 
+                height={200}
              >
-               <div>内容一</div>
-               <div>内容二</div>
-               <div>内容三</div>
-               <div>内容四</div>
+               <div>
+               <img src="http://img3.imgtn.bdimg.com/it/u=1553709961,3652782060&fm=26&gp=0.jpg" alt="图一"
+               />
+               </div>
+               <div>
+               <img src="http://img4.imgtn.bdimg.com/it/u=3471735586,1899139408&fm=26&gp=0.jpg" alt="图二"
+               />
+               </div>
+               <div>
+               <img src="http://img2.imgtn.bdimg.com/it/u=1303806583,1572175195&fm=26&gp=0.jpg" alt="图三"
+               />
+               </div>
+               <div>
+               <img src="http://img4.imgtn.bdimg.com/it/u=1028120364,2465714686&fm=11&gp=0.jpg" alt="图四"/>
+               </div>
              </RTable>
         </div>
     )

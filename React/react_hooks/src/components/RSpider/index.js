@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
+import "./index.css";
+
 let timer;
 export default function Index({
   autoplay = true,
   deployTime = 1000,
   initIdx = 0,
   children,
+  height = 300,
 }) {
   const len = children.length;
   let [currentIdx, setCurrentIdx] = useState(initIdx);
   const [child, setChild] = useState(children[0]);
 
   useEffect(() => {
-    autoplay&&run(initIdx);
+    autoplay && run(initIdx);
     return () => {
       stop();
     };
@@ -40,12 +43,12 @@ export default function Index({
       if (currentIdx === 0) currentIdx = len;
       currentIdx--;
     } else if (dir === "right") {
-      if (currentIdx === len-1) currentIdx = -1;
+      if (currentIdx === len - 1) currentIdx = -1;
       currentIdx++;
     }
-     setCurrentIdx(currentIdx)
-     setChild(children[currentIdx])
-     autoplay&&run()
+    setCurrentIdx(currentIdx);
+    setChild(children[currentIdx]);
+    autoplay && run();
   }
 
   // chooseIdx
@@ -53,33 +56,40 @@ export default function Index({
     stop();
     setCurrentIdx(i);
     setChild(children[i]);
-    autoplay&&run(i);
+    autoplay && run(i);
   }
 
   return (
     <div className="spider-container">
-      <div className="spider">{child}</div>
+      <div className="spider" style={{ height }}>
+        {child}
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <div className="dot">
+        {children.map((e, i) => (
+          <button
+            key={i}
+            onClick={() => chooseIdx(i)}
+            style={{ color: i === currentIdx ? "#f00" : "" }}
+          >
+            {i}
+          </button>
+        ))}
+      </div>
+      <br />
+      <br />
       <div className="arow">
-        <button onClick={() => autoplay&&run(currentIdx)}>开始</button>
+        <button onClick={() => autoplay && run(currentIdx)}>开始</button>
         <br />
         <button onClick={() => stop()}>停止</button>
       </div>
-
       <div className="arow">
         <button onClick={() => TurnLeft("left")}>TurnLeft</button>
         <br />
         <button onClick={() => TurnLeft("right")}>TurnRight</button>
-      </div>
-      <div className="dot">
-        {children.map((e, i) => (
-          <button 
-          key={i} 
-          onClick={() => chooseIdx(i)}
-          style={{color:i===currentIdx?'#f00':''}}
-          >
-            {e}
-          </button>
-        ))}
       </div>
     </div>
   );
