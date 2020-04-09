@@ -8,6 +8,8 @@ import HookUseReducer2 from "./components/UseReducer2";
 import Picture from "./components/Picture";
 import ItemIndex from "./pages/Item";
 import RTable from "./pages/RTable";
+import RSpider from "./pages/RSpider";
+
 
 import { HashRouter as Router, Link, Route } from "react-router-dom";
 
@@ -18,13 +20,14 @@ function App() {
         <div className="menu">
           <h3 style={{ width: 200 }}>导航</h3>
 
-          <div class="dropdown" style={{ height: "50px", width: "200px" }}>
-            <a class="dropdown-toggle" href="#">
+          <div className="dropdown" style={{ height: "50px", width: "200px" }}>
+            <a className="dropdown-toggle" href="#">
               React Hooks 仿 Antd
             </a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-item">
+            <ul className="dropdown-menu">
+              <li className="dropdown-item">
                 <Link to="/RTable">RTable组件</Link>
+                <Link to="/RSpider">轮播图组件</Link>
               </li>
             </ul>
           </div>
@@ -63,6 +66,7 @@ function App() {
           <Route path="/picture" component={Picture}></Route>
           <Route path="/itemIndex" component={ItemIndex}></Route>
           <Route path="/RTable" component={RTable}></Route>
+          <Route path="/RSpider" component={RSpider}></Route>
         </div>
       </div>
     </Router>
