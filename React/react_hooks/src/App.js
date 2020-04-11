@@ -2,8 +2,11 @@ import React from "react";
 // import logo from './logo.svg';
 import "./App.css";
 import UseForm from './pages/UseForm'
+import UseFetch from './pages/UseFetch'
+import UseLayoutEffect from './pages/UseLayoutEffect'
 import ReactHooks from "./components/ReactHooks";
 import Home from "./pages/Home";
+
 import HookUseReducer1 from "./components/UseReducer1";
 import HookUseReducer2 from "./components/UseReducer2";
 import Picture from "./components/Picture";
@@ -43,7 +46,13 @@ function App() {
               </li>
               <li class="dropdown-item">
               <Link to="/UseForm">UseForm</Link>
-            </li>
+               </li>
+               <li class="dropdown-item">
+              <Link to="/UseFetch">UseFetch</Link>
+               </li>
+               <li class="dropdown-item">
+               <Link to="/UseLayoutEffect">UseLayoutEffect</Link>
+             </li>
               <li class="dropdown-item">
                 <Link to="/ReactHooks">ReactHooks</Link>
               </li>
@@ -72,6 +81,10 @@ function App() {
           <Route path="/itemIndex" component={ItemIndex}></Route>
           <Route path="/RTable" component={RTable}></Route>
           <Route path="/RSpider" component={RSpider}></Route>
+          <Route path="/UseFetch" component={UseFetch}></Route>
+          <Route path="/UseLayoutEffect" component={UseLayoutEffect}></Route>
+
+
         </div>
       </div>
     </Router>

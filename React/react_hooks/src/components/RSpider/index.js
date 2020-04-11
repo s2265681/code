@@ -82,13 +82,11 @@ export default function Index({
       <br />
       <br />
       <div className="arow">
-        <button onClick={() => autoplay && run(currentIdx)}>开始</button>
-        <br />
+        <button onClick={() => autoplay && run(currentIdx)} style={{margin:10}}>开始</button>
         <button onClick={() => stop()}>停止</button>
       </div>
       <div className="arow">
-        <button onClick={() => TurnLeft("left")}>TurnLeft</button>
-        <br />
+        <button onClick={() => TurnLeft("left")} style={{marginRight:10}}>TurnLeft</button>
         <button onClick={() => TurnLeft("right")}>TurnRight</button>
       </div>
     </div>
