@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import UseForm from "../components/UseForm";
+import loginContext from "./useContext";
 
 export default function State() {
   // const [value1,setValue1] = useState('')
   // const [value2,setValue2] = useState('')
   const [values, setValue] = UseForm({ username: "", password: "" });
   console.log(values, "values");
+
+  const { user, setUser } = useContext(loginContext);
 
   return (
     <div style={{ display: "flex" }}>
@@ -61,6 +64,9 @@ return  [ values, e=>{setValues({...values,
         <br />
         打印信息
         {JSON.stringify(values)}
+
+
+        {user}
         {/*<input type="text" 
               name="username" 
               value={value1}

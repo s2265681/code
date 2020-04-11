@@ -1,4 +1,8 @@
 @import '~antd/dist/antd.css';
+*{
+  margin: 0;
+  padding: 0;
+}
 
 .App {
   text-align: center;
@@ -30,6 +34,19 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.content{
+  width: 100%;
+  padding: 0px 20px;
+}
+
+.header{
+  width: 100%;
+  background: #eee;
+  margin-bottom: 30px;
+  text-align: right;
+  padding-right: 20px;
 }
 
 .App-link {
