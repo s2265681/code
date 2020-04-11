@@ -5,7 +5,10 @@ import UseForm from './pages/UseForm'
 import UseFetch from './pages/UseFetch'
 import UseLayoutEffect from './pages/UseLayoutEffect'
 import ReactHooks from "./components/ReactHooks";
+
 import Home from "./pages/Home";
+import UseCallBack from "./pages/UseCallBack";
+
 
 import HookUseReducer1 from "./components/UseReducer1";
 import HookUseReducer2 from "./components/UseReducer2";
@@ -52,7 +55,10 @@ function App() {
                </li>
                <li class="dropdown-item">
                <Link to="/UseLayoutEffect">UseLayoutEffect</Link>
-             </li>
+               </li>
+               <li class="dropdown-item">
+               <Link to="/UseCallBack">UseCallBack</Link>
+               </li>
               <li class="dropdown-item">
                 <Link to="/ReactHooks">ReactHooks</Link>
               </li>
@@ -83,8 +89,7 @@ function App() {
           <Route path="/RSpider" component={RSpider}></Route>
           <Route path="/UseFetch" component={UseFetch}></Route>
           <Route path="/UseLayoutEffect" component={UseLayoutEffect}></Route>
-
-
+          <Route path="/UseCallBack" component={UseCallBack}></Route>
         </div>
       </div>
     </Router>
