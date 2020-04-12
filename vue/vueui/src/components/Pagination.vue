@@ -65,7 +65,8 @@ export default {
         num = this.total;
       }
       if (num != this.currentPage) {
-        this.$emit("update:current-page", num);
+         // 使用.sync 可以显式更新父组件传过来的属性==通过事件将值传过去，在更新父组件值
+         this.$emit("update:current-page", num);
          this.$emit("current-change", num);
       }
     },
