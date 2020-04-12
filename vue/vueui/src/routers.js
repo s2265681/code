@@ -6,11 +6,15 @@
 // const Bar = { template: '<div>bar</div>' }
 import Hello from './components/HelloWorld'
 import SpiderShow from './pages/SpiderShow'
+import Pagination from './pages/Pagination'
+import Table from './pages/Table'
 
 
 const routes = [
     { path: '/', component: Hello },
-    { path: '/spider', component: SpiderShow }
+    { path: '/spider', component: SpiderShow },
+    { path: '/pagination', component: Pagination },
+    { path: '/table', component: Table }
   ]
   
   export default routes;
