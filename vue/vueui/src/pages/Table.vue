@@ -1,6 +1,12 @@
 <template>
   <div class="tatle">
-    <Table :columns="columns" :data="data"></Table>
+    <Table 
+    :columns="columns" 
+    :data="data"
+    height="200px"
+    @select-one='selectOne'
+    @select-all='selectAll'
+    ></Table>
   </div>
 </template>
 
@@ -59,6 +65,15 @@ export default {
                         date: '2016-10-04'
                     }
                 ]
+            }
+        },
+        methods:{
+            selectOne(ids,row){
+                console.log(ids,row,'ids,row')
+            },
+            selectAll(row){
+                 console.log(row,'row')
+
             }
         }
     }
