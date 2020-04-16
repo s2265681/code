@@ -20,3 +20,7 @@ https://cdn.bootcss.com/underscore.js/1.1.2/underscore-min.js
 
 
 [牙羽](https://github.com/mqyqingfeng/Blog/issues/56)
+
+
+# 2. react
+npx create-reate-app react-core
