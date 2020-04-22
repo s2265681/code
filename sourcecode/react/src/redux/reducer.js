@@ -1,6 +1,6 @@
 
 const initState = {
-    count : 1
+    count : 0
 }
 
 export const reducer =(action,state=initState)=>{
@@ -9,11 +9,10 @@ export const reducer =(action,state=initState)=>{
             case 'add':
                return {
                 ...state,
-                count:initState.count+1
+                count:initState.count++
               }
             break;
             default :
-            console.log('111')
             return initState 
         }
 
