@@ -4,19 +4,24 @@ import loginContext from "./useContext";
 const Home = () => {
   // const [user,setUser] =
   const { user, setUser } = useContext(loginContext);
+  const handleUser = (txt)=>{
+    sessionStorage['user'] = txt
+    setUser(txt)
+    if(!txt) sessionStorage['user'] =''
+  }
   return (
     <div>
       react hooks， 点击tab切换页面
       <div>
         {!user ? (
-          <button onClick={() => setUser("你好，你已登陆")}>
+          <button onClick={()=>handleUser("你好，你已登陆")}>
             登录 <br />
           </button>
         ) : (
           <>
             user: {user}
             <br />
-            <button onClick={() => setUser("")}>
+            <button onClick={()=>handleUser("")}>
               注销
             </button>
           </>
