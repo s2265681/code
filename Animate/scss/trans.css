@@ -2,9 +2,10 @@
   width: 100px;
   height: 100px;
   background-color: #f90;
-  transition: background 2s ease;
+  transition: transform 2s ease-out 0.2s;
+  cursor: pointer;
 }
 .wrapper .demo_one:hover {
   background-color: #f00;
-  cursor: pointer;
+  transform: rotate(45deg);
 }

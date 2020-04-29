@@ -6,10 +6,12 @@ $background-color: #F90;
         width: 100px;
         height: 100px;
         background-color: $background-color;
-        transition: background 2s ease;
+        transition: transform 2s ease-out .2s;
+        cursor: pointer;
         &:hover{
             background-color: #f00;
-            cursor: pointer;
+            // width: 200px;
+            transform: rotate(45deg);
         }
     }
     
