@@ -23,7 +23,7 @@
 }
 .demo_3 {
   border-radius: 50%;
-  animation: jump 1s linear infinite;
+  animation: jump 2s linear infinite;
 }
 @keyframes jump {
   0% {
