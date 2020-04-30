@@ -137,7 +137,29 @@ let tom: IPerson = {
 
 - 函数类型
 
-  
+```js
+// 对参数和返回值约定类型
+const add = function(x:number,y:number,z?:number =10):number{
+    if(typeof  m === 'number'){
+        return x + y + m
+    }else{
+        return x + y
+    }
+}
+// let result = add(1,2)
+// let result = add(1,2,3)
+// z为可选类型可选类型放参数最后面
+
+// 类型推断,可以根据赋值推断变量类型
+const add2: string = add  // error
+const add2:(x:number,y:number,z?:number =10)=>number = add   // true
+eg：
+let str = "hello"
+str = 123      // error
+str = "world"  // true
+```
+
+
 
 
 
