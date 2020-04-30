@@ -447,12 +447,36 @@ function sum(input:string | number) :number {
 
 
 
+- 声明文件
+
+```js
+jQuery('#f00');
+```
+
+ 使用一
+
+> declare var jQuery:(selector:string)=>any
+
+  一般单独放在一个文件jQuery.t.ts 中声明，以.d.ts结尾
+
+  tsconfig.json
+
+  ```js
+  {
+    "include":["**/ *]
+  }
+  ```
+
+使用二
+
+第三方库
+
+> [查找第三方库地址](http://microsoft.github.io/TypeSearch/)
+
+> npm install --save @types/jquery
 
 
-  
 
-
-
-
+ 
 
 -- 2020 - 4 - 30  07:35Am
