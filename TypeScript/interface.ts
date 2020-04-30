@@ -1,6 +1,6 @@
 
 interface Radio {
-    switchRadio(trriger:boolean) : void | number
+    switchRadio(trriger:boolean) : void | number;
 }
 
 interface Battery {
@@ -15,7 +15,23 @@ class Car implements Radio{
     switchRadio(){}
 }
 
-class Cellphone implements Radio,Battery{
+
+
+interface RadioWithBattery extends Battery{
+    checkBattaryStatus();
+}
+
+
+
+
+// class Cellphone implements Radio,Battery{
+//     switchRadio(){}
+//     checkBattaryStatus(){}
+// }
+
+
+
+class Cellphone implements RadioWithBattery{
     switchRadio(){}
     checkBattaryStatus(){}
 }

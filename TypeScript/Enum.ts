@@ -11,8 +11,8 @@
 // console.log(Direction.Up)  // 0
 // console.log(Direction[13])  // Down
 
-
-const enum Direction {  // 常量枚举
+ // 字符串枚举
+const enum Direction { 
     Up = 'UP',
     Down = 'DOWN',
     Left = 'LEFT',

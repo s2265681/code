@@ -138,7 +138,7 @@ let tom: IPerson = {
 - 函数类型
 
 ```js
-// 对参数和返回值约定类型
+// 对参数和返回值的约定
 const add = function(x:number,y:number,z?:number =10):number{
     if(typeof  m === 'number'){
         return x + y + m
@@ -160,6 +160,296 @@ str = "world"  // true
 ```
 
 
+
+- class类的支持
+
+```js
+// 创建Animate类
+class Animate{
+  public name:string;   // 公有属性|默认属性
+  readonly id:number;   // 只读，不可修改赋值
+  private size:number;  // 私有方法，只有自己可以访问
+  protected key:boolean;// 受保护的属性，自己和子类可以使用
+  static categoies:string[] = ["mammal",brid];  // 静态属性
+  static isAnimal(a){    // 静态方法
+    return a instanceof Animate
+  }
+  constructor(name){
+    this.name = name;
+  }
+  run(){
+      return `${this.name} is running`
+  }
+}
+// 继承父类
+class  Cat extends Animate{
+  constructor(name,key){
+    super(name) // 继承父类的方法
+    this.name = name;
+    this.key = key;
+    run(){   // 重写父类run方法
+      return 'Meow, ' + super.run()
+    }
+  }
+}
+const cat = new Cat('miao',true)
+console.log(cat.run())  // 'Meow, miao is running'
+```
+
+
+
+- 类和接口的使用---implements
+
+ ```js
+// 提取公共的接口
+interface Radio{
+   switchRadio(trriger:boolean) : void | number;
+}
+// Cellphone特有
+interface Battery{
+    checkBattertStatus();
+}
+class Car implements Radio{
+   switchRadio(){}
+}
+class Cellphone implements Radio,Battery{
+   switchRadio(){}
+  checkBattertStatus(){}
+}
+
+// 定义接口继承已有
+interface RadioWithBattery extends Radio{
+    checkBattertStatus();
+}
+class Cellphone implements checkBattertStatus{
+   switchRadio(){}
+  checkBattertStatus(){}
+}
+ ```
+
+
+
+- 枚举Enums
+
+ 一般声明常量中使用，并且有一定关系
+
+**数字枚举**
+
+```js
+enum Direction{
+    Up,
+    Down,
+    Right,
+    Left
+}
+console.log(Direction.Up)   // 0
+console.log(Direction.Down) // 1
+console.log(Direction[0])   // Up
+可以给Up赋值，后面的会递增
+```
+
+**字符串枚举**
+
+```js
+enum Direction{
+    Up='UP',
+    Down='DOWN',
+    Right='RIGHT',
+    Left='LEFT',
+}
+const value = 'UP'
+if(Direction['UP']===value){
+  console.log('go up')
+}
+```
+
+**常量枚举**
+
+只需要在枚举前面加const，会内联枚举，提高计算性能
+
+```js
+const enum Direction{
+    Up='UP',
+    Down='DOWN',
+    Right='RIGHT',
+    Left='LEFT',
+}
+```
+
+
+
+- 泛型----generics
+
+  泛型出现的动机和要解决的问题：
+
+  在定义时没办法确定参数类型和返回类型的时候，在使用时才能确定
+
+  可以简单理解为占位符，动态指定类型
+
+```js
+function echo(arg:number){
+  return arg
+}
+const result = echo(123)   // result is number
+const result = echo('123') // result is string change arg is string
+
+...
+```
+
+result无法随意匹配any类型
+
+改造后：
+
+```js
+function echo<T>(arg:T):T{        // 使用T作为参数占位
+  return arg
+}
+const result:number = echo(123)
+const result:string = echo('123')
+const result:boolean = echo(true)
+```
+
+ 参数是一个数组的时候，加泛型
+
+```js
+function swap<T,U>(tuple:[T,U]):[U,T]{
+   return [tuple[1],tuple[0]]
+}
+const result2 = swap(['string',123])
+result2[1] // number
+result2[0] // string
+```
+
+
+
+对函数使用泛型加约束
+
+Eg:
+
+```js
+function echoWithArr<T>(arg:T):T{
+  console.log(arg.length)
+  return arg
+}
+// 会报错，因为T可能没有length，如果给T加约束
+function echoWithArr<T>(arg:T[]):T[]{
+  console.log(arg.length)
+  return arg
+}
+// 改造成了传T类型的数组，错误取消，但是如果想判断字符串的length呢，如果是对象中含有length呢，上面的改造就不能实现了，继续改造
+
+interface IWithLength{
+  length:number;
+}
+function echoWithLength<T extends IWithLength>(arg:T):T{
+   console.log(arg.length)
+   return arg
+}
+const str = echoWithLength('str')
+const obj = echoWithLength({length:12,width:'12'})
+const arr = echoWithLength([1,2,3])
+// 以上都可以满足，问题解决
+```
+
+
+
+对类使用泛型约束
+
+```js
+class Queue<T>{
+  private data = [];
+  push(item:T){
+    return this.data.push(item)
+  }
+  pop():T{
+    return this.data.shift()
+  }
+}
+const queue = new Queue<number>();
+queue.push(1)
+const queue2 = new Queue<string>();
+queue.push('1')
+```
+
+
+
+对接口加泛型
+
+```js
+interface KeyPair<T,U>{
+  key:T;
+  value:U;
+}
+let kp1:KeyPair<number,string> = {key:123,value="str"}
+let kp2:KeyPair<string,number> = {key:"str",value="123"}
+```
+
+
+
+对数组加泛型
+
+```
+let arr:number[] = [1,2,3]
+let arr2:Array<number> = [1,2,3,4]
+```
+
+
+
+```js
+interface IPlus<T> {  // 描述了一个函数的类型
+  {a:T,b:T}: T
+}
+function plus(a:number,b:number){
+  return a+b;
+}
+function connect(a:string,b:string){
+  return a+b;
+}
+const a:IPus<number> = plus;
+const b:IPus<string> = plus;
+```
+
+
+
+- 类型别名和断言as
+
+```js
+// 别名 type aliases
+function sum(x;number,y:number):number {
+return x+y
+} 
+const sum2:(x;number,y:number)=>number = sum
+// sum2 太长，用类型别名
+type PlusType = (x;number,y:number)=>number
+const sum2:PlusType = sum
+```
+
+```js
+// 断言 as 分别判断不同类型的不同处理方式
+function sum(input:string | number) :number {
+   const str = input as String;
+   if(str.length){
+     return str.length
+   }else{
+      const number = input as Number;
+      return number.toString().length
+   }
+} 
+=>
+function sum(input:string | number) :number {
+   if((<string>input).length){
+     return (<string>input).length
+   }else{
+      return input.toString().length
+   }
+} 
+```
+
+
+
+
+
+  
 
 
 
