@@ -478,5 +478,8 @@ jQuery('#f00');
 
 
  
+--- 
 
--- 2020 - 4 - 30  07:35Am
+[studytypescript地址](https://github.com/s2265681/code/tree/master/TypeScript)
+
+---
