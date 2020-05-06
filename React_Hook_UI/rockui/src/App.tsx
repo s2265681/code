@@ -7,6 +7,12 @@ import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
 import TabItem from "./components/Tabs/tabsItem";
 import Tabs from "./components/Tabs/tabs";
+import Icon from './components/Icon/icon'
+
+
+// import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const App: React.FC = () => {
   return (
@@ -88,6 +94,9 @@ const App: React.FC = () => {
               <TabItem label="选项卡三">this is tab3</TabItem>
            </Tabs>
         </div>
+        <h2>Icon组件</h2>
+        <Icon icon='coffee' theme="danger" size="3x"/>
+        <Icon icon='adn' theme="danger" size="3x"/>
       </header>
     </div>
   );

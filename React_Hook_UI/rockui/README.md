@@ -87,3 +87,20 @@ Jest is a delightful javascript Testing Framework
  npx jest jest.test.js --watch
 
  npm install --save-dev @testing-library/jest-dom
+
+
+## Icon
+雪碧图--》font-icon---》svg图标
+font-icon图标 会有奇怪bug
+Font
+react-fontawesome
+[github](https://github.com/FortAwesome/react-fontawesome/)
+[web](https://fontawesome.com/)
+
+$ npm i --save @fortawesome/fontawesome-svg-core
+$ npm i --save @fortawesome/free-solid-svg-icons
+$ npm i --save @fortawesome/react-fontawesome
+
+// 导入
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+<FontAwesomeIcon icon={faCoffee} size="lg" />
