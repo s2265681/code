@@ -1,6 +1,8 @@
-.App {
+/* .App {
   text-align: center;
+
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -22,6 +24,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin: 10px;
 }
 
 .App-link {
@@ -35,4 +38,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+ */
+
+.block{
+  margin: 10px 20px!important;
 }
