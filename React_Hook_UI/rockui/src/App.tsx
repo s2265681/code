@@ -52,7 +52,7 @@ const App: React.FC = () => {
         </div>
         <h2>Menu组件</h2>
         <div className="block menus">
-          <Menu defaultIndex={0} onSelect={(index) => console.log(index)}>
+          <Menu defaultIndex={'0'} onSelect={(index) => console.log(index)}>
             <MenuItem>项目1</MenuItem>
             <MenuItem>项目2</MenuItem>
             <MenuItem disabled>项目3</MenuItem>
@@ -60,12 +60,13 @@ const App: React.FC = () => {
                 <MenuItem>dropdown1</MenuItem>
                 <MenuItem>dropdown2</MenuItem>
                 <MenuItem>dropdown3</MenuItem>
-         </SubMenu>
+            </SubMenu>
           </Menu>
           <Menu
-            defaultIndex={0}
+            defaultIndex={'0'}
             onSelect={(index) => console.log(index)}
             mode="vertical"
+            defaultOpenSubMenus={['3']}
           >
             <MenuItem>项目1</MenuItem>
             <MenuItem disabled>项目2</MenuItem>
