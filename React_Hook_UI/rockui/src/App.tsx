@@ -5,6 +5,8 @@ import Alert, { AlertType } from "./components/Alert/alert";
 import Menu from "./components/Menu/menu";
 import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
+import TabItem from "./components/Tabs/tabsItem";
+import Tabs from "./components/Tabs/tabs";
 
 const App: React.FC = () => {
   return (
@@ -66,7 +68,7 @@ const App: React.FC = () => {
             defaultIndex={'0'}
             onSelect={(index) => console.log(index)}
             mode="vertical"
-            defaultOpenSubMenus={['3']}
+            defaultOpenSubMenus={['2']}
           >
             <MenuItem>项目1</MenuItem>
             <MenuItem disabled>项目2</MenuItem>
@@ -77,6 +79,14 @@ const App: React.FC = () => {
                <MenuItem>dropdown3</MenuItem>
             </SubMenu>
           </Menu>
+        </div>
+        <h2>选项卡组件</h2>
+        <div className="block tab">
+           <Tabs defaultIndex={0} onSelect={(index)=>console.log(index)}>
+              <TabItem label="选项卡一">this is tab1</TabItem>
+              <TabItem label="选项卡二" disabled>this is tab2</TabItem>
+              <TabItem label="选项卡三">this is tab3</TabItem>
+           </Tabs>
         </div>
       </header>
     </div>
