@@ -79,7 +79,7 @@ const App: React.FC = () => {
             <MenuItem>项目1</MenuItem>
             <MenuItem disabled>项目2</MenuItem>
             <MenuItem>项目3</MenuItem>
-            <SubMenu title="dropdown">
+            <SubMenu title="dropdown" >
                <MenuItem>dropdown1</MenuItem>
                <MenuItem>dropdown2</MenuItem>
                <MenuItem>dropdown3</MenuItem>

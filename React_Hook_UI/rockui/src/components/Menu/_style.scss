@@ -40,6 +40,36 @@
         }
     }
 }
+.menu-horizontal{
+.submenu-item{
+    position: relative;
+    .submenu-title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .down-icon{
+            margin-left: 3px;
+        }
+        &:hover{
+            transition: all .3s;
+            .down-icon{
+                transform: rotate(180deg);
+                color: #f00;
+            }
+        }
+    }
+}
+}
+
+.down-icon{
+   margin-left: 3px;
+}
+.is-vitical.menu-open{
+    .down-icon{
+        transform: rotate(180deg);
+        color: #f00;
+    }
+}
 
 .submenu{
     position: absolute;
