@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { FontAwesomeIcon,FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 library.add(fas)
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info'|'danger' |'waring';
+export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info'|'danger' |'warning';
 
 export interface IconProps extends FontAwesomeIconProps{
     theme?:ThemeProps

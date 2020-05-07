@@ -95,8 +95,10 @@ const App: React.FC = () => {
            </Tabs>
         </div>
         <h2>Icon组件</h2>
+        <Icon icon='coffee' theme="warning" size="2x"/>
         <Icon icon='coffee' theme="danger" size="3x"/>
-        <Icon icon='adn' theme="danger" size="3x"/>
+        <Icon icon='arrow-down' theme="primary" size="4x"/>
+        <Icon icon='arrow-up' theme="success" size="5x"/>
       </header>
     </div>
   );
