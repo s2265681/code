@@ -104,3 +104,15 @@ $ npm i --save @fortawesome/react-fontawesome
 // 导入
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 <FontAwesomeIcon icon={faCoffee} size="lg" />
+
+
+
+## Storybook for react
+[Storybook for react](https://storybook.js.org/guides/guide-react/)
+- 安装
+> cnpm i @storybook/cli -g
+> npx -p @storybook/cli sb init
+git diff
+- 运行
+> npm run storybook
+
