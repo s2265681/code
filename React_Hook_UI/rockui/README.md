@@ -111,8 +111,15 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 [Storybook for react](https://storybook.js.org/guides/guide-react/)
 - 安装
 > cnpm i @storybook/cli -g
+> sb init --type react_scripts
+> npm install --save-dev @storybook/react
+或
 > npx -p @storybook/cli sb init
+
 git diff
 - 运行
 > npm run storybook
 
+## 安装addon-info
+> npm i -D @storybook/addon-info
+> npm install --save @types/storybook/addon-info
