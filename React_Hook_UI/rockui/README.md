@@ -145,3 +145,5 @@ js doc
 * param {string} title - the title of book
 * param {string} author - the author of book
 */
+
+## AutoComponent Input表单
