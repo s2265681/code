@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ButtonHTMLAttributes,AnchorHTMLAttributes,FC,ReactNode} from "react";
 import classNames from "classnames";
 export enum ButtonSize {
     Large = "lg",
@@ -15,20 +15,30 @@ export enum ButtonType {
 
 interface BaseButtonProps {
   className?: string;
+  /**设置 Button 的禁用 */
   disabled?: boolean;
-  size?: ButtonSize;
-  btnType?: ButtonType;
-  children: React.ReactNode;
+  /**设置 Button 的尺寸 */
+  size?: "lg" | "sm";
+  // btnType?: ButtonType;
+  /**设置 Button 的类型 */
+  btnType?: "primary" | "default" | "dashed" | "danger" | "link";
+  children: ReactNode;
   href?: string;
 }
 
 
 
-type NaticeButonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>
-type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>
+type NaticeButonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
+type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
 export type ButtonProps = Partial<NaticeButonProps & AnchorButtonProps>;  // 改为可选
-
-const Button: React.FC<ButtonProps> = (props) => {
+/**
+ * 这是我们的第一个Button组件
+ * ## Button header
+ * ~~~js
+ * import {BUtton} from 'rockui'
+ * ~~~
+ */
+export const Button: FC<ButtonProps> = (props) => {
   const { btnType,className, disabled, size, href,  children , ...restProps} = props;
   // btn , btn-lg , btn-primary
   const classes = classNames("btn", className , {

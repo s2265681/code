@@ -8,6 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-links": "^5.3.18",
+    "@storybook/preset-create-react-app": "^2.1.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -49,6 +50,8 @@
   },
   "devDependencies": {
     "@storybook/addon-info": "^5.3.18",
-    "@storybook/react": "^5.3.18"
+    "@storybook/react": "^5.3.18",
+    "react-docgen": "^5.3.0",
+    "react-docgen-typescript-loader": "^3.7.2"
   }
 }

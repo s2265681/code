@@ -121,5 +121,27 @@ git diff
 > npm run storybook
 
 ## 安装addon-info
+文档中添加详细信息
 > npm i -D @storybook/addon-info
 > npm install --save @types/storybook/addon-info
+
+
+## react-docgen
+文档生成器
+cnpm install --save-dev react-docgen
+安装typescript支持
+cnpm install --save-dev react-docgen-typescript-loader
+
+## 添加注释
+js doc
+简单模式
+/** 
+* Represents a book
+*/
+复杂模式
+/** 
+* Represents a book
+* @constructor
+* param {string} title - the title of book
+* param {string} author - the author of book
+*/
