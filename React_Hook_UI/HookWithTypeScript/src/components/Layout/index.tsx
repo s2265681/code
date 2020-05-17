@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import Nav from './Nav'
+import  './index.css'
 
 interface Props{}
 const Layout:React.FC<Props>=(props)=>{
@@ -21,7 +22,7 @@ const Layout:React.FC<Props>=(props)=>{
 
     console.log(isNav,'isNav');
     return (
-        <div>
+        <div className="layout">
             {isNav&&<Nav></Nav>}
             {props.children}
         </div>

@@ -5,10 +5,9 @@ import Layout from '../components/Layout'
 import Home from '../page/home';
 
 import Index from '../page/index';
-import Page1 from '../page/page1';
+import Recipe from '../page/recipe/manager-list';
+import EditRecipe from '../page/recipe/edit-recipe';
 import Page2 from '../page/page2';
-
-
 
 interface Props{}
 const HRouter:React.FC<Props>=(props)=>{
@@ -17,8 +16,8 @@ const HRouter:React.FC<Props>=(props)=>{
           <Layout>
            <Route path="/" pathName="index" name="index" exact component={Index}></Route>
             <Route path="/home" component={Home}></Route>
-            <Route path="/page1"  component={Page1}></Route>
-            <Route path="/page2"  component={Page2}></Route>
+            <Route path="/recipe"  component={Recipe}></Route>
+            <Route path="/editRecipe"  component={EditRecipe}></Route>
         </Layout>
      </Router>
     )

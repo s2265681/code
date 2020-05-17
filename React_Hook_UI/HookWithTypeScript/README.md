@@ -80,6 +80,9 @@ HOC的弊端，需要添加节点，难以理解，HOC概念不好理解
 cnpm i @types/react-router-dom
 npm i react-router-dom
 
+配置路由懒加载
+。。。。
+
 ## 安装less
 npm install less-loader less --save
 
