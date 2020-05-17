@@ -1,3 +1,7 @@
+# 新建项目
+create-react-app project_show --typescript
+
+
 
 # UI
 

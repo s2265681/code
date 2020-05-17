@@ -73,3 +73,20 @@ HOC的弊端，需要添加节点，难以理解，HOC概念不好理解
 // ref在不同渲染中拿到的是最终的值
 修改ref是不会触发再次渲染的
 如果需要触发更新，需要useEffect配合
+
+
+## 安装react-router
+
+cnpm i @types/react-router-dom
+npm i react-router-dom
+
+## 安装less
+npm install less-loader less --save
+
+npm run eject
+
+[tip](https://www.jianshu.com/p/d5dd8b108461)
+
+
+## 默认为sass
+ cnpm i  node-sass
