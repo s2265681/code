@@ -105,7 +105,7 @@ const BasicForm:React.FC<Props>=(props)=> {
                     <LabelBtn/>
                 </Form.Item>
                 <Form.Item 
-                name="recipeIngredientList"
+                 name="recipeIngredientList"
                  label="食材准备"     
                  initialValue={[]}            
                  rules={[{ required: true, message: '食材准备不能为空!' }]}
