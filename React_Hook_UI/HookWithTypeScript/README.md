@@ -93,3 +93,10 @@ npm run eject
 
 ## 默认为sass
  cnpm i  node-sass
+
+
+## 打包部署
+修改package.json
+添加"homepage": ".",
+
+
