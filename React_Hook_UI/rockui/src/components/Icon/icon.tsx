@@ -12,7 +12,7 @@ export interface IconProps extends FontAwesomeIconProps{
     theme?:ThemeProps
 }
 
-const Icon:React.FC<IconProps>=(props)=>{
+export const Icon:React.FC<IconProps>=(props)=>{
     // icon-primary
     const {className,theme,...restProps} = props;
     const classes = classNames('rock-icon',className,{
