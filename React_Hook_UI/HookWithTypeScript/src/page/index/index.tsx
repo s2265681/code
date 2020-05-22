@@ -1,5 +1,7 @@
 import React from 'react'
 import {  Link } from "react-router-dom";
+import StartSpace from '../../components/StartSpace';
+import './index.css';
 
 interface Props{
    name:string
@@ -7,9 +9,13 @@ interface Props{
 
 const Index:React.FC<Props>=(props)=>{
     return (
-        <div>
-             hello，你来啦
-             <Link to="/home">进入</Link>
+        <div className="index_wrapper">
+            <div className="text_wrapper">
+                    hello，你来啦,
+                     <br/>
+                    <Link to="/home" className="into_text_color">点击进入</Link>
+            </div>
+             <StartSpace/>
         </div>
     )
 }

@@ -1,0 +1,28 @@
+.start_wrapper {
+  position: absolute;
+  background-color: #000;
+  height: 100vh;
+  width: 100%;
+  top: -100vh;
+  overflow: hidden;
+  left: 0;
+}
+.start_wrapper_comeIn {
+  top: 0;
+  transition: top 3s;
+}
+@keyframes aniStart {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.heart {
+  position: absolute !important;
+  background-color: #f00 !important;
+}
