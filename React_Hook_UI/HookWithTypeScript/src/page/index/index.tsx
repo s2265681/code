@@ -13,7 +13,7 @@ const Index:React.FC<Props>=(props)=>{
             <div className="text_wrapper">
                     hello，你来啦,
                      <br/>
-                    <Link to="/home" className="into_text_color">点击进入</Link>
+                    <Link to="/home" className="into_text_color" >点击进入</Link>
             </div>
              <StartSpace/>
         </div>
