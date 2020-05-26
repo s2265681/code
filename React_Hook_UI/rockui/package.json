@@ -28,11 +28,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build-ts && npm run build-css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "build-ts":"tsc -p tsconfig.build.json",
+    "build-css":"node-saas ./src/styles/index.scss ./build/index.css"
   },
   "eslintConfig": {
     "extends": "react-app"
