@@ -3,6 +3,10 @@ module.export =({config}) => {
         test:/\.tsx?$/,
         use:[
             {
+                test: /\.scss$/,
+                use: ['css-loader', 'sass-loader']
+            }, 
+            {
                 loader:require.resolve("babel-loader"),
                 options:{
                     presets:[require.resolve("babel-preset-react-app")]
@@ -19,6 +23,17 @@ module.export =({config}) => {
                         return true
                     }
                 }
+            },{
+                test: /\.(ts|tsx)$/,
+                use: [
+                    {
+                    loader: require.resolve('eslint-loader'),
+                    },
+                    // Optional
+                    {
+                    loader: require.resolve('react-docgen-typescript-loader'),
+                    },
+                ]
             }
           ]
     });

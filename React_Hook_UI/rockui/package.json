@@ -34,8 +34,8 @@
   "scripts": {
     "start": "react-scripts start",
     "clean": "rimraf ./dist",
-    "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
-    "build": "npm run clean && npm run build-ts && npm run build-css",
+    "lint": "eslint --ext js,ts src --max-warnings 5",
+    "build": "npm run clean && npm run build-ts && npm run build-css && npm run build-storybook",
     "test": "react-scripts test",
     "test:nowatch": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
@@ -43,7 +43,7 @@
     "build-storybook": "build-storybook -s public",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
-    "prepublish": "npm run build"
+    "prepublish": "npm run test:nowatch && npm run lint && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -61,11 +61,13 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.10.0",
     "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-docs": "^5.3.19",
     "@storybook/addon-info": "^5.3.18",
     "@storybook/addon-links": "^5.3.18",
     "@storybook/preset-create-react-app": "^2.1.1",
-    "@storybook/react": "^5.3.18",
+    "@storybook/react": "^5.3.19",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -75,8 +77,9 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/storybook__addon-info": "^5.2.1",
+    "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",
-    "eslint": "^7.1.0",
+    "eslint-loader": "^4.0.2",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-docgen": "^5.3.0",

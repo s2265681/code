@@ -26,7 +26,7 @@ describe('test Tabs and TabsItem component',()=>{
     beforeEach(()=>{
         wrapper = render(generateTabs(testProps))
         tabsElement = wrapper.getByTestId('test-tabs')
-        activeElement = wrapper.getByText('选项卡一')
+        // activeElement = wrapper.getByText('选项卡一')
         disabledElement = wrapper.getByText('选项卡二')
     })
     it('should render corrent tabs and tabsItem based on default props',()=>{

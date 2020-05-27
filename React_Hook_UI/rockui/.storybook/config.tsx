@@ -22,6 +22,16 @@ addParameters({
     }
 })
 
+const loaderFn = () => {
+    const allExports = [require('../src/welcome.stories.tsx')];
+    const req = require.context('../src/components', true, /\.stories\.tsx$/);
+    req.keys().forEach(fname => allExports.push(req(fname)));
+    return allExports;
+  };
 
+// https://storybook.js.org/docs/basics/writing-stories/
 //指定story的位置
-configure(require.context('../src',true,/\.stories\.tsx$/), module);
+// configure(require.context('../src',true,/\.stories\.tsx$/), module);
+
+configure(loaderFn, module);
+
