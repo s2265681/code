@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import {render, RenderResult, fireEvent,cleanup} from '@testing-library/react'
+import React from 'react';
+import {render, RenderResult} from '@testing-library/react'
 import Tabs,{TabsProps} from './tabs'
 import TabItem from './tabsItem'
 
@@ -9,7 +9,7 @@ const testProps:TabsProps = {
     className:'test'
 }
 
-let wrapper:RenderResult,tabsElement:HTMLElement,activeElement:HTMLElement,disabledElement:HTMLElement;
+let wrapper:RenderResult,tabsElement:HTMLElement,disabledElement:HTMLElement;
 
 const generateTabs =(props:TabsProps)=>{
     return(

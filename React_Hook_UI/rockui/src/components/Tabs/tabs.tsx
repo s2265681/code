@@ -1,4 +1,4 @@
-import React,{createContext,useState, ReactElement, FunctionComponentElement} from "react";
+import React,{createContext,useState} from "react";
 import classNames from "classnames";
 import {TabsItemProps} from './tabsItem'
 type SelectCallback = (selectedIndex:number) => void;

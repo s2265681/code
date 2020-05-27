@@ -1,6 +1,6 @@
 import React from 'react';
-import {render,fireEvent} from '@testing-library/react'
-import Alert,{AlertType} from './alert'
+import {render} from '@testing-library/react'
+import Alert from './alert'
 
 const defaultProps={
     className:'cll'

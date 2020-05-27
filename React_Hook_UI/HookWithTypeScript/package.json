@@ -1,5 +1,5 @@
 {
-  "name": "rockui",
+  "name": "hookWidthTypeScript",
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
@@ -22,7 +22,8 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "rockui":"0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

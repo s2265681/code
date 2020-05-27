@@ -4,10 +4,10 @@ import TabsItem,{TabsItemProps} from './tabsItem';
 
 
 export type ITabsComponent = FC<TabsProps> & {
-    TabsItem: FC<TabsItemProps>,
+    TabItem: FC<TabsItemProps>,
 }
 
 const TransTabs = Tabs as ITabsComponent
-TransTabs.TabsItem = TabsItem
+TransTabs.TabItem = TabsItem
 
 export default TransTabs

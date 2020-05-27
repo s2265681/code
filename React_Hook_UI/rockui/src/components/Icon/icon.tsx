@@ -1,10 +1,10 @@
 import React from "react";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons'
-
 import classNames from "classnames";
 import { FontAwesomeIcon,FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 library.add(fas)
+
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info'|'danger' |'warning';
 

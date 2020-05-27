@@ -1,5 +1,5 @@
 import React from 'react';
-import {render,fireEvent} from '@testing-library/react'
+import {render} from '@testing-library/react'
 import { Icon, IconProps } from './icon'
 
 const defaultProps: IconProps = {

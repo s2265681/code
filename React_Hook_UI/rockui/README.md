@@ -1,8 +1,6 @@
 # 新建项目
 create-react-app project_show --typescript
 
-
-
 # UI
 
 zhongguose.com
@@ -151,3 +149,137 @@ js doc
 */
 
 ## AutoComponent Input表单
+
+
+
+
+## build ts
+
+-  "build-ts":"tsc -p tsconfig.build.json",
+
+## build css
+
+Usage
+
+node-sass
+
+Example
+node-sass src/style.scss dist/style.css
+"build-css":"node-sass ./src/styles/index.scss ./build/index.css"
+
+## npm rimraf package删除文件
+npm i rimraf
+"clean":"rimraf ./build"
+
+## 测试 npm link
+rockui文件夹下
+cnpm link
+运行到本地node_modules
+然后安装rockui
+npm link rockui
+
+package.json中添加入口文件
+  "main":"build/index.js",
+  "module":"build/index.js",
+  "types":"build/index.d.ts",
+
+npm link rockui
+/Users/shangjiawei/MyGithub/Project/vuepress/code/React_Hook_UI/rockui/node_modules/rockui -> /usr/local/lib/node_modules/rockui -> /Users/shangjiawei/MyGithub/Project/vuepress/code/React_Hook_UI/rockui
+
+npm link bug
+
+Error: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem.
+
+项目react两个版本错误
+
+
+## npm
+npm config ls
+npm adduser
+shangjiaweidawang
+邮箱
+npm whoami
+
+
+## public
+语义化版本 2.0.0
+semver.org/lang/zh-CN/
+主版本号：不兼容的API修改
+次版本号：向下兼容的
+修订号：fix
+
+ // package.json
+
+ "description":"React component library rock",
+  "author":"rockshang",
+  "keywords":[
+     "Component",
+     "UI",
+     "React",
+     "Rock"
+  ],
+  "homepage":"https://github.com/s2265681/code/tree/master/React_Hook_UI/rockui",
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/s2265681/code/tree/master/React_Hook_UI/rockui"
+  },
+  "files":[
+    "dist"
+  ],
+
+
+   publish前的钩子函数
+  "prepublish":"npm run build",
+  "private": false,
+
+   npm publish
+  
+    === Tarball Details === 
+    npm notice name:          rockui                                  
+    npm notice version:       0.1.0                                   
+    npm notice package size:  15.3 kB                                 
+    npm notice unpacked size: 55.7 kB                                 
+    npm notice shasum:        3855f443619c979cb0bfa51fbc3179a5d19d5b7a
+    npm notice integrity:     sha512-5F8v0RH8o6zA5[...]7DV/nVsoaAMSQ==
+    npm notice total files:   43   
+
+
+## 优化安装的库
+
+dependencies：工作模式的工作流（安装时都会安装，运行时必须的）npm install 时都会解析下载
+devDependencies:开发模式的工作流（单元测试、语法转换、程序构建、语法）与核心业务模式和模块无关，但是支撑着开发过程,本地npm install时会安装
+
+
+## eslint
+  npm i eslint --save-dev
+  "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
+
+  [文档](eslint.org/docs/user-guide/command-line-interface#ext)
+
+ 
+## 修改npm run test 
+变成结果导向的
+[文档](create-react-app.dev/docs/running-tests/#continuous-interation)
+
+跨平台
+npm i cross-env --save-dev
+把watch改成结果
+CI=true npm test
+
+
+
+npm run test:nowatch && npm run lint && npm run build && npm publish
+
+## husky
+开发中提交代码的检测
+npm i husky --save-dev
+// package.json
+ "husky":{
+    "hooks":{
+      "pre-commit":"npm run test:nowatch && npm run lint"
+      }
+  },
