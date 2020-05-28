@@ -1,6 +1,6 @@
 {
   "name": "rockui",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "homepage": "http://project.rockshang.cn/rockui/",
   "main": "dist/index.js",
@@ -35,16 +35,16 @@
     "start": "react-scripts start",
     "clean": "rimraf ./dist",
     "lint": "eslint --ext js,ts src --max-warnings 5",
-    "build": "npm run clean && npm run build-ts && npm run build-css && npm run build-storybook",
+    "build": "npm run clean && npm run build-ts && npm run build-css && npm run scp",
     "test": "react-scripts test",
     "test:nowatch": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public &&npm run scp-storybook",
+    "build-storybook": "build-storybook -s public",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "prepublish": "npm run test:nowatch && npm run lint && npm run build",
-    "scp-storybook":"scp -r ./storybook-static/* root@39.96.71.193:/home/project/rockui"
+    "scp":"npm run build-storybook && scp -r ./storybook-static/* root@39.96.71.193:/home/project/rockui"
   },
   "eslintConfig": {
     "extends": "react-app"
