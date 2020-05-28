@@ -44,7 +44,7 @@
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "prepublish": "npm run test:nowatch && npm run lint && npm run build",
-    "scp":"npm run build-storybook && scp -r ./storybook-static/* root@39.96.71.193:/home/project/rockui"
+    "scp":"npm run build-storybook && scp -i ~/.ssh/id_myserver-rsa.pem -r ./storybook-static/* root@39.96.71.193:/home/project/rockui"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -288,4 +288,6 @@ npm i husky --save-dev
 ## 上传storybook文档到服务器
 
  "scp-storybook":"scp -r ./storybook-static root@39.96.71.193:/home/rockui"
- "scp-storybook":"sudo scp -i ~/.ssh/id_myserver-rsa.pem -r ./storybook-static root@39.96.71.193:/home/rockui"
+ "scp-storybook":"scp -i ~/.ssh/id_myserver-rsa.pem -r ./storybook-static root@39.96.71.193:/home/rockui"
+
+ scp -r ./storybook-static/* root@39.96.71.193:/home/project/rockui
