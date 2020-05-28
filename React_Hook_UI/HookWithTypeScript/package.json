@@ -35,11 +35,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run scp"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
