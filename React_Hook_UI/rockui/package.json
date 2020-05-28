@@ -1,8 +1,8 @@
 {
   "name": "rockui",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "private": false,
-  "homepage": "https://github.com/s2265681/code/tree/master/React_Hook_UI/rockui",
+  "homepage": "http://rockui.rockshang.cn/storybook-rockui/?path=/story/welcome-page--welcome",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -40,10 +40,11 @@
     "test:nowatch": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook -s public &&npm run scp-storybook",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
-    "prepublish": "npm run test:nowatch && npm run lint && npm run build"
+    "prepublish": "npm run test:nowatch && npm run lint && npm run build",
+    "scp-storybook":"scp -r ./storybook-static root@39.96.71.193:/home/rockui"
   },
   "eslintConfig": {
     "extends": "react-app"

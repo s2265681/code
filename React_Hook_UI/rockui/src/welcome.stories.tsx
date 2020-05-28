@@ -23,12 +23,12 @@ import { Button } from "rockui"
 }<br/>
 {
     `
-import "rockui/dist/index/css"
+import "rockui/dist/index.css"
 `
 }<br/>
 {
     `
-<Button btnType="promary">Primary</Button>
+<Button btnType="primary">Primary</Button>
 `
 }<br/>
 </code>
