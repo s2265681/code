@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://ant.design">
+  <a href="http://project.rockshang.cn/rockui/?path=/story/welcome-page--welcome">
     <img width="400" src="https://img-blog.csdnimg.cn/202005272236562.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDE2MDM4NQ==,size_16,color_FFFFFF,t_70">
   </a>
 </p>
@@ -65,7 +65,7 @@ Dozens of languages supported in `rockui`, see [i18n](https://ant.design/docs/re
 
 ## 🔗 Links
 
-- [Home page](http://rockui.rockshang.cn/storybook-rockui/?path=/story/welcome-page--welcome)
+- [Home page](http://project.rockshang.cn/rockui/)
 - [Components](https://github.com/s2265681/code/blob/master/React_Hook_UI/rockui/src/components/Button)
 
 ## ⌨️ Development

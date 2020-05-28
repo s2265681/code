@@ -22,14 +22,15 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "typescript": "~3.7.2",
-    "rockui":"0.1.0"
+    "rockui": "^0.1.2",
+    "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "scp": "npm run build && scp -r ./build/* root@39.96.71.193:/home/project/items"
   },
   "eslintConfig": {
     "extends": "react-app"

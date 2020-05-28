@@ -3,7 +3,6 @@ import Page2 from '../page2'
 import { HashRouter as Router , Route, Link } from "react-router-dom";
 import './index.less'
 import { Button,Alert,Icon,Menu,Tabs } from 'rockui';
-import "rockui/build/index.css";
 
 const { MenuItem , SubMenu} = Menu;
 const { TabItem } = Tabs;
