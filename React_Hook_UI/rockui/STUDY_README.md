@@ -291,3 +291,9 @@ npm i husky --save-dev
  "scp-storybook":"scp -i ~/.ssh/id_myserver-rsa.pem -r ./storybook-static root@39.96.71.193:/home/rockui"
 
  scp -r ./storybook-static/* root@39.96.71.193:/home/project/rockui
+
+
+
+ ## 使用 npm-check 更新项目依赖
+ 
+ npm-check -u

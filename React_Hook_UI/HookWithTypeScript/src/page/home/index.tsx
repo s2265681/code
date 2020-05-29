@@ -19,7 +19,6 @@ const Home:React.FC<Props>=(props)=> {
              <Button btnType="primary" size="lg">rockui!!</Button><br/>
              <Alert  message="Alert Success" /><br/>
              <Icon icon='coffee' theme="warning" size="2x"/><br/>
-             {/**
              <Menu defaultIndex={'0'} onSelect={(index) => console.log(index)}>
                 <MenuItem>项目1</MenuItem>
                 <MenuItem>项目2</MenuItem>
@@ -36,7 +35,6 @@ const Home:React.FC<Props>=(props)=> {
                 <TabItem label="选项卡二" disabled>this is tab2</TabItem>
                 <TabItem label="选项卡三">this is tab3</TabItem>
           </Tabs>
-        */}
         </div>
     )
 }

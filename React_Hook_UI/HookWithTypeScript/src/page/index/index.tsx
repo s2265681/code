@@ -1,6 +1,8 @@
 import React from 'react'
 import {  Link } from "react-router-dom";
-import StartSpace from '../../components/StartSpace';
+// import StartSpace from '../../components/StartSpace';
+import { Bg } from 'rockui';
+
 import './index.css';
 
 interface Props{
@@ -15,7 +17,7 @@ const Index:React.FC<Props>=(props)=>{
                      <br/>
                     <Link to="/home" className="into_text_color" >点击进入</Link>
             </div>
-             <StartSpace/>
+             <Bg type="start" animationType="down"/>
         </div>
     )
 }

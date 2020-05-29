@@ -8,8 +8,7 @@ import SubMenu from "./components/Menu/subMenu";
 import TabItem from "./components/Tabs/tabsItem";
 import Tabs from "./components/Tabs/tabs";
 import Icon from './components/Icon/icon';
-// import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Bg from './components/Bg';
 var App = function () {
     return (React.createElement("div", { className: "App" },
         React.createElement("header", { className: "App-header" },
@@ -59,6 +58,7 @@ var App = function () {
             React.createElement(Icon, { icon: 'coffee', theme: "warning", size: "2x" }),
             React.createElement(Icon, { icon: 'coffee', theme: "danger", size: "3x" }),
             React.createElement(Icon, { icon: 'arrow-down', theme: "primary", size: "4x" }),
-            React.createElement(Icon, { icon: 'arrow-up', theme: "success", size: "5x" }))));
+            React.createElement(Icon, { icon: 'arrow-up', theme: "success", size: "5x" })),
+        React.createElement(Bg, { animationType: "left", type: "start" })));
 };
 export default App;

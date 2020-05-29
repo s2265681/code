@@ -8,11 +8,7 @@ import SubMenu from "./components/Menu/subMenu";
 import TabItem from "./components/Tabs/tabsItem";
 import Tabs from "./components/Tabs/tabs";
 import Icon from './components/Icon/icon'
-
-
-// import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import Bg from './components/Bg'
 
 const App: React.FC = () => {
   return (
@@ -100,6 +96,7 @@ const App: React.FC = () => {
         <Icon icon='arrow-down' theme="primary" size="4x"/>
         <Icon icon='arrow-up' theme="success" size="5x"/>
       </header>
+      <Bg animationType="left" type="start"/>
     </div>
   );
 };
