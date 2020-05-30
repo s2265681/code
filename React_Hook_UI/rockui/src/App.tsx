@@ -11,6 +11,7 @@ import Icon from './components/Icon/icon'
 import Bg from './components/Bg'
 import Spider from './components/Spider';
 import Table from "./components/Table";
+import Spin from './components/Spin'
 
 const dataSource = [
   {
@@ -95,6 +96,7 @@ const columns = [
 const App: React.FC = () => {
   return (
     <div className="App">
+      <Spin/>
       <Table
       dataSource={dataSource}
       columns={columns}
@@ -106,7 +108,7 @@ const App: React.FC = () => {
         onChange: (selectedRowKeys: any) => console.log(selectedRowKeys,'selectedRowKeys>>')
       }}
       borderd={true}
-      // loading={true}
+      loading={true}
       // isTheme={ "sepia(.6)"}
       expandable = {{
         expandedRowRender: record => <span style={{color:'rgb(100, 155, 0)'}}>{record.description}</span>,

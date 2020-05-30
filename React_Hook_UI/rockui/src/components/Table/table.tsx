@@ -1,5 +1,6 @@
 import React, { useState, useEffect, ReactElement } from "react";
 import classNames from "classnames";
+import Spin from '../Spin';
 import Icon from '../Icon/icon';
 import _ from 'lodash'
 
@@ -111,7 +112,7 @@ const Table: React.FC<TableProps> = (props) => {
 
   // 渲染Loading
   const renderLoading = () => {
-    return loading && <span className="Loading">Loading...</span>;
+    return loading && <Spin delay={1000} loading/>;
   };
 
   // 排序
@@ -281,8 +282,6 @@ const Table: React.FC<TableProps> = (props) => {
   return (
     <div style={{filter: isTheme}} className="table-wrapper">
       <table className={tableclasses}>
-        {/* Loading */}
-        {renderLoading()}
         <thead className ="t_thead">
           <tr className="t_tr">
             {/* 设置有展开占位 */}
@@ -327,9 +326,13 @@ const Table: React.FC<TableProps> = (props) => {
                 </>
               );
             })}
+               
           </tbody>
         </div>
+        {/* Loading */}
+        {renderLoading()}
       </table>
+   
     </div>
   );
 };
