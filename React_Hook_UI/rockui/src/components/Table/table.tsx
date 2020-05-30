@@ -19,7 +19,7 @@ interface ExpandableProps{
     onExpand?: (record: any) => void;
     /* 过滤这是不可展开的条件, 默认全部可展开 */
     rowExpandable?: (record: any) => boolean;
-    /**设置单一展开，还是全部可展开*/
+    /**设置单一展开，还是全部可展开, 默认为true*/
     isSingExped?:boolean;
 }
 
@@ -60,7 +60,7 @@ const Table: React.FC<TableProps> = (props) => {
   const expandedRowRender = expandable&&expandable.expandedRowRender;
   const onExpand = expandable?.onExpand
   const rowExpandable = expandable?.rowExpandable ? expandable?.rowExpandable: ()=>true;
-  const isSingExped = expandable?.isSingExped?expandable?.isSingExped : true;
+  const isSingExped = (expandable?.isSingExped === undefined || expandable?.isSingExped) ? true : false;
 
   // 数据管理
   const [_dataSource, setSourceData] = useState(dataSource);

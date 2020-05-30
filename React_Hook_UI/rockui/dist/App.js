@@ -84,9 +84,11 @@ var App = function () {
                 rowKey: "id",
                 rowChoosed: true,
                 onChange: function (selectedRowKeys) { return console.log(selectedRowKeys, 'selectedRowKeys>>'); }
-            }, borderd: true, loading: true, 
+            }, borderd: true, 
+            // loading={true}
             // isTheme={ "sepia(.6)"}
             expandable: {
+                // isSingExped:false,
                 expandedRowRender: function (record) { return React.createElement("span", { style: { color: 'rgb(100, 155, 0)' } }, record.description); },
             }, scroll: { y: 200 } })));
 };
