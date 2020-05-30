@@ -180,14 +180,13 @@ const Home: React.FC<Props> = (props) => {
         }}
       />
       <Table
-      dataSource={dataSource}
-      columns={columns}
-      borderd
-      isTheme={"sepia(.6)"}
-      scroll={{ y: 200 }}
-      loading
-    />
-       <Spin loading={true}/>
+          dataSource={dataSource}
+          columns={columns}
+          borderd
+          isTheme={"sepia(.6)"}
+          scroll={{ y: 200 }}
+          loading
+        />
     </div>
   );
 };
