@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Table from "./components/Table";
+import Spin from './components/Spin';
 var dataSource = [
     {
         id: "1",
@@ -76,14 +77,14 @@ var columns = [
 ];
 var App = function () {
     return (React.createElement("div", { className: "App" },
+        React.createElement(Spin, null),
         React.createElement(Table, { dataSource: dataSource, columns: columns, rowSelection: {
                 type: 'checkbox',
                 // selectedRowKeys:[1,2],
                 rowKey: "id",
                 rowChoosed: true,
                 onChange: function (selectedRowKeys) { return console.log(selectedRowKeys, 'selectedRowKeys>>'); }
-            }, borderd: true, 
-            // loading={true}
+            }, borderd: true, loading: true, 
             // isTheme={ "sepia(.6)"}
             expandable: {
                 expandedRowRender: function (record) { return React.createElement("span", { style: { color: 'rgb(100, 155, 0)' } }, record.description); },

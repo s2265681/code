@@ -2,7 +2,7 @@ import React from "react";
 import Page2 from "../page2";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import "./index.less";
-import { Button, Alert, Icon, Menu, Tabs, Spider, Table } from "rockui";
+import { Button, Alert, Icon, Menu, Tabs, Spider, Table, Spin } from "rockui";
 
 const { MenuItem, SubMenu } = Menu;
 const { TabItem } = Tabs;
@@ -179,6 +179,15 @@ const Home: React.FC<Props> = (props) => {
             console.log(selectedRowKeys, "selectedRowKeys>>"),
         }}
       />
+      <Table
+      dataSource={dataSource}
+      columns={columns}
+      borderd
+      isTheme={"sepia(.6)"}
+      scroll={{ y: 200 }}
+      loading
+    />
+       <Spin loading={true}/>
     </div>
   );
 };
