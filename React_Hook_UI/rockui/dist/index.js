@@ -23,3 +23,4 @@ export { default as Alert } from './components/Alert';
 export { default as Input } from './components/Input';
 export { default as Tabs } from './components/Tabs';
 export { default as Bg } from './components/Bg';
+export { default as Spider } from './components/Spider';

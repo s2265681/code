@@ -22,7 +22,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "rockui": "^0.1.6",
+    "rockui": "^0.1.7",
     "typescript": "~3.7.2"
   },
   "scripts": {
