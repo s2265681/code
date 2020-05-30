@@ -9,12 +9,114 @@ import TabItem from "./components/Tabs/tabsItem";
 import Tabs from "./components/Tabs/tabs";
 import Icon from './components/Icon/icon'
 import Bg from './components/Bg'
-import Spider from './components/Spider'
+import Spider from './components/Spider';
+import Table from "./components/Table";
+
+const dataSource = [
+  {
+    id: "1",
+    name: "胡彦斌",
+    age: 32,
+    address: "西湖区湖底公园1号",
+    type: 1,
+    description:'胡彦斌是西湖区湖底公园1号的'
+  },
+  {
+    id: "2",
+    name: "胡彦祖",
+    age: 42,
+    address: "西湖区湖底公园1号",
+    type: 2,
+    description:'胡彦祖是西湖区湖底公园1号的'
+  },
+  {
+    id: "3",
+    name: "王祖蓝",
+    age: 22,
+    address: "西湖区湖底公园1号",
+    type: 3,
+    description:'王祖蓝是西湖区湖底公园1号的'
+  },
+  {
+    id: "4",
+    name: "王祖蓝",
+    age: 22,
+    address: "西湖区湖底公园1号",
+    type: 3,
+    description:'王祖蓝是西湖区湖底公园1号的'
+  },
+  {
+    id: "5",
+    name: "王祖蓝",
+    age: 22,
+    address: "西湖区湖底公园1号",
+    type: 3,
+    description:'王祖蓝是西湖区湖底公园1号的'
+  }
+];
+
+// columns
+const columns = [
+  {
+    title: "姓名",
+    dataIndex: "name",
+    key: "name"
+  },
+  {
+    title: "年龄",
+    dataIndex: "age",
+    key: "age",
+    sorter: {
+      compare: (a: { age: number; }, b: { age: number; }) => a.age - b.age
+    }
+  },
+  {
+    title: "住址",
+    dataIndex: "address",
+    key: "address",
+    width:300
+  },
+  {
+    title: "类型",
+    dataIndex: "type",
+    key: "type",
+    render(t: number, r: any, i: any) {
+      // console.log(t,r,i)
+      return (
+        <span style={{ color: "#f00" }}>
+          {t === 1 ? "蔬菜" : t === 2 ? "水果" : "主食"}
+        </span>
+      );
+    }
+  }
+];
+
 
 const App: React.FC = () => {
   return (
     <div className="App">
-        <Spider   
+      <Table
+      dataSource={dataSource}
+      columns={columns}
+      rowSelection={{
+        type: 'checkbox',
+        // selectedRowKeys:[1,2],
+        rowKey: "id",
+        rowChoosed:true,  // 点击行是否选中
+        onChange: (selectedRowKeys: any) => console.log(selectedRowKeys,'selectedRowKeys>>')
+      }}
+      borderd={true}
+      // loading={true}
+      // isTheme={ "sepia(.6)"}
+      expandable = {{
+        expandedRowRender: record => <span style={{color:'rgb(100, 155, 0)'}}>{record.description}</span>,
+        // onExpand:(key)=>console.log(key,'key1111'),
+        // rowExpandable: record => record,
+       }}
+      scroll={{ y: 200  }} 
+    />
+       {/* 
+           <Spider   
           autoplay={false}
           initIdx={0}
           deployTime={3000} 
@@ -24,7 +126,8 @@ const App: React.FC = () => {
           <img src="http://img4.imgtn.bdimg.com/it/u=3471735586,1899139408&fm=26&gp=0.jpg" alt="图二"/>
           <img src="http://img2.imgtn.bdimg.com/it/u=1303806583,1572175195&fm=26&gp=0.jpg" alt="图三"/>
       </Spider>
-       {/* <header className="App-header">
+      
+      <header className="App-header">
         <h2>Button组件</h2>
         <div className="block buttons">
           <Button

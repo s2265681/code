@@ -1,0 +1,119 @@
+.Loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    opacity: 1;
+    color: #000;
+    font-weight: 900;
+    transform: translate(-50%, -50%);
+}
+
+.table-wrapper{
+    display:flex;
+}
+
+.table-container{
+    position: relative;
+    .t_thead{
+        background: #eee;
+        .t_tr{
+            display: flex !important;
+            height: 50px !important;
+            align-items: center !important;
+            .chooselable{
+                display: inline-block !important;
+                width: 20px;
+                cursor: pointer;
+                margin-left: 10px;
+                height: 100%;
+            }
+        }
+        th{
+            text-align: center;
+        }
+    }
+}
+
+.table-loading{
+    filter:opacity(0.5);
+}
+
+.table-borderd{
+    border-top: #999999 1px solid;
+    border-bottom:#666 1px solid ;
+    .t_thead{
+        background: #eee;
+        .t_tr{
+            display: flex !important;
+            height: 50px !important;
+            align-items: center !important;
+            border-bottom: #999 1px solid;
+            .chooselable{
+                display: inline-block !important;
+                width: 20px;
+                cursor: pointer;
+                margin-left: 10px;
+                height: 100%;
+            }
+        }
+        th{
+            text-align: center;
+        }
+    }
+    .tbody_wrapper{
+        .t_tr{
+            border-bottom: #999 1px solid !important;
+        }
+        .expendContent{
+            border-bottom:#999 1px solid
+        }
+        td{
+            text-align: center;
+        }
+    }
+}
+
+.tbody_wrapper{
+    overflow-x: scroll;
+    overflow-y: scroll;
+  
+    .t_tbody{
+      label{
+        display: block !important;
+        margin-bottom: 0rem !important;
+      }
+      .t_tr{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          height: 50px;
+          line-height: 50px;
+          .chooselable{
+            display: inline-block !important;
+            width: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            height: 100%;
+        }
+      }
+      td{
+          height: 50px;
+          text-align: center;
+      }
+    }
+}
+
+
+.expandIcon{
+    display: inline-block !important;
+    width: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+    height: 100%;
+}
+
+.expendContent{
+    height: 60px;
+}

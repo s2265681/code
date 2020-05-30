@@ -782,3 +782,94 @@ main {
 
 .spider-container .arow a {
   color: #efefe5; }
+
+.Loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  opacity: 1;
+  color: #000;
+  font-weight: 900;
+  transform: translate(-50%, -50%); }
+
+.table-wrapper {
+  display: flex; }
+
+.table-container {
+  position: relative; }
+  .table-container .t_thead {
+    background: #eee; }
+    .table-container .t_thead .t_tr {
+      display: flex !important;
+      height: 50px !important;
+      align-items: center !important; }
+      .table-container .t_thead .t_tr .chooselable {
+        display: inline-block !important;
+        width: 20px;
+        cursor: pointer;
+        margin-left: 10px;
+        height: 100%; }
+    .table-container .t_thead th {
+      text-align: center; }
+
+.table-loading {
+  filter: opacity(0.5); }
+
+.table-borderd {
+  border-top: #999999 1px solid;
+  border-bottom: #666 1px solid; }
+  .table-borderd .t_thead {
+    background: #eee; }
+    .table-borderd .t_thead .t_tr {
+      display: flex !important;
+      height: 50px !important;
+      align-items: center !important;
+      border-bottom: #999 1px solid; }
+      .table-borderd .t_thead .t_tr .chooselable {
+        display: inline-block !important;
+        width: 20px;
+        cursor: pointer;
+        margin-left: 10px;
+        height: 100%; }
+    .table-borderd .t_thead th {
+      text-align: center; }
+  .table-borderd .tbody_wrapper .t_tr {
+    border-bottom: #999 1px solid !important; }
+  .table-borderd .tbody_wrapper .expendContent {
+    border-bottom: #999 1px solid; }
+  .table-borderd .tbody_wrapper td {
+    text-align: center; }
+
+.tbody_wrapper {
+  overflow-x: scroll;
+  overflow-y: scroll; }
+  .tbody_wrapper .t_tbody label {
+    display: block !important;
+    margin-bottom: 0rem !important; }
+  .tbody_wrapper .t_tbody .t_tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    line-height: 50px; }
+    .tbody_wrapper .t_tbody .t_tr .chooselable {
+      display: inline-block !important;
+      width: 20px;
+      cursor: pointer;
+      margin-left: 10px;
+      height: 100%; }
+  .tbody_wrapper .t_tbody td {
+    height: 50px;
+    text-align: center; }
+
+.expandIcon {
+  display: inline-block !important;
+  width: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  height: 100%; }
+
+.expendContent {
+  height: 60px; }
