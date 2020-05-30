@@ -293,6 +293,22 @@ const extendTable1 = () => (
   />
 );
 
+const extendTable3 = () => (
+  <Table
+    dataSource={dataSource}
+    columns={columns1}
+    borderd
+    isTheme={"sepia(.6)"}
+    expandable={{
+      expandedRowRender: (record) => (
+        <span style={{ color: "rgb(100, 155, 0)" }}>{record.description}</span>
+      ),
+      onExpand: (key) => console.log(key, "key1111"),
+      isSingExped:false
+    }}
+  />
+);
+
 const extendTable2 = () => (
   <Table
     dataSource={dataSource}
@@ -342,7 +358,6 @@ const withLoadingTable = () => (
     dataSource={dataSource2}
     columns={columns3}
     borderd
-    isTheme={"sepia(.6)"}
     scroll={{ y: 200 }}
     loading
   />
@@ -380,7 +395,8 @@ storiesOf("Table Component", module)
   .add("带radio的Table,点击行选中", rowTypeTable2)
   .add("带checkbox的Table", rowTypeTable3)
   .add("带checkbox的Table,点击行选中", rowTypeTable4)
-  .add("带展开行的Table", extendTable1)
+  .add("带展开行的Table(单行展开)", extendTable1)
+  .add("带展开行的Table（多行展开）", extendTable3)
   .add("带过滤条件的展开行Table", extendTable2)
   .add("带过排序的Table", sortTable1)
   .add("带过render操作的Table，类型转换，获取行数据", renderTable1)
