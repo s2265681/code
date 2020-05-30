@@ -9,11 +9,22 @@ import TabItem from "./components/Tabs/tabsItem";
 import Tabs from "./components/Tabs/tabs";
 import Icon from './components/Icon/icon'
 import Bg from './components/Bg'
+import Spider from './components/Spider'
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
+        <Spider   
+          autoplay={false}
+          initIdx={0}
+          deployTime={3000} 
+          height={400}
+        >
+          <img src="http://img3.imgtn.bdimg.com/it/u=1553709961,3652782060&fm=26&gp=0.jpg" alt="图一"/>
+          <img src="http://img4.imgtn.bdimg.com/it/u=3471735586,1899139408&fm=26&gp=0.jpg" alt="图二"/>
+          <img src="http://img2.imgtn.bdimg.com/it/u=1303806583,1572175195&fm=26&gp=0.jpg" alt="图三"/>
+      </Spider>
+       {/* <header className="App-header">
         <h2>Button组件</h2>
         <div className="block buttons">
           <Button
@@ -27,7 +38,7 @@ const App: React.FC = () => {
           >
             hello
           </Button>
-          <Button btnType={ButtonType.Primary}>Primary</Button>
+        <Button btnType={ButtonType.Primary}>Primary</Button>
           <Button btnType={ButtonType.Dashed}>Dashed</Button>
           <Button btnType={ButtonType.Default} size={ButtonSize.Large}>
             Default
@@ -46,7 +57,9 @@ const App: React.FC = () => {
           <Button btnType={ButtonType.Primary} disabled size={ButtonSize.Large}>
             BaiduLink
           </Button>
-        </div>
+       
+       
+          </div>
         <h2>Alert组件</h2>
         <div className="block alerts">
           <Alert type={AlertType.Success} message="Alert Success" />
@@ -90,13 +103,16 @@ const App: React.FC = () => {
               <TabItem label="选项卡三">this is tab3</TabItem>
            </Tabs>
         </div>
+
+             <Bg animationType="left" type="start"/>
         <h2>Icon组件</h2>
         <Icon icon='coffee' theme="warning" size="2x"/>
         <Icon icon='coffee' theme="danger" size="3x"/>
         <Icon icon='arrow-down' theme="primary" size="4x"/>
         <Icon icon='arrow-up' theme="success" size="5x"/>
+       
       </header>
-      <Bg animationType="left" type="start"/>
+          */}
     </div>
   );
 };

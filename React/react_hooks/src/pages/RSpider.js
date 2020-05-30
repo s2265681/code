@@ -1,11 +1,11 @@
 import React from "react";
-import RTable from "../components/RSpider/index";
+import RSpider from "../components/RSpider/index";
 import './splider.css'
 
 export default function RSpider() {
     return (
         <div className="container">
-             <RTable
+             <RSpider
                 autoplay
                 initIdx={0}
                 deployTime={2000} 
@@ -24,9 +24,9 @@ export default function RSpider() {
                />
                </div>
                <div>
-               <img src="http://img4.imgtn.bdimg.com/it/u=1028120364,2465714686&fm=11&gp=0.jpg" alt="图四"/>
+               <img src="http://img2.imgtn.bdimg.com/it/u=1303806583,1572175195&fm=26&gp=0.jpg" alt="图四"/>
                </div>
-             </RTable>
+             </RSpider>
         </div>
     )
 }
