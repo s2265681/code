@@ -37,7 +37,7 @@ const dataSource = [
     age: 22,
     address: "西湖区湖底公园1号",
     type: 3,
-    description: "王祖蓝是西湖区湖底公园1号的",
+    description: "王祖蓝是西湖区湖底公园1号的",    
   },
   {
     id: "5",
@@ -46,6 +46,7 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
 ];
 
@@ -57,6 +58,7 @@ const dataSource2 = [
     address: "西湖区湖底公园1号",
     type: 1,
     description: "胡彦斌是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "2",
@@ -65,6 +67,7 @@ const dataSource2 = [
     address: "西湖区湖底公园1号",
     type: 2,
     description: "胡彦祖是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "3",
@@ -73,6 +76,7 @@ const dataSource2 = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "4",
@@ -81,6 +85,7 @@ const dataSource2 = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "5",
@@ -89,6 +94,7 @@ const dataSource2 = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "6",
@@ -97,6 +103,7 @@ const dataSource2 = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "7",
@@ -105,6 +112,7 @@ const dataSource2 = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "8",
@@ -113,6 +121,7 @@ const dataSource2 = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
 ];
 
@@ -156,6 +165,13 @@ const columns2 = [
     dataIndex: "name",
     key: "name",
   },
+  {
+    title:'图片',
+    dataIndex:'Pic',
+    key:'Pic',
+    width:200,
+    render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
+   },
   {
     title: "年龄",
     dataIndex: "age",
@@ -395,8 +411,8 @@ const allTable = () => (
     dataSource={dataSource2}
     columns={columns2}
     borderd
-    isTheme={"sepia(.6)"}
-    scroll={{ y: 200 }}
+    // isTheme={"sepia(.6)"}
+    scroll={{ y: 600 }}
     expandable={{
       expandedRowRender: (record) => (
         <span style={{ color: "rgb(100, 155, 0)" }}>{record.description}</span>

@@ -20,7 +20,9 @@ const dataSource = [
     age: 32,
     address: "西湖区湖底公园1号",
     type: 1,
-    description:'胡彦斌是西湖区湖底公园1号的'
+    description:'胡彦斌是西湖区湖底公园1号的',
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "2",
@@ -28,7 +30,9 @@ const dataSource = [
     age: 42,
     address: "西湖区湖底公园1号",
     type: 2,
-    description:'胡彦祖是西湖区湖底公园1号的'
+    description:'胡彦祖是西湖区湖底公园1号的',
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "3",
@@ -36,7 +40,9 @@ const dataSource = [
     age: 22,
     address: "西湖区湖底公园1号",
     type: 3,
-    description:'王祖蓝是西湖区湖底公园1号的'
+    description:'王祖蓝是西湖区湖底公园1号的',
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "4",
@@ -44,7 +50,9 @@ const dataSource = [
     age: 22,
     address: "西湖区湖底公园1号",
     type: 3,
-    description:'王祖蓝是西湖区湖底公园1号的'
+    description:'王祖蓝是西湖区湖底公园1号的',
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "5",
@@ -52,7 +60,9 @@ const dataSource = [
     age: 22,
     address: "西湖区湖底公园1号",
     type: 3,
-    description:'王祖蓝是西湖区湖底公园1号的'
+    description:'王祖蓝是西湖区湖底公园1号的',
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   }
 ];
 
@@ -63,6 +73,13 @@ const columns = [
     dataIndex: "name",
     key: "name"
   },
+  {
+    title:'图片',
+    dataIndex:'Pic',
+    key:'Pic',
+    width:200,
+    render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
+   },
   {
     title: "年龄",
     dataIndex: "age",
@@ -116,7 +133,7 @@ const App: React.FC = () => {
         // onExpand:(key)=>console.log(key,'key1111'),
         // rowExpandable: record => record,
        }}
-      scroll={{ y: 200  }} 
+      scroll={{ y: 600  }} 
     />
        {/* 
            <Spider   

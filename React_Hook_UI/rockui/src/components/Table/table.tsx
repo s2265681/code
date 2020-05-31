@@ -375,7 +375,7 @@ const Table: React.FC<TableProps> = (props) => {
                   {/* 设置表格头部类型 */}
                   {renderBodyTitle(rowKeyOrIndex)}
                       {columns.map((c) => (
-                          <td style={{ width: (c && c.width) || 120 }}>
+                          <td style={{ width: (c && c.width) ||  120 }}>
                               {renderSource(c, d, didx)}
                             </td>
                       ))}
