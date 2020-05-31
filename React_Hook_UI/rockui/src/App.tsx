@@ -77,16 +77,16 @@ const columns = [
     title:'图片',
     dataIndex:'Pic',
     key:'Pic',
-    // width:200,
+    width:200,
     render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
    },
   {
     title: "年龄",
     dataIndex: "age",
     key: "age",
-    sorter: {
-      compare: (a: { age: number; }, b: { age: number; }) => a.age - b.age
-    }
+    // sorter: {
+    //   compare: (a: { age: number; }, b: { age: number; }) => a.age - b.age
+    // }
   },
   {
     title: "住址",
@@ -124,12 +124,12 @@ const App: React.FC = () => {
       //   onChange: (selectedRowKeys: any) =>
       //     console.log(selectedRowKeys, "selectedRowKeys>>"),
       // }}
-      expandable={{
-        expandedRowRender: (record) => (
-          <span style={{ color: "rgb(100, 155, 0)" }}>{record.description}</span>
-        ),
-        onExpand: (key) => console.log(key, "key1111"),
-      }}
+      // expandable={{
+      //   expandedRowRender: (record) => (
+      //     <span style={{ color: "rgb(100, 155, 0)" }}>{record.description}</span>
+      //   ),
+      //   onExpand: (key) => console.log(key, "key1111"),
+      // }}
       // borderd
     />
        {/* 
