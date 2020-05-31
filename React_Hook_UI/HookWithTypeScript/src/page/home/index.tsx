@@ -160,7 +160,7 @@ const Home: React.FC<Props> = (props) => {
         dataSource={dataSource}
         columns={columns}
         borderd
-        isTheme={"sepia(.6)"}
+        // isTheme={"sepia(.6)"}
         scroll={{ y: 200 }}
         expandable={{
           expandedRowRender: (record) => (
@@ -179,14 +179,6 @@ const Home: React.FC<Props> = (props) => {
             console.log(selectedRowKeys, "selectedRowKeys>>"),
         }}
       />
-      <Table
-          dataSource={dataSource}
-          columns={columns}
-          borderd
-          isTheme={"sepia(.6)"}
-          scroll={{ y: 200 }}
-          loading
-        />
     </div>
   );
 };

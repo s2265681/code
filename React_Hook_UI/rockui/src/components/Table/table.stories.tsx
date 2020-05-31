@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import Table from "./table";
+import Button from '../Button';
 // import { addDecorator } from '@storybook/react';
 // import {withInfo} from '@storybook/addon-info';
 
@@ -142,6 +143,14 @@ const columns1 = [
 
 // columns2 排序
 const columns2 = [
+  { 
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    sorter: {
+      compare: (a: { id: number }, b: { id: number }) => a.id - b.id,
+    }
+  },
   {
     title: "姓名",
     dataIndex: "name",
@@ -173,6 +182,15 @@ const columns2 = [
       );
     },
   },
+  {
+    title: "操作",
+      dataIndex: "wrok",
+      render(t: number, r: any, i: any) {
+        return (
+          <Button btnType="primary" >删除</Button>
+        );
+    }
+  }
 ];
 
 // columns3 自定义render
@@ -203,8 +221,17 @@ const columns3 = [
           {t === 1 ? "蔬菜" : t === 2 ? "水果" : "主食"}
         </span>
       );
-    },
+    }
   },
+    {
+    title: "操作",
+    dataIndex: "wrok",
+    render(t: number, r: any, i: any) {
+      return (
+        <Button btnType="primary" >删除</Button>
+      );
+  }
+}
 ];
 
 const easyTable1 = () => <Table dataSource={dataSource} columns={columns1} />;
@@ -380,7 +407,7 @@ const allTable = () => (
     rowSelection={{
       type: "checkbox",
       rowKey: "id",
-      rowChoosed: true, // 点击行是否选中
+      rowChoosed: false, // 点击行是否选中
       onChange: (selectedRowKeys: any) =>
         console.log(selectedRowKeys, "selectedRowKeys>>"),
     }}

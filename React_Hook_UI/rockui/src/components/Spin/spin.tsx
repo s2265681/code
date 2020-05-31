@@ -8,13 +8,13 @@ interface SpinProps{
 }
 const Spin:React.FC<SpinProps> =(props)=> {
     const {loading} =props;
-    
     if(loading){
         return(
-            <div className="wrapper">
-            <p className="click_block"/>
-        </div>)
-    }
+            <div className="spin_wrapper">
+                <p className="click_block"/>
+            </div>
+            )
+       }
     return <></>
 }
 export default Spin;

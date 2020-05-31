@@ -57,6 +57,7 @@
     color: $btn-link-color;
     text-decoration: $link-decoration;
     box-shadow: none;
+    background: transparent;
     &.hover{
         color: $btn-link-hover-color;
         text-decoration: $link-hover-decoration;

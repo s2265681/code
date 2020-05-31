@@ -2,7 +2,7 @@ $small:10px;
 $default:15px;
 $large:20px;
 
-.wrapper{
+.spin_wrapper{
     position: absolute;
     top:0;
     left: 0;
@@ -14,7 +14,7 @@ $large:20px;
     align-items: center;
     z-index: 1;
 }
-.click_block{
+.spin_wrapper .click_block{
     position: absolute;;
     width:10px;
     height:10px;
@@ -24,7 +24,7 @@ $large:20px;
     animation: rotate 2s linear infinite;
 }
 
-.click_block::before{
+.spin_wrapper .click_block::before{
     position: absolute;;
     width:10px;
     height:10px;
@@ -34,10 +34,9 @@ $large:20px;
     top: 15px;
     content: "";
     display: inline-block;
-    // transform-origin: 5px 15px;
 }
 
-.click_block::after{
+.spin_wrapper .click_block::after{
     position: absolute;
     width:10px;
     height:10px;

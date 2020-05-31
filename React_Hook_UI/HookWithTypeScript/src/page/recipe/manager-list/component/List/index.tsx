@@ -1,5 +1,6 @@
 import React from 'react'
-import {Button,Table,Divider} from 'antd';
+// import {Button,Table,Divider} from 'antd';
+import {Button,Table} from 'rockui';
 import {  Link } from "react-router-dom";
 import './index.css'
 
@@ -45,15 +46,16 @@ const Recipe:React.FC<Props>=(props)=>{
         render:(t:any,r:any)=>{
             if(r.status==='1'){
                 return <>
-                <Button type="link">查看</Button>
-                <Divider type="vertical"/>
-                <Button type="link">下架</Button>
+                <Button btnType="link">查看</Button>
+                {/**<Divider type="vertical"/> */}
+                
+                <Button btnType="link">下架</Button>
                 </>
             }else{
                 return <>
-                <Button type="link">编辑</Button>
-                <Divider type="vertical"/>
-                <Button type="link">上架</Button>
+                <Button btnType="link">编辑</Button>
+                {/**<Divider type="vertical"/> */}
+                <Button btnType="link">上架</Button>
                 </>
             }
         }
@@ -64,13 +66,14 @@ const Recipe:React.FC<Props>=(props)=>{
             <div className="header">
                <h3>内容列表</h3>
                <Link to="editRecipe">
-                  <Button type="primary">新增食谱</Button>
+                  <Button btnType="primary">新增食谱</Button>
                </Link>
             </div>
              <Table 
                 columns={columns}
                 dataSource={data}
-                rowKey="id"
+                // rowKey="id"
+
               />
         </div>
     )
