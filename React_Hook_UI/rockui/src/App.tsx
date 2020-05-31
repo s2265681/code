@@ -71,13 +71,14 @@ const columns = [
   {
     title: "姓名",
     dataIndex: "name",
-    key: "name"
+    key: "name",
+    // width:200
   },
   {
     title:'图片',
     dataIndex:'Pic',
     key:'Pic',
-    width:200,
+    // width:200,
     render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
    },
   {
@@ -92,7 +93,7 @@ const columns = [
     title: "住址",
     dataIndex: "address",
     key: "address",
-    width:300
+    // width:300
   },
   {
     title: "类型",
@@ -124,7 +125,7 @@ const App: React.FC = () => {
         rowChoosed:true,  // 点击行是否选中
         onChange: (selectedRowKeys: any) => console.log(selectedRowKeys,'selectedRowKeys>>')
       }}
-      borderd={true}
+      // borderd={true}
       // loading={true}
       // isTheme={ "sepia(.6)"}
       expandable = {{

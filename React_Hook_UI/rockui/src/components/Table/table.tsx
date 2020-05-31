@@ -150,9 +150,9 @@ const Table: React.FC<TableProps> = (props) => {
 
   // 渲染cloumn
   const renderCloumn = () => {
-    return columns.map(({ width = 120, title, sorter, key }) => {
+    return columns.map(({ width, title, sorter, key }) => {
       return (
-        <th key={key} style={{ width }}>
+        <th key={key} style={{ width , flexGrow:width ? 0 : 1}}>
           {title} &nbsp;
           {sorter instanceof Object ? (
             <span onClick={() => order(sorter)} style={{ cursor: "pointer" }}>
@@ -344,10 +344,12 @@ const Table: React.FC<TableProps> = (props) => {
       <table className={tableclasses}>
         <thead className ="t_thead">
           <tr className="t_tr">
+            <div className="firstColomnsTitle">
             {/* 设置有展开占位 */}
             {isExpandable()}
             {/* 设置头部类型type */}
             {renderCloumnsTitle()}
+            </div>
             {/* 设置table的columns */}
             {renderCloumn()}
           </tr>
@@ -365,17 +367,24 @@ const Table: React.FC<TableProps> = (props) => {
                   >
                     <tr
                       className="t_tr"
-                      style={{background: isColorIndex === didx ? "#efefef" : "",cursor: type ? "pointer" : ""}}
+                      style={{
+                        background: isColorIndex === didx ? "#fafafa" : "",
+                        cursor: type&& rowChoosed ? "pointer" : "",
+                        transition: "background .3s ease"
+                      }}
                       onMouseOver={() => getColor(didx)}
                       onMouseOut={() => getColor(-1)}
                     >
 
-                  {/* 展开行图标，过滤条件展开 */}
-                  {renderExpandIcon(rowKeyOrIndex,d)}
-                  {/* 设置表格头部类型 */}
-                  {renderBodyTitle(rowKeyOrIndex)}
+                      <div className="firstColomnsTitle">
+                        {/* 展开行图标，过滤条件展开 */}
+                        {renderExpandIcon(rowKeyOrIndex,d)}
+                        {/* 设置表格头部类型 */}
+                        {renderBodyTitle(rowKeyOrIndex)}
+                      </div>
+                      
                       {columns.map((c) => (
-                          <td style={{ width: (c && c.width) ||  120 }}>
+                          <td style={{ width: (c && c.width) , flexGrow:(c && c.width) ? 0 : 1 }}>
                               {renderSource(c, d, didx)}
                             </td>
                       ))}

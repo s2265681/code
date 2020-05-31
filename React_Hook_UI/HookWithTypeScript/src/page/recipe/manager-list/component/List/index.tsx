@@ -73,7 +73,6 @@ const Recipe:React.FC<Props>=(props)=>{
                 columns={columns}
                 dataSource={data}
                 // rowKey="id"
-
               />
         </div>
     )

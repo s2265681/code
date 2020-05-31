@@ -81,7 +81,6 @@ $ git clone https://github.com/s2265681/code/tree/master/React_Hook_UI/rockui
 $ cd rockui
 $ npm install
 $ npm start
-$ 修改注释 src/index.tsx 打包组件发布 >>> 页面展示
 ```
 
 Open your browser and visit http://127.0.0.1:8001 , see more at [Development](https://github.com/ant-design/ant-design/wiki/Development).

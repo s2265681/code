@@ -4,62 +4,33 @@
 
 .table-container{
     position: relative;
+    width: 100%;
     .t_thead{
-        background: #eee;
+        background: #fafafa;
         .t_tr{
             display: flex !important;
-            min-height: 50px !important;
+            min-height: 55px !important;
             align-items: center !important;
             .chooselable{
                 display: inline-block !important;
                 width: 20px;
                 cursor: pointer;
                 margin-left: 10px;
-                height: 50px;
+                height: 55px;
             }
         }
         th{
+            color: rgba(0,0,0,.85);
+            font-weight: 500;
+            text-align: left;
+            background: #fafafa;
+            border-bottom: 1px solid #f0f0f0;
+            -webkit-transition: background .3s ease;
+            transition: background .3s ease;
+            flex: auto;
             text-align: center;
-        }
-    }
-}
-
-.table-loading tbody{
-    filter:opacity(0.5);
-}
-
-.table-borderd{
-    border-top: #999999 1px solid;
-    border-bottom:#666 1px solid ;
-    .t_thead{
-        background: #eee;
-        .t_tr{
-            display: flex !important;
-            min-height: 50px !important;
-            align-items: center !important;
-            border-bottom: #999 1px solid;
-            .chooselable{
-                display: inline-block !important;
-                width: 20px;
-                cursor: pointer;
-                margin-left: 10px;
-                height: 50px;
-            }
-        }
-        th{
-            text-align: center;
-        }
-    }
-    .tbody_wrapper{
-        .t_tr{
-            border-bottom: #999 1px solid !important;
-            min-height: 50px !important;
-        }
-        .expendContent{
-            border-bottom:#999 1px solid
-        }
-        td{
-            text-align: center;
+            height: 55px;
+            line-height: 55px;
         }
     }
 }
@@ -67,8 +38,9 @@
 .tbody_wrapper{
     overflow-x: scroll;
     overflow-y: scroll;
-  
     .t_tbody{
+        width: 100% !important;
+        display: block;
       label{
         display: block !important;
         margin-bottom: 0rem !important;
@@ -78,22 +50,23 @@
           flex-direction: row;
           justify-content: center;
           align-items: center;
-          min-height: 50px !important;
-        //   line-height: 50px;
+          min-height: 55px !important;
+        //   line-height: 55px;
           .chooselable{
             display: inline-block !important;
             width: 20px;
             cursor: pointer;
             margin-left: 10px;
-            height: 50px;
+            height: 55px;
+            line-height: 55px;
         }
       }
       td{
           text-align: center;
+          flex: auto;
       }
     }
 }
-
 
 .expandIcon{
     display: inline-block !important;
@@ -105,4 +78,67 @@
 
 .expendContent{
     height: 60px;
+}
+
+.firstColomnsTitle{
+    width: 100px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.table-borderd{
+    border-top: #f0f0f0 1px solid;
+    border-bottom: #f0f0f0 1px solid ;
+    .t_thead{
+        background: #fafafa;
+        .t_tr{
+            display: flex !important;
+            min-height: 55px !important;
+            align-items: center !important;
+            border-bottom: #f0f0f0 1px solid;
+            .chooselable{
+                display: inline-block !important;
+                width: 20px;
+                cursor: pointer;
+                margin-left: 10px;
+                height: 55px;
+            }
+        }
+        th{
+            text-align: center;
+            flex: auto;
+            color: rgba(0,0,0,.85);
+            font-weight: 500;
+            text-align: left;
+            background: #fafafa;
+            border-bottom: 1px solid #f0f0f0;
+            -webkit-transition: background .3s ease;
+            transition: background .3s ease;
+            height: 55px;
+        }
+    }
+    .tbody_wrapper{
+        .t_tbody{
+            width: 100% !important;
+            display: block;
+        }
+        .t_tr{
+            border-bottom: #f0f0f0 1px solid !important;
+            min-height: 55px !important;
+        }
+        .expendContent{
+            border-bottom:#f0f0f0 1px solid
+        }
+        td{
+            flex: auto;
+            text-align: center;
+        }
+    }
+}
+
+.table-loading tbody{
+    filter:opacity(0.5);
 }
