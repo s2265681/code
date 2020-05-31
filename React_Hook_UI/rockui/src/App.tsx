@@ -117,23 +117,20 @@ const App: React.FC = () => {
       <Table
       dataSource={dataSource}
       columns={columns}
-      rowSelection={{
-        type: 'checkbox',
-        // selectedRowKeys:[1,2],
-        rowKey: "id",
-        rowChoosed:true,  // 点击行是否选中
-        onChange: (selectedRowKeys: any) => console.log(selectedRowKeys,'selectedRowKeys>>')
+      // rowSelection={{
+      //   type: "checkbox",
+      //   rowKey: "id",
+      //   rowChoosed: true, // 点击行是否选中
+      //   onChange: (selectedRowKeys: any) =>
+      //     console.log(selectedRowKeys, "selectedRowKeys>>"),
+      // }}
+      expandable={{
+        expandedRowRender: (record) => (
+          <span style={{ color: "rgb(100, 155, 0)" }}>{record.description}</span>
+        ),
+        onExpand: (key) => console.log(key, "key1111"),
       }}
-      // borderd={true}
-      // loading={true}
-      // isTheme={ "sepia(.6)"}
-      expandable = {{
-        // isSingExped:false,
-        expandedRowRender: record => <span style={{color:'rgb(100, 155, 0)'}}>{record.description}</span>,
-        // onExpand:(key)=>console.log(key,'key1111'),
-        // rowExpandable: record => record,
-       }}
-      scroll={{ y: 600  }} 
+      // borderd
     />
        {/* 
            <Spider   

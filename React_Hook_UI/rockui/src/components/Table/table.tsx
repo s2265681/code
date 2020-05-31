@@ -323,11 +323,13 @@ const Table: React.FC<TableProps> = (props) => {
       expandable &&
       expandable && 
       isExpend[rowKeyOrIndex] && (
-        <tr  className="expendContent">
-          <td  colSpan={Number(columns.length) + 1}>
-            {expandedRowRender&&expandedRowRender(d)}
+        <div style={{width:'100%',background: '#fbfbfb',padding:'20px 10px'}}>
+        <tr className="expendContent">
+          <td colSpan={Number(columns.length) + 1}>
+                {expandedRowRender&&expandedRowRender(d)}
           </td>
         </tr>
+        </div>
       )
     );
   };
@@ -344,12 +346,13 @@ const Table: React.FC<TableProps> = (props) => {
       <table className={tableclasses}>
         <thead className ="t_thead">
           <tr className="t_tr">
-            <div className="firstColomnsTitle">
+          {( type||expandable )&&<div className="firstColomnsTitle">
             {/* 设置有展开占位 */}
             {isExpandable()}
             {/* 设置头部类型type */}
             {renderCloumnsTitle()}
             </div>
+           }
             {/* 设置table的columns */}
             {renderCloumn()}
           </tr>
@@ -376,12 +379,13 @@ const Table: React.FC<TableProps> = (props) => {
                       onMouseOut={() => getColor(-1)}
                     >
 
-                      <div className="firstColomnsTitle">
+                    {( type||expandable )&& <div className="firstColomnsTitle">
                         {/* 展开行图标，过滤条件展开 */}
                         {renderExpandIcon(rowKeyOrIndex,d)}
                         {/* 设置表格头部类型 */}
                         {renderBodyTitle(rowKeyOrIndex)}
                       </div>
+                   }
                       
                       {columns.map((c) => (
                           <td style={{ width: (c && c.width) , flexGrow:(c && c.width) ? 0 : 1 }}>
