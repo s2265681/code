@@ -73,19 +73,20 @@ const columns = [
     title: "姓名",
     dataIndex: "name",
     key: "name",
-    // width:200
+    width:100
   },
   {
     title:'图片',
     dataIndex:'Pic',
     key:'Pic',
-    width:200,
+    width:300,
     render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
    },
   {
     title: "年龄",
     dataIndex: "age",
     key: "age",
+    width:100,
     // sorter: {
     //   compare: (a: { age: number; }, b: { age: number; }) => a.age - b.age
     // }
@@ -94,12 +95,13 @@ const columns = [
     title: "住址",
     dataIndex: "address",
     key: "address",
-    // width:300
+    width:300
   },
   {
     title: "类型",
     dataIndex: "type",
     key: "type",
+    // width:100,
     render(t: number, r: any, i: any) {
       // console.log(t,r,i)
       return (
@@ -190,19 +192,6 @@ const App: React.FC = () => {
       <Table
       dataSource={dataSource}
       columns={columns}
-      rowSelection={{
-        type: "checkbox",
-        rowKey: "id",
-        rowChoosed: true, // 点击行是否选中
-        onChange: (selectedRowKeys: any) =>
-          console.log(selectedRowKeys, "selectedRowKeys>>"),
-      }}
-      expandable={{
-        expandedRowRender: (record) => (
-          <span style={{ color: "rgb(100, 155, 0)" }}>{record.description}</span>
-        ),
-        onExpand: (key) => console.log(key, "key1111"),
-      }}
       borderd
     />
     </Animation>

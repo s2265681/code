@@ -2,19 +2,26 @@ import React from "react";
 import Page2 from "../page2";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import "./index.less";
-import { Button, Alert, Icon, Menu, Tabs, Spider, Table, Spin, Animation } from "rockui";
-
+import { Button,Table, Alert, Icon, Menu, Tabs, Spider, Spin, Animation } from "rockui";
+// import {Table} from "antd";
 const { MenuItem, SubMenu } = Menu;
 const { TabItem } = Tabs;
 
 interface Props {}
 
-const columns = [
+const columns:any = [
   {
     title: "姓名",
     dataIndex: "name",
     key: "name",
   },
+  {
+    title:'图片',
+    dataIndex:'Pic',
+    key:'Pic',
+    // width:200,
+    render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
+   },
   {
     title: "年龄",
     dataIndex: "age",
@@ -51,6 +58,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 1,
     description: "胡彦斌是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "2",
@@ -59,6 +68,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 2,
     description: "胡彦祖是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "3",
@@ -67,6 +78,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "4",
@@ -75,6 +88,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "5",
@@ -83,6 +98,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "6",
@@ -90,6 +107,7 @@ const dataSource = [
     age: 22,
     address: "西湖区湖底公园1号",
     type: 3,
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
     description: "王祖蓝是西湖区湖底公园1号的",
   },
   {
@@ -99,6 +117,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
   {
     id: "8",
@@ -107,13 +127,23 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+
   },
 ];
 
 const Home: React.FC<Props> = (props) => {
   return (
-    <Animation>
+    // <Animation>
+
+  
+
     <div className="home_wrapper">
+    <Table
+      dataSource={dataSource}
+      // columns={columns}
+      columns = {columns}
+  />
       首页
       <br />
       <h3>使用rockui组件测试</h3>
@@ -159,29 +189,6 @@ const Home: React.FC<Props> = (props) => {
       </Spider>
       <br/>
 
-      <Table
-        dataSource={dataSource}
-        columns={columns}
-        borderd
-        // isTheme={"sepia(.6)"}
-        scroll={{ y: 200 }}
-        expandable={{
-          expandedRowRender: (record) => (
-            <span style={{ color: "rgb(100, 155, 0)" }}>
-              {record.description}
-            </span>
-          ),
-          onExpand: (key) => console.log(key, "key1111"),
-          rowExpandable: (record) => record.name !== "王祖蓝",
-        }}
-        rowSelection={{
-          type: "checkbox",
-          rowKey: "id",
-          rowChoosed: true, // 点击行是否选中
-          onChange: (selectedRowKeys: any) =>
-            console.log(selectedRowKeys, "selectedRowKeys>>"),
-        }}
-      />
       <br/>
       <br/>
       <br/>
@@ -192,7 +199,7 @@ const Home: React.FC<Props> = (props) => {
       <br/>
       <br/>
     </div>
-    </Animation>
+    // </Animation>
   );
 };
 

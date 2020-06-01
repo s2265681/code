@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactElement } from "react";
+import React, { useState, useEffect, ReactElement,useRef } from "react";
 import classNames from "classnames";
 import Spin from '../Spin';
 import Icon from '../Icon/icon';
@@ -98,6 +98,7 @@ interface TableProps {
   className?:any
 }
 
+let tbodyTds:any;
 const Table: React.FC<TableProps> = (props) => {
   const {
     dataSource,
@@ -121,6 +122,9 @@ const Table: React.FC<TableProps> = (props) => {
   const onExpand = expandable?.onExpand
   const rowExpandable = expandable?.rowExpandable ? expandable?.rowExpandable: ()=>true;
   const isSingExped = (expandable?.isSingExped === undefined || expandable?.isSingExped) ? true : false;
+
+
+  const Tbody = useRef<HTMLTableSectionElement>(null)
 
   // 数据管理
   const [_dataSource, setSourceData] = useState(dataSource);
@@ -150,9 +154,14 @@ const Table: React.FC<TableProps> = (props) => {
 
   // 渲染cloumn
   const renderCloumn = () => {
-    return columns.map(({ width, title, sorter, key }) => {
+    
+    return columns.map(({ width, title, sorter, key },idx) => {
+      let isT = type||expandable;
+      tbodyTds = Tbody&&Tbody.current?.children[0].children[0].children;
+      let theadThs = tbodyTds&&tbodyTds[isT?idx+1:idx]?.clientWidth;
       return (
-        <th key={key} style={{ width , flexGrow:width ? 0 : 1}}>
+        // <th key={key} style={{ width , flexGrow:width ? 0 : 1}}>
+        <th key={key} style={{ width:theadThs , flexGrow:width ? 0 : 1}}>
           {title} &nbsp;
           {sorter instanceof Object ? (
             <span onClick={() => order(sorter)} style={{ cursor: "pointer" }}>
@@ -358,7 +367,7 @@ const Table: React.FC<TableProps> = (props) => {
           </tr>
         </thead>
         <div className="tbody_wrapper" style={{ maxHeight: scroll.y, maxWidth: scroll.x}}>
-          <tbody className="t_tbody">
+          <tbody className="t_tbody" ref={Tbody}>
             {_dataSource.map((d, didx) => {
               const dRowKey = +d[rowKey];
               const rowKeyOrIndex = rowKey ? dRowKey : didx;
@@ -390,7 +399,7 @@ const Table: React.FC<TableProps> = (props) => {
                       {columns.map((c) => (
                           <td style={{ width: (c && c.width) , flexGrow:(c && c.width) ? 0 : 1 }}>
                               {renderSource(c, d, didx)}
-                            </td>
+                          </td>
                       ))}
                     </tr>
                   </label>

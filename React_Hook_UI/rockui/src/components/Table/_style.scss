@@ -26,6 +26,8 @@
             flex: auto;
             height: 55px;
             line-height: 55px;
+            padding-left:16px;
+            padding-right:16px;
         }
         th:first-of-type{
             flex-grow: 0.5 !important;
@@ -45,13 +47,14 @@
             .t_tr {
                 display: flex;
                 flex-direction: row;
-                justify-content: center;
+                justify-content: flex-start;
                 align-items: center;
                 min-height: 55px !important;
             }
             td {
-                text-align: center;
+                text-align: left;
                 flex: auto;
+                padding: 16px;
                
             }
             td:first-of-type{
@@ -92,13 +95,13 @@
     margin-left: 10px;
     height: 55px;
     line-height: 55px;
+    margin-right: 15px;
 }
 
 .firstColomnsTitle {
-    width: 100px;
-    padding-left: 20px;
+    width: 150px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 
