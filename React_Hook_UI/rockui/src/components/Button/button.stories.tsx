@@ -23,6 +23,7 @@ const ButtonWithType =()=>(
     <Button btnType="default">default button</Button>
     <Button btnType="danger">danger button</Button>
     <Button disabled>disabled button</Button>
+    <Button btnType="link" href="http://www.baidu.com">百度</Button>
     </>
 )
 storiesOf('Button Component',module)

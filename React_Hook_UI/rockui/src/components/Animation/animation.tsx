@@ -52,7 +52,7 @@ const Animation:React.FC<AnimationProps>=(props)=> {
            setDelayClear(true)
            clearTimeout(timer)
         }
-    },[isShow])
+    },[isShow,children])
 
     const handleAnimate=()=>{
         if(isShow){
@@ -60,6 +60,9 @@ const Animation:React.FC<AnimationProps>=(props)=> {
                 [`animate-${name}-${intDir}-in`] : name,
                 [`duration-${delayTime}-time`]:delayTime
             })
+            timer = setTimeout(()=>{
+                setClassess("")
+            },mapTime[delayTime])
         }else{
             clasS = classnames("animated",className,{
                 [`animate-${name}-${outDir}-out`] : name,

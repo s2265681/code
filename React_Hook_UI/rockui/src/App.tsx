@@ -116,6 +116,69 @@ const App: React.FC = () => {
   const [toggle,setToggle] = useState(true)
   return (
     <div className="App">
+
+    <Menu
+        defaultIndex={'0'}
+        onSelect={(index) => console.log(index)}
+        mode="vertical"
+        defaultOpenSubMenus={['2']}
+      >
+        <MenuItem>项目1</MenuItem>
+        <MenuItem disabled>项目2</MenuItem>
+        <MenuItem>项目3</MenuItem>
+        <SubMenu title="dropdown" >
+          <MenuItem>dropdown1</MenuItem>
+          <MenuItem>dropdown2</MenuItem>
+          <MenuItem>dropdown3</MenuItem>
+        </SubMenu>
+      </Menu>
+
+      
+    <Menu defaultIndex={'0'} onSelect={(index) => console.log(index)}>
+        <MenuItem>项目1</MenuItem>
+        <MenuItem>项目2</MenuItem>
+        <MenuItem disabled>项目3</MenuItem>
+        <SubMenu title="dropdown">
+            <MenuItem>dropdown1</MenuItem>
+            <MenuItem>dropdown2</MenuItem>
+            <MenuItem>dropdown3</MenuItem>
+        </SubMenu>
+      </Menu>
+
+
+      
+    <h2>选项卡组件</h2>
+    <div className="block tab">
+       <Tabs defaultIndex={0} onSelect={(index)=>console.log(index)}>
+          <TabItem label="选项卡一">
+            <p style={{width:300,height:300,background:'#f00'}}> 
+                this is tab1
+            </p>
+          </TabItem>
+          <TabItem label="选项卡二" disabled>
+            <p style={{width:300,height:300,background:'#f00'}}> 
+              this is tab2
+            </p>
+          </TabItem>
+          <TabItem label="选项卡三">
+            <p style={{width:300,height:300,background:'#f00'}}> 
+                this is tab3
+            </p>
+          </TabItem>
+       </Tabs>
+    </div>
+
+
+    <Spider   
+          autoplay={false}
+          initIdx={0}
+          deployTime={3000} 
+          height={400}
+        >
+          <img src="http://img3.imgtn.bdimg.com/it/u=1553709961,3652782060&fm=26&gp=0.jpg" alt="图一"/>
+          <img src="http://img4.imgtn.bdimg.com/it/u=3471735586,1899139408&fm=26&gp=0.jpg" alt="图二"/>
+          <img src="http://img2.imgtn.bdimg.com/it/u=1303806583,1572175195&fm=26&gp=0.jpg" alt="图三"/>
+      </Spider>
     <Button btnType="default" onClick={()=>setToggle(!toggle)}>toggle Animate</Button>
     <Animation 
       isShow={toggle} 
@@ -145,18 +208,9 @@ const App: React.FC = () => {
     </Animation>
 
 
-       {/* 
-           <Spider   
-          autoplay={false}
-          initIdx={0}
-          deployTime={3000} 
-          height={400}
-        >
-          <img src="http://img3.imgtn.bdimg.com/it/u=1553709961,3652782060&fm=26&gp=0.jpg" alt="图一"/>
-          <img src="http://img4.imgtn.bdimg.com/it/u=3471735586,1899139408&fm=26&gp=0.jpg" alt="图二"/>
-          <img src="http://img2.imgtn.bdimg.com/it/u=1303806583,1572175195&fm=26&gp=0.jpg" alt="图三"/>
-      </Spider>
-      
+   
+        
+          {/* 
       <header className="App-header">
         <h2>Button组件</h2>
         <div className="block buttons">
@@ -228,15 +282,7 @@ const App: React.FC = () => {
             </SubMenu>
           </Menu>
         </div>
-        <h2>选项卡组件</h2>
-        <div className="block tab">
-           <Tabs defaultIndex={0} onSelect={(index)=>console.log(index)}>
-              <TabItem label="选项卡一">this is tab1</TabItem>
-              <TabItem label="选项卡二" disabled>this is tab2</TabItem>
-              <TabItem label="选项卡三">this is tab3</TabItem>
-           </Tabs>
-        </div>
-
+       
              <Bg animationType="left" type="start"/>
         <h2>Icon组件</h2>
         <Icon icon='coffee' theme="warning" size="2x"/>

@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { isNumber } from 'util';
 import Icon from '../../components/Icon/icon'
+import Animation from '../../components/Animation'
 
 interface SpiderProps {
     autoplay?:boolean;
@@ -16,13 +17,15 @@ const Spider: React.FC<SpiderProps>=(props)=> {
     const len = children.length;
     let [currentIdx, setCurrentIdx] = useState(initIdx);
     const [child, setChild] = useState(children[0]);
+    const [dir,setDir] = useState('left')
     
   useEffect(() => {
     autoplay && run(initIdx);
+    console.log('change');
     return () => {
       stop();
     };
-  }, [autoplay,initIdx]);
+  }, [autoplay,currentIdx]);
 
   // run 开始
   function run(curIdx:any) {
@@ -43,6 +46,7 @@ const Spider: React.FC<SpiderProps>=(props)=> {
 
   function TurnLeft(dir:string) {
     stop();
+    setDir(dir)
     if (dir === "left") {
       if (currentIdx === 0) currentIdx = len;
       if(isNumber(currentIdx))--currentIdx;
@@ -65,9 +69,12 @@ const Spider: React.FC<SpiderProps>=(props)=> {
 
     return (
         <div className="spider-container" {...restProps} >
-              <div className="spider" style={{ height }} >
-                {child}
-              </div>
+                 <div className="spider" style={{ height }} >
+                  <Animation name="fade" intDir={dir==='left'?'right':'left'}>
+                     {child}
+                    </Animation>
+                  </div>
+    
               <div className="dot">
                 {children.map((e: any, i:number) => (
                   <button

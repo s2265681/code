@@ -3,6 +3,7 @@ import classNames from "classnames";
 import {MenuContext} from './menu'
 import {MenuItemProps} from './menuItem'
 import Icon from '../Icon/icon'
+import Animation from '../Animation'
 
 export interface SubMenuProps{
     index?:string;
@@ -48,7 +49,6 @@ const SubMenu:React.FC<SubMenuProps>=({index,title,children,className})=>{
     const renderChildren=()=>{
         const subMenuClasses = classNames('submenu',{
             'menu-open':menuOpen,
-
         })
         const childrenComponent = React.Children.map(children,(child,i)=>{
             const childElement = child as React.FunctionComponentElement<MenuItemProps>
@@ -62,9 +62,9 @@ const SubMenu:React.FC<SubMenuProps>=({index,title,children,className})=>{
             }
         })
         return(
-            <ul className={subMenuClasses}>
-                 {childrenComponent}
-            </ul>
+                <ul className={subMenuClasses}>
+                    {childrenComponent}
+                </ul>
         )
     }
     return(
@@ -72,9 +72,8 @@ const SubMenu:React.FC<SubMenuProps>=({index,title,children,className})=>{
          <div className="submenu-title" {...clickEvents}>
            {title}
            <Icon icon='angle-down' className="down-icon" theme="primary" size="1x"/>
-           {renderChildren()}
+               {renderChildren()}
          </div>
-       
        </li> 
     )
 }

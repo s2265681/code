@@ -1,7 +1,7 @@
 import React,{useContext} from "react";
 import classNames from "classnames";
 import {TabsContext} from './tabs'
-
+import Animation from '../Animation'
 export interface TabsItemProps {
     index?: number;
     disabled?: boolean;
@@ -25,11 +25,13 @@ const TabsItem: React.FC<TabsItemProps> = (props) => {
     return (
       <div className="tab-item-wrapper">
         <li className={classes} style={style} onClick={handleClick}>
-          {label}
+           {label}
         </li>
+        <Animation name="fade">
         <div style={{display: context.index === index?'block':'none'}}>
            {children}
         </div>
+        </Animation>
       </div>
     );
   };
