@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Button, { ButtonSize, ButtonType } from "./components/Button/button";
 import Alert, { AlertType } from "./components/Alert/alert";
 import Menu from "./components/Menu/menu";
@@ -10,7 +10,9 @@ import Icon from './components/Icon/icon'
 import Bg from './components/Bg'
 import Spider from './components/Spider';
 import Table from "./components/Table";
-import Spin from './components/Spin'
+import Animation from "./components/Animation";
+
+// import Spin from './components/Spin'
 
 const dataSource = [
   {
@@ -111,27 +113,38 @@ const columns = [
 
 
 const App: React.FC = () => {
+  const [toggle,setToggle] = useState(true)
   return (
     <div className="App">
-      <Spin/>
+    <Button btnType="default" onClick={()=>setToggle(!toggle)}>toggle Animate</Button>
+    <Animation 
+      isShow={toggle} 
+      name="fade" 
+      delayTime="fast"
+      intDir="left"
+      outDir="bottom"
+    >
       <Table
       dataSource={dataSource}
       columns={columns}
-      // rowSelection={{
-      //   type: "checkbox",
-      //   rowKey: "id",
-      //   rowChoosed: true, // 点击行是否选中
-      //   onChange: (selectedRowKeys: any) =>
-      //     console.log(selectedRowKeys, "selectedRowKeys>>"),
-      // }}
-      // expandable={{
-      //   expandedRowRender: (record) => (
-      //     <span style={{ color: "rgb(100, 155, 0)" }}>{record.description}</span>
-      //   ),
-      //   onExpand: (key) => console.log(key, "key1111"),
-      // }}
-      // borderd
+      rowSelection={{
+        type: "checkbox",
+        rowKey: "id",
+        rowChoosed: true, // 点击行是否选中
+        onChange: (selectedRowKeys: any) =>
+          console.log(selectedRowKeys, "selectedRowKeys>>"),
+      }}
+      expandable={{
+        expandedRowRender: (record) => (
+          <span style={{ color: "rgb(100, 155, 0)" }}>{record.description}</span>
+        ),
+        onExpand: (key) => console.log(key, "key1111"),
+      }}
+      borderd
     />
+    </Animation>
+
+
        {/* 
            <Spider   
           autoplay={false}

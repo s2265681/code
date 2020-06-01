@@ -48,3 +48,9 @@
   border-top-left-radius: $raduis;
   border-bottom-left-radius: $raduis;
 }
+
+// animate Time修改
+@mixin duration-time($duration-time) {
+   animation-duration: $duration-time;
+   animation-fill-mode:$animation-fill-mode;
+}

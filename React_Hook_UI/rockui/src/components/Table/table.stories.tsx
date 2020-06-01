@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import Table from "./table";
 import Button from '../Button';
+import Animation from "../Animation"
 // import { addDecorator } from '@storybook/react';
 // import {withInfo} from '@storybook/addon-info';
 
@@ -250,20 +251,23 @@ const columns3 = [
 }
 ];
 
-const easyTable1 = () => <Table dataSource={dataSource} columns={columns1} />;
+const easyTable1 = () => <Animation><Table dataSource={dataSource} columns={columns1} /></Animation> ;
 const easyTable2 = () => (
-  <Table dataSource={dataSource} columns={columns1} borderd />
+  <Animation><Table dataSource={dataSource} columns={columns1} borderd /></Animation>
 );
 const easyTable3 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns1}
     borderd
     isTheme={"sepia(.6)"}
   />
+  </Animation>
 );
 
 const rowTypeTable1 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns1}
@@ -273,9 +277,11 @@ const rowTypeTable1 = () => (
       type: "radio",
     }}
   />
+  </Animation>
 );
 
 const rowTypeTable2 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns1}
@@ -289,8 +295,10 @@ const rowTypeTable2 = () => (
         console.log(selectedRowKeys, "selectedRowKeys>>"),
     }}
   />
+  </Animation>
 );
 const rowTypeTable3 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns1}
@@ -303,9 +311,11 @@ const rowTypeTable3 = () => (
         console.log(selectedRowKeys, "selectedRowKeys>>"),
     }}
   />
+  </Animation>
 );
 
 const rowTypeTable4 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns1}
@@ -319,9 +329,11 @@ const rowTypeTable4 = () => (
         console.log(selectedRowKeys, "selectedRowKeys>>"),
     }}
   />
+  </Animation>
 );
 
 const extendTable1 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns1}
@@ -334,9 +346,11 @@ const extendTable1 = () => (
       onExpand: (key) => console.log(key, "key1111"),
     }}
   />
+  </Animation>
 );
 
 const extendTable3 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns1}
@@ -350,9 +364,11 @@ const extendTable3 = () => (
       isSingExped:false
     }}
   />
+  </Animation>
 );
 
 const extendTable2 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns1}
@@ -366,27 +382,33 @@ const extendTable2 = () => (
       rowExpandable: (record) => record.name !== "王祖蓝",
     }}
   />
+  </Animation>
 );
 
 const sortTable1 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns2}
     borderd
     isTheme={"sepia(.6)"}
   />
+  </Animation>
 );
 
 const renderTable1 = () => (
+  <Animation>
   <Table
     dataSource={dataSource}
     columns={columns3}
     borderd
     isTheme={"sepia(.6)"}
   />
+  </Animation>
 );
 
 const scrollTable1 = () => (
+  <Animation>
   <Table
     dataSource={dataSource2}
     columns={columns3}
@@ -394,9 +416,11 @@ const scrollTable1 = () => (
     isTheme={"sepia(.6)"}
     scroll={{ y: 200 }}
   />
+  </Animation>
 );
 
 const withLoadingTable = () => (
+  <Animation>
   <Table
     dataSource={dataSource2}
     columns={columns3}
@@ -404,9 +428,11 @@ const withLoadingTable = () => (
     scroll={{ y: 200 }}
     loading
   />
+  </Animation>
 );
 
 const allTable = () => (
+  <Animation>
   <Table
     dataSource={dataSource2}
     columns={columns2}
@@ -428,6 +454,7 @@ const allTable = () => (
         console.log(selectedRowKeys, "selectedRowKeys>>"),
     }}
   />
+  </Animation>
 );
 storiesOf("Table Component", module)
   .add("简单Table", easyTable1)
