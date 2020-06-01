@@ -297,3 +297,20 @@ npm i husky --save-dev
  ## 使用 npm-check 更新项目依赖
  
  npm-check -u
+
+
+
+ ## Table 问题记录
+
+ 1、 table-thead中的th与tbody中的td宽度对不齐？
+ 
+ tbody根据内容自适应，flex布局，另外可以自定义宽度
+ thead的宽度，需要通过操作dom节点？虚拟dom，通过hooks中的useRef获得，将宽度付给head解决
+ antd同样具有该问题，表头字段特别长的时候，会重新计算head的单元格的宽度
+
+ 2、table中clounms全部设置宽度后，导致对不齐的问题？
+
+
+ ## Animation 问题记录
+ 组件内部销毁，淡出，销毁事件太快，无法控制，
+ 只能外部传入isShow

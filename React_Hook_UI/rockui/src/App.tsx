@@ -73,13 +73,13 @@ const columns = [
     title: "姓名",
     dataIndex: "name",
     key: "name",
-    width:100
+    // width:100
   },
   {
     title:'图片',
     dataIndex:'Pic',
     key:'Pic',
-    width:300,
+    // width:300,
     render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
    },
   {
@@ -95,7 +95,7 @@ const columns = [
     title: "住址",
     dataIndex: "address",
     key: "address",
-    width:300
+    // width:300
   },
   {
     title: "类型",

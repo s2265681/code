@@ -15,6 +15,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 1,
     description: "胡彦斌是西湖区湖底公园1号的",
+    Pic: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg',
+
   },
   {
     id: "2",
@@ -23,6 +25,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 2,
     description: "胡彦祖是西湖区湖底公园1号的",
+    Pic: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg',
+
   },
   {
     id: "3",
@@ -31,6 +35,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",
+    Pic: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg',
+
   },
   {
     id: "4",
@@ -39,6 +45,8 @@ const dataSource = [
     address: "西湖区湖底公园1号",
     type: 3,
     description: "王祖蓝是西湖区湖底公园1号的",    
+    Pic: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg',
+
   },
   {
     id: "5",

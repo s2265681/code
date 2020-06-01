@@ -14,18 +14,20 @@ const columns:any = [
     title: "姓名",
     dataIndex: "name",
     key: "name",
+    width: 100,
   },
   {
     title:'图片',
     dataIndex:'Pic',
     key:'Pic',
-    // width:200,
+    width:200,
     render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
    },
   {
     title: "年龄",
     dataIndex: "age",
     key: "age",
+    width: 200,
     sorter: {
       compare: (a: { age: number }, b: { age: number }) => a.age - b.age,
     },
@@ -40,6 +42,7 @@ const columns:any = [
     title: "类型",
     dataIndex: "type",
     key: "type",
+    width: 100,
     render(t: number, r: any, i: any) {
       return (
         <span style={{ color: "#f00" }}>
