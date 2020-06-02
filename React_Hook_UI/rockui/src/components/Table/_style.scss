@@ -3,13 +3,18 @@
     color: rgba(0, 0, 0, 0.65);
     font-size: 14px;
     font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+    width: 100%;
+    overflow: hidden;
 }
 
 .table-container {
     position: relative;
     width: 100%;
+    overflow: hidden;
     .t_thead {
         background: #fafafa;
+        width: 100%;
+        overflow: hidden;
         .t_tr {
             display: flex !important;
             min-height: 55px !important;
@@ -37,9 +42,12 @@
     .tbody_wrapper {
         overflow-x: scroll;
         overflow-y: scroll;
+        width: 100%;
+        overflow: hidden;
         .t_tbody {
             width: 100% !important;
             display: block;
+            overflow: hidden;
             label {
                 display: block !important;
                 margin-bottom: 0rem !important;

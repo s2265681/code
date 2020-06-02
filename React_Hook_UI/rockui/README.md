@@ -67,6 +67,7 @@ Dozens of languages supported in `rockui`, see [i18n](https://ant.design/docs/re
 
 - [Home page](http://project.rockshang.cn/rockui/)
 - [Components](https://github.com/s2265681/code/blob/master/React_Hook_UI/rockui/src/components/Button)
+- [Icon Doc](https://fontawesome.com/icons?d=gallery&c=vehicles)
 
 ## ⌨️ Development
 

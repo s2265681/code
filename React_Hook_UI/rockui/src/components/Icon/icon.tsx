@@ -11,7 +11,11 @@ export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info'|'danger' |
 export interface IconProps extends FontAwesomeIconProps{
     theme?:ThemeProps
 }
-
+/**
+ * 
+ * @param props 
+ * @license https://fontawesome.com/icons?d=gallery
+ */
 export const Icon:React.FC<IconProps>=(props)=>{
     // icon-primary
     const {className,theme,...restProps} = props;

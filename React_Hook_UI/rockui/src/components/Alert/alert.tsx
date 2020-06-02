@@ -1,16 +1,16 @@
 import React from "react";
 import classNames from "classnames";
 
-export enum AlertType {
-    Success = "success",
-    Info = "info",
-    Warning = "warning",
-    Error = "error"
-  }
+// export enum AlertType {
+//     Success = "success",
+//     Info = "info",
+//     Warning = "warning",
+//     Error = "error"
+//   }
 
   interface BaseAlertProps {
     className?: string;
-    type?:AlertType;
+    type?:"success" | "info" | "warning" | "error";
     message?:string;
   }
   type NaticeDivProps = BaseAlertProps & React.BaseHTMLAttributes<HTMLElement>
@@ -29,7 +29,7 @@ export enum AlertType {
   }
 
   Alert.defaultProps={
-    type:AlertType.Success,
+    // type:AlertType.Success,
     message:'please input message'
   }
 

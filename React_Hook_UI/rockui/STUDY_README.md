@@ -308,8 +308,10 @@ npm i husky --save-dev
  thead的宽度，需要通过操作dom节点？虚拟dom，通过hooks中的useRef获得，将宽度付给head解决
  antd同样具有该问题，表头字段特别长的时候，会重新计算head的单元格的宽度
 
- 2、table中clounms全部设置宽度后，导致对不齐的问题？
+ 2、table中clounms全部设置宽度后，导致对不齐的问题？ 
 
+ 3、table中clounms第一列宽度不设置，后面设置出问题，需要设置justfiy-content:flex-end
+ 
 
  ## Animation 问题记录
  组件内部销毁，淡出，销毁事件太快，无法控制，

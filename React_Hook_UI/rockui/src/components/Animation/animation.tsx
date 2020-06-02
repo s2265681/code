@@ -61,7 +61,7 @@ const Animation:React.FC<AnimationProps>=(props)=> {
                 [`duration-${delayTime}-time`]:delayTime
             })
             timer = setTimeout(()=>{
-                setClassess("")
+                setClassess(classnames(className))
             },mapTime[delayTime])
         }else{
             clasS = classnames("animated",className,{
@@ -70,7 +70,7 @@ const Animation:React.FC<AnimationProps>=(props)=> {
             })
             timer = setTimeout(()=>{
                 setDelayClear(false)
-                setClassess("")
+                setClassess(classnames(className))
             },mapTime[delayTime])
         }
         setClassess(clasS)
