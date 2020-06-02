@@ -152,7 +152,6 @@ const dataSource = [
 const Home: React.FC<Props> = (props) => {
   return (
     <Animation>
-      <div>
         <div className="home_wrapper">
           首页
           <br />
@@ -190,9 +189,9 @@ const Home: React.FC<Props> = (props) => {
                 </Button>
             </TabItem>
             <TabItem label="Alert">
-                  <Alert message="Alert Success" />
-                  <br />
-                  <br />
+                  <Alert message="Alert Success"/>
+                  <Alert message="Alert Success" type="info"/>
+                  <Alert message="Alert Success" type="error"/>
             </TabItem>
             <TabItem label="Icon">
                      <a href="https://fontawesome.com/icons?d=gallery" target="_blank">您可以使用这里面的icon</a>
@@ -214,6 +213,7 @@ const Home: React.FC<Props> = (props) => {
 
             </TabItem>
           </Tabs>
+          
           <Spider autoplay={false} initIdx={0} deployTime={3000} height={400}>
             <img
               src="http://img3.imgtn.bdimg.com/it/u=1553709961,3652782060&fm=26&gp=0.jpg"
@@ -235,7 +235,6 @@ const Home: React.FC<Props> = (props) => {
             columns={columns}
           />
         </div>
-      </div>
     </Animation>
   );
 };

@@ -46,6 +46,8 @@ const Animation:React.FC<AnimationProps>=(props)=> {
     const { className,name,isShow,children, delayTime="middle" , intDir="",outDir="" } = props;
     const [classes,setClassess] = useState("")
     const [delayClear,setDelayClear] = useState(true);
+    const childrenName  = children.props.className;
+
     useEffect(()=>{
         handleAnimate()
         return () =>{
@@ -56,35 +58,35 @@ const Animation:React.FC<AnimationProps>=(props)=> {
 
     const handleAnimate=()=>{
         if(isShow){
-            clasS = classnames("animated",className,{
+            clasS = classnames("animated",className,childrenName,{
                 [`animate-${name}-${intDir}-in`] : name,
                 [`duration-${delayTime}-time`]:delayTime
             })
             timer = setTimeout(()=>{
-                setClassess(classnames(className))
+                setClassess(classnames(className,childrenName))
             },mapTime[delayTime])
         }else{
-            clasS = classnames("animated",className,{
+            clasS = classnames("animated",childrenName,className,{
                 [`animate-${name}-${outDir}-out`] : name,
                 [`duration-${delayTime}-time`]:delayTime
             })
             timer = setTimeout(()=>{
                 setDelayClear(false)
-                setClassess(classnames(className))
+                setClassess(classnames(className,childrenName))
             },mapTime[delayTime])
         }
         setClassess(clasS)
     }
 
     function handleAnimationEnd(){
-         console.log('动画结束执行');
+        //  console.log('动画结束执行');
     }
 
     const element = {
         ...children,
         props: {
             ...children.props,
-            className: classes,
+            className: classes ,
             onAnimationEnd: handleAnimationEnd()
         },
     };

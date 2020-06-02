@@ -29,7 +29,7 @@ import classNames from "classnames";
   }
 
   Alert.defaultProps={
-    // type:AlertType.Success,
+    type:"success",
     message:'please input message'
   }
 

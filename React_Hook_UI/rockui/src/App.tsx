@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import Button, { ButtonSize, ButtonType } from "./components/Button/button";
-import Alert, { AlertType } from "./components/Alert/alert";
+import Alert from "./components/Alert/alert";
 import Menu from "./components/Menu/menu";
 import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
@@ -11,7 +11,9 @@ import Bg from './components/Bg'
 import Spider from './components/Spider';
 import Table from "./components/Table";
 import Animation from "./components/Animation";
+import Commission from "./components/Commission";
 
+import './index.css';
 // import Spin from './components/Spin'
 
 const dataSource = [
@@ -113,12 +115,57 @@ const columns = [
   }
 ];
 
+ const data1 = [{
+  id:1,
+  title:'2020年',
+  content:'工作总结',
+  isDone:false,
+  children:[{
+     id:2,
+     title:'1月',
+     content:'1月份提纲',
+     isDone:false,
+     children:[{
+         id:4,
+         title:'11日',
+         content:'11提纲',
+         isDone:false,
+      },
+      {
+         id:5,
+         title:'12日',
+         content:'12提纲+++++',
+         isDone:false,
+      },
+     ]
+  },
+  {
+     id:3,
+     title:'2月',
+     content:'1月份提纲',
+     isDone:false,
+  }]
+}]
 
 const App: React.FC = () => {
   const [toggle,setToggle] = useState(true)
+
   return (
     <div className="App">
-
+    {/**
+        // 主题色 theme "success" | "warning" | 'info' | 'danger'
+        // dataSource [
+            {dot:'第一个节点内容', id:'1', isDone:false},
+            {dot:"第二个节点内容",id:"2",isDone:false},
+            {dot:'我属于第一个节点',parentId:1, id:3 , isDone:true}
+           ]
+        // 
+    */}
+    <Commission 
+        theme = "primary"
+        dataSource = {data1}
+    />
+{/*
     <Menu
         defaultIndex={'0'}
         onSelect={(index) => console.log(index)}
@@ -181,7 +228,11 @@ const App: React.FC = () => {
           <img src="http://img4.imgtn.bdimg.com/it/u=3471735586,1899139408&fm=26&gp=0.jpg" alt="图二"/>
           <img src="http://img2.imgtn.bdimg.com/it/u=1303806583,1572175195&fm=26&gp=0.jpg" alt="图三"/>
       </Spider>
-    <Button btnType="default" onClick={()=>setToggle(!toggle)}>toggle Animate</Button>
+  */}
+   
+          {/* 
+
+             <Button btnType="default" onClick={()=>setToggle(!toggle)}>toggle Animate</Button>
     <Animation 
       isShow={toggle} 
       name="fade" 
@@ -189,17 +240,59 @@ const App: React.FC = () => {
       intDir="left"
       outDir="bottom"
     >
-      <Table
-      dataSource={dataSource}
-      columns={columns}
-      borderd
-    />
+      <div className="animate-demo" style={{color:'#f00'}}>
+          我是div
+      </div>
     </Animation>
+    <Tabs defaultIndex={0} onSelect={(index) => console.log(index)}>
+    <TabItem label="Button">
+        <Button btnType="primary" size="lg">
+            primary-btn
+        </Button>
+          <br />
+          <br />
+        <Button btnType="danger" size="lg">
+            danger-btn
+        </Button>
+          <br />
+          <br />
+          <Button btnType="danger" size="lg">
+          danger-btn
+          </Button>
+          <br />
+        <br />
+        <Button btnType="link" size="lg">
+          link-btn
+        </Button>
+    </TabItem>
+    <TabItem label="Alert">
+          <Alert message="Alert Success" type="success"/>
+          <Alert message="Alert Success" type="info"/>
+          <Alert message="Alert Success" type="error"/>
+    </TabItem>
+    <TabItem label="Icon">
+             <a href="https://fontawesome.com/icons?d=gallery" target="_blank">您可以使用这里面的icon</a>
+             <br/>
+             <br/>
+            <Icon icon="coffee" theme="warning" size="2x" />
+            <br />
+            <br/>
+            <Icon icon="angle-down" theme="info" size="2x" />
+            <br />
+            <br/>
+            <Icon icon="bell-slash" theme="success" size="2x" />
+            <br />
+            <br/>
+            <Icon icon="allergies" theme="danger" size="2x" />
+            <br />
+            <br/>
+            <Icon icon="ambulance" theme="success" size="3x" />
 
+    </TabItem>
+  </Tabs>
 
    
         
-          {/* 
       <header className="App-header">
         <h2>Button组件</h2>
         <div className="block buttons">

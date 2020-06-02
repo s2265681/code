@@ -3,7 +3,7 @@ import classNames from "classnames";
 import {MenuContext} from './menu'
 import {MenuItemProps} from './menuItem'
 import Icon from '../Icon/icon'
-import Animation from '../Animation'
+// import Animation from '../Animation'
 
 export interface SubMenuProps{
     index?:string;

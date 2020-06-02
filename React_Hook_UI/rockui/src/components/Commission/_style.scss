@@ -1,0 +1,67 @@
+.commission{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 50px 20px;
+   .info-wrapper{
+       position: relative;
+        width: 100%;
+        padding: 0 20px;
+        .dot-radio{
+            width: 25px;
+            height: 25px;
+            // background-color: blue;
+            border-radius: 50%;
+            position: absolute;
+            top: 0px;
+            left: -14px;
+        }
+        .info{
+            position: relative;
+            top: 0;
+            min-height: 130px;
+            .title{ 
+                 font-size: 23px;
+            }
+            .content{
+                font-size: 16px;
+            } 
+        }
+   }
+}
+
+.commission-primary{
+    .info-wrapper{
+        .dot-radio{
+            @include dot-radio-color($primary);
+        }
+        @include commission-border($primary)
+    }
+}
+
+.commission-warning{
+    .info-wrapper{
+        @include commission-border($warning);
+        .dot-radio{
+            @include dot-radio-color($warning)
+        }
+    }
+}
+
+.commission-danger{
+    .info-wrapper{
+        @include commission-border($danger);
+        .dot-radio{
+            @include dot-radio-color($danger)
+        }
+    }
+}
+
+.commission-info{
+    .info-wrapper{
+        @include commission-border($info);
+        .dot-radio{
+            @include dot-radio-color($info)
+        }
+    }
+}

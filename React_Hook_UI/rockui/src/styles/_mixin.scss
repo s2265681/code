@@ -54,3 +54,14 @@
    animation-duration: $duration-time;
    animation-fill-mode:$animation-fill-mode;
 }
+
+@mixin commission-border($border-color) {
+  border-left: $border-color 4px solid;
+}
+
+@mixin dot-radio-color($color) {
+  background-color: $color;
+}
+
+
+

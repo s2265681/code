@@ -27,4 +27,6 @@ serviceWorker.unregister();
 // export { default as Table } from './components/Table';
 // export { default as Spin } from './components/Spin';
 // export { default as Animation } from './components/Animation';
+// export { default as Commission } from './components/Commission';
+
 

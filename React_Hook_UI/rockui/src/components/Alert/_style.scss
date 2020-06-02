@@ -1,6 +1,6 @@
 
 .alert{
-    position: relative;
+    position: relative !important;
     display: inline-block;
     font-weight: $alert-font-weight;
     line-height: $alert-line-height;

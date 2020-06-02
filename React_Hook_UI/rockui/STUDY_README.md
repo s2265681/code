@@ -316,3 +316,4 @@ npm i husky --save-dev
  ## Animation 问题记录
  组件内部销毁，淡出，销毁事件太快，无法控制，
  只能外部传入isShow
+ bug: 多个Animation组件使用时，干扰isShow，未解决
