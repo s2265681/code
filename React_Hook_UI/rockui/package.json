@@ -1,6 +1,6 @@
 {
   "name": "rockui",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "private": false,
   "homepage": "http://project.rockshang.cn/rockui/",
   "main": "dist/index.js",

@@ -1,6 +1,6 @@
 
 
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import classNames from "classnames";
 import Icon from '../Icon'
 import _ from 'lodash'
@@ -18,7 +18,7 @@ import _ from 'lodash'
   interface CommissionProps {
     className?: string;
     /**传入树状数据结构，必填 */
-    dataSource:Array<dataProps>,
+    dataSource: Array<dataProps> | never[];
      /**设置主题颜色 */
     theme?:'primary'|'info'|'warning'|'danger',
     /**设置是否具有操作功能 */
@@ -28,7 +28,7 @@ import _ from 'lodash'
     /**操作节点后的事件，将返回当前数据和操作后的结构\
      * e,itemId,newDate
     */
-    onChange?: (e: React.MouseEvent, itemId: number, newDate: Array<dataProps>) => void;
+    onChange?: (e: React.MouseEvent, itemId: number, newDate: Array<dataProps>& never[]) => void;
   }
   
   let key:number = 0;
@@ -42,6 +42,12 @@ import _ from 'lodash'
      const [_dataSource,setDate] = useState(dataSource)
      const [currentId,setCurrentId] =useState<number>();
      const [clickCurrentId,setClickCurrentId] =useState<number>();
+
+    // 传入更新的date的时候
+    useEffect(() => {
+       console.log("传入更新的date的时候")
+      setDate(dataSource.slice())
+    }, [dataSource])
 
      const classes = classNames("commission",className,{
          [`commission-${theme}`]:theme

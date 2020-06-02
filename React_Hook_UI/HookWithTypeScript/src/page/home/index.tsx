@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from "react";
 import Page2 from "../page2";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
+import _ from 'lodash';
+
 import "./index.css";
 import {
   Button,
@@ -238,22 +240,18 @@ const commissionData = [
 ];
 
 const Home: React.FC<Props> = (props) => {
-  let localdate:string =localStorage.getItem('PLANDATA')||''
-  let localdateArr:Array<any> =JSON.parse(localdate)
-
-  const [planDate, setPlanDate] = useState(localdateArr|| [])
-  console.log(planDate,'planDate');
-  useEffect(() => {
-
-    //  console.log(localdate,'>>');
-    //  if(localdate)setPlanDate(JSON.parse(localdate))
-    //  console.log(planDate,'new data')
-  }, [])
+  let localdate:string =localStorage.getItem('PLANDATA')||"";
+  let localdateArr:Array<any> =localdate&&JSON.parse(localdate) || [];
+  let initDate = localdateArr.length!==0?localdateArr:commissionData||[];
+  const [planDate, setPlanDate] = useState(initDate)
 
   useEffect(()=>{
     localStorage.setItem("PLANDATA",JSON.stringify(planDate))
+    // let newDate = _.cloneDeep(planDate)
+    // setPlanDate(planDate.slice())
   },[planDate])
 
+  console.log(planDate,'planDate>>>');
   return (
     <Animation>
         <div className="home_wrapper">
@@ -342,11 +340,15 @@ const Home: React.FC<Props> = (props) => {
               dataSource={planDate} 
               isHandle 
               theme="info"
-              onChange={(e,itemId,_newData:Array<any>)=>{
-                setPlanDate(_newData)
+              onChange={(e,itemId,_newData)=>{
+                setPlanDate(_.cloneDeep(_newData))
               }}
              />
-            <Commission dataSource={planDate} isExpand theme="warning" />
+            <Commission 
+            dataSource={planDate} 
+            isExpand 
+            theme="warning"
+             />
           </div>
         </div>
     </Animation>

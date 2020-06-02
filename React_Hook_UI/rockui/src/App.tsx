@@ -193,9 +193,13 @@ const App: React.FC = () => {
   const [toggle,setToggle] = useState(true)
   const [_newData,setNewDate] = useState(data1)
 
+
+  const [planDate, setPlanDate] = useState(data1)
+
   const planChange=(e: any,item: any,_newData: any)=>{
     setNewDate(_newData)
   }
+  
   return (
     <div className="App">
     {/**
@@ -207,13 +211,21 @@ const App: React.FC = () => {
            ]
         // 
     */}
-    <Commission 
-        theme = "info"
-        dataSource = {_newData}
-        onChange={(e,item,_newData)=>planChange(e,item,_newData)}
-        isExpand
-        // isHandle
-    />
+    <div style={{display:'flex'}}>
+            <Commission 
+              dataSource={planDate} 
+              isHandle 
+              theme="info"
+              onChange={(e,itemId,_newData)=>{
+                setPlanDate(_newData)
+              }}
+             />
+            <Commission 
+            dataSource={planDate} 
+            isExpand 
+            theme="warning"
+             />
+          </div>
 {/*
     <Menu
         defaultIndex={'0'}
