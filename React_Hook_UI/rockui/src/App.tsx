@@ -119,17 +119,15 @@ const columns = [
   id:1,
   title:'2020年',
   content:'工作总结',
-  isDone:false,
   children:[{
      id:2,
      title:'1月',
      content:'1月份提纲',
-     isDone:false,
      children:[{
          id:4,
          title:'11日',
          content:'11提纲',
-         isDone:false,
+         isDone:true,
       },
       {
          id:5,
@@ -137,19 +135,67 @@ const columns = [
          content:'12提纲+++++',
          isDone:false,
       },
+      {
+        id:41,
+        title:'13日',
+        content:'11提纲',
+        isDone:true,
+     },
+     {
+        id:52,
+        title:'14日',
+        content:'12提纲+++++',
+        isDone:false,
+     },
      ]
   },
   {
      id:3,
      title:'2月',
      content:'1月份提纲',
-     isDone:false,
+     children:[{
+      id:47,
+      title:'11日',
+      content:'11提纲',
+      isDone:true,
+   }]
+  }]
+},{
+  id:6,
+  title:'2021年',
+  content:'工作总结',
+  children:[{
+     id:7,
+     title:'1月',
+     content:'1月份提纲',
+     children:[{
+         id:8,
+         title:'11日',
+         content:'11提纲',
+         isDone:true,
+      },
+      {
+         id:9,
+         title:'12日',
+         content:'12提纲+++++',
+         isDone:false,
+      },
+     ]
+  },
+  {
+     id:10,
+     title:'2月',
+     content:'1月份提纲'
   }]
 }]
 
 const App: React.FC = () => {
   const [toggle,setToggle] = useState(true)
+  const [_newData,setNewDate] = useState(data1)
 
+  const planChange=(e: any,item: any,_newData: any)=>{
+    setNewDate(_newData)
+  }
   return (
     <div className="App">
     {/**
@@ -162,8 +208,9 @@ const App: React.FC = () => {
         // 
     */}
     <Commission 
-        theme = "primary"
-        dataSource = {data1}
+        theme = "info"
+        dataSource = {_newData}
+        onChange={(e,item,_newData)=>planChange(e,item,_newData)}
     />
 {/*
     <Menu
