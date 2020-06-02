@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Page2 from "../page2";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import "./index.css";
@@ -156,13 +156,11 @@ const commissionData = [
     id: 1,
     title: "2020年",
     content: "工作总结",
-    isDone: false,
     children: [
       {
         id: 2,
         title: "1月",
         content: "1月份提纲",
-        isDone: true,
         children: [
           {
             id: 4,
@@ -240,6 +238,22 @@ const commissionData = [
 ];
 
 const Home: React.FC<Props> = (props) => {
+  let localdate:string =localStorage.getItem('PLANDATA')||''
+  let localdateArr:Array<any> =JSON.parse(localdate)
+
+  const [planDate, setPlanDate] = useState(localdateArr|| [])
+  console.log(planDate,'planDate');
+  useEffect(() => {
+
+    //  console.log(localdate,'>>');
+    //  if(localdate)setPlanDate(JSON.parse(localdate))
+    //  console.log(planDate,'new data')
+  }, [])
+
+  useEffect(()=>{
+    localStorage.setItem("PLANDATA",JSON.stringify(planDate))
+  },[planDate])
+
   return (
     <Animation>
         <div className="home_wrapper">
@@ -323,7 +337,17 @@ const Home: React.FC<Props> = (props) => {
             // columns={columns}
             columns={columns}
           />
-          <Commission dataSource={commissionData} isHandle theme="info" />
+          <div style={{display:'flex'}}>
+            <Commission 
+              dataSource={planDate} 
+              isHandle 
+              theme="info"
+              onChange={(e,itemId,_newData:Array<any>)=>{
+                setPlanDate(_newData)
+              }}
+             />
+            <Commission dataSource={planDate} isExpand theme="warning" />
+          </div>
         </div>
     </Animation>
   );

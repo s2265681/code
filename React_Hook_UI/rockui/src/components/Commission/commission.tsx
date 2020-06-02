@@ -26,9 +26,9 @@ import _ from 'lodash'
      /**设置是否具有展开收起功能*/
     isExpand?:boolean,
     /**操作节点后的事件，将返回当前数据和操作后的结构\
-     * e,itemId,_newData
+     * e,itemId,newDate
     */
-    onChange?:(e:React.MouseEvent,itemId:number,index:number)=>void
+    onChange?: (e: React.MouseEvent, itemId: number, newDate: Array<dataProps>) => void;
   }
   
   let key:number = 0;
