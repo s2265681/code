@@ -15,5 +15,5 @@ const MIcon =()=>(
 )
 
 
-storiesOf('Icon Component',module)
+storiesOf('Icon 图标库',module)
 .add('Icon',MIcon)

@@ -106,7 +106,7 @@ const AnimationType4 =()=>{
 
 
 
-storiesOf('Animation Component',module)
+storiesOf('Animation 动画',module)
 
 .add('设置动画效果是否展示isShow',defaultAnimation)
 .add('设置动画效果时间delayTime(fast|middle|slow)',AnimationTime)

@@ -36,7 +36,7 @@ const ColumnMenus =()=>(
   </Menu>
 )
 
-storiesOf('Menu Component',module)
+storiesOf('Menu 菜单',module)
 
 .add('横向Menu',RowMenus)
 .add('纵向Menu',ColumnMenus)

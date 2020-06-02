@@ -35,7 +35,7 @@ const threeSpider =()=>(
 )
 
 
-storiesOf('Spider Component',module)
+storiesOf('Spider 轮播图',module)
 .add('自动播放',defaultSpider)
 .add('手动滑动',noSpider)
 .add('播放延迟时间3s',threeSpider)

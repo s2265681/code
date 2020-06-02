@@ -26,7 +26,7 @@ const ButtonWithType =()=>(
     <Button btnType="link" href="http://www.baidu.com">百度</Button>
     </>
 )
-storiesOf('Button Component',module)
+storiesOf('Button 按钮',module)
 
 .add('Button',defaultButton)
 .add('不同尺寸的Button',ButtonWithSize)

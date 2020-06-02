@@ -32,7 +32,7 @@ const defaultBg =()=>(
     />
  )
 
-storiesOf('Bg Component',module)
+storiesOf('Bg 背景',module)
 
 
 .add('defaultBg',defaultBg)

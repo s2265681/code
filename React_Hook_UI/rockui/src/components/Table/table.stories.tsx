@@ -464,7 +464,7 @@ const allTable = () => (
   />
   </Animation>
 );
-storiesOf("Table Component", module)
+storiesOf("Table 表格", module)
   .add("简单Table", easyTable1)
   .add("带边框的Table", easyTable2)
   .add("带Loading的Table", withLoadingTable)

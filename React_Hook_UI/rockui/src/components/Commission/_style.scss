@@ -6,7 +6,7 @@
    .info-wrapper{
        position: relative;
         width: 100%;
-        padding: 0 20px;
+        padding: 20px 20px;
         .dot-radio{
             width: 25px;
             height: 25px;
@@ -31,8 +31,8 @@
         }
         .info{
             position: relative;
-            top: 0;
-            min-height: 130px;
+            top: -23px;
+            min-height: 80px;
             .title{ 
                  font-size: 23px;
             }

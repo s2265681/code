@@ -13,5 +13,5 @@ const MAlert =()=>(
 )
 
 
-storiesOf('Alert Component',module)
+storiesOf('Alert 提醒',module)
 .add('MAlert',MAlert)

@@ -317,3 +317,18 @@ npm i husky --save-dev
  组件内部销毁，淡出，销毁事件太快，无法控制，
  只能外部传入isShow
  bug: 多个Animation组件使用时，干扰isShow，未解决
+
+
+ ## 浏览器事件
+ 阻止事件冒泡
+ 事件冒泡，点击里面的元素，会向父级事件也调用，阻止事件冒泡很重要，用e.stopPropagation
+// 阻止事件冒泡
+e.stopPropagation();
+ 事件捕获，点击内层的或者外层的元素，事件会从外部向下面的内容依次的事件调用，可以利用这个做很多事
+ 阻止捕获，也可以用e.stopPropagation
+ 也可以用e.stopImmediatePropagation
+ 
+ // e.pre
+
+// 阻止事件捕获
+[](https://www.cnblogs.com/zhuzhenwei918/p/6139880.html)

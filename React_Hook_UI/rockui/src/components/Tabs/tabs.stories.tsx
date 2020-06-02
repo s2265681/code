@@ -12,6 +12,6 @@ const Tab =()=>(
 )
 
 
-storiesOf('Tab Component',module)
+storiesOf('Tab 选项卡',module)
 
 .add('Tab',Tab)

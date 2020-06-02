@@ -126,7 +126,7 @@ const columns = [
      children:[{
          id:4,
          title:'11日',
-         content:'11提纲',
+         content:<div>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/></div>,
          isDone:true,
       },
       {
@@ -211,6 +211,8 @@ const App: React.FC = () => {
         theme = "info"
         dataSource = {_newData}
         onChange={(e,item,_newData)=>planChange(e,item,_newData)}
+        isExpand
+        // isHandle
     />
 {/*
     <Menu
