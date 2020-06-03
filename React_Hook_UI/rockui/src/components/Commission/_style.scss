@@ -7,13 +7,14 @@
        position: relative;
         width: 100%;
         padding: 0px 20px;
+        margin-bottom: 20px;
         .dot-radio{
             width: 25px;
             height: 25px;
             // background-color: blue;
             border-radius: 50%;
             position: absolute;
-            top: 0px;
+            // top: 0px;
             left: -14px;
             display:flex;
             justify-content: center;
@@ -28,6 +29,11 @@
                 top: -12px;
                 right: -12px;
             }
+        }
+        .bottom{
+            position:absolute;
+            bottom: 0px !important;
+            left: -16px !important;
         }
         .info{
             position: relative;

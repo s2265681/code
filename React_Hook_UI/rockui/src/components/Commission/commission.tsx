@@ -3,7 +3,7 @@ import classNames from "classnames";
 import Icon from "../Icon";
 import Input from "../Input";
 import _ from "lodash";
-import ReactDOMServer from 'react-dom/server';
+import ReactDOMServer from "react-dom/server";
 
 interface dataProps {
   /**id为唯一标示，必须为唯一值 */
@@ -27,7 +27,7 @@ interface CommissionProps {
   /**设置是否具有展开收起功能*/
   isExpand?: boolean;
   /**设置是否具有可编辑功能 */
-  isEditable?:boolean;
+  isEditable?: boolean;
   /**操作节点后的事件，将返回当前数据和操作后的结构\
    * e,itemId,newDate
    */
@@ -38,9 +38,9 @@ interface CommissionProps {
   ) => void;
 }
 
-
 let key: number = 0;
-let ischangeData:any = [];
+let ischangeData: any = [];
+let findMaxArr: number[] = [];
 /**
  *
  * @param props  dataSource | theme | isHandle | isExpand | isEditable
@@ -59,11 +59,12 @@ const Commission: React.FC<CommissionProps> = (props) => {
   const [_dataSource, setDate] = useState(dataSource);
   const [currentId, setCurrentId] = useState<number>();
   const [clickCurrentId, setClickCurrentId] = useState<number>();
-  const [whichInput, setWhichInput] = useState<string>('');
+  const [whichInput, setWhichInput] = useState<string>("");
 
   // 传入更新的date的时候
   useEffect(() => {
     setDate(_dataSource.slice());
+    findAllId(_dataSource)
   }, [dataSource]);
 
   const classes = classNames("commission", className, {
@@ -116,7 +117,7 @@ const Commission: React.FC<CommissionProps> = (props) => {
   };
 
   // 修改content的值
-  const changeInputValue = (e: any, itemId: number,inputType:string) => {
+  const changeInputValue = (e: any, itemId: number, inputType: string) => {
     const { value } = e.target;
     // 阻止事件冒泡捕获
     e.stopPropagation();
@@ -129,12 +130,58 @@ const Commission: React.FC<CommissionProps> = (props) => {
     );
   };
 
+  // 新增节点
+  const handleAddDot = (e: any, itemId: number,index:number) => {
+    e.stopPropagation();
+   let result =  prompt('新增同级节点还是子节点？, 1代表子节点，2代表同级节点','1')
+   if(result==='1'){
+        addToChildrenDot(e,itemId,index)
+    }else if(result==='2'){
+       addToBottomDot(e,itemId,index)
+    }
+  };
+
+  const addToBottomDot=(e: any, itemId: number,index:number)=>{
+    let _newData = changeEveryVal(
+      itemId,
+      _.cloneDeep(_dataSource),
+      "handleAddBottomDot"
+    );
+    onChange && onChange(e, itemId, _newData);
+    setDate(_newData);
+  }
+
+
+  const addToChildrenDot=(e: any, itemId: number,index:number)=>{
+    let _newData = changeEveryVal(
+      itemId,
+      _.cloneDeep(_dataSource),
+      "handleAddChildrenDot"
+    );
+    onChange && onChange(e, itemId, _newData);
+    setDate(_newData);
+    setClickCurrentId(-1);
+  }
+
+  // 获取所有的id值
+  const findAllId=(_arr: string | any[])=>{
+    for (let i = 0; i < _arr.length; i++) {
+        if (_arr[i].children instanceof Array) {
+             findAllId(_arr[i].children);
+             findMaxArr.push(_arr[i].children[0].id)
+          }else{
+            findMaxArr.push(_arr[i].id)
+          }
+      }
+        return findMaxArr
+  }
+
   const handleClick = (
     e: React.MouseEvent<Element, MouseEvent>,
     itemId: number,
     index: number
   ) => {
-    if (clickCurrentId&&clickCurrentId === itemId) {
+    if (clickCurrentId && clickCurrentId === itemId) {
       setClickCurrentId(-1);
     } else {
       setClickCurrentId(itemId);
@@ -143,23 +190,42 @@ const Commission: React.FC<CommissionProps> = (props) => {
   };
 
   // 操作数组
-  const changeEveryVal = (id: number, arr: any, type: string,value="",inputType="") => {
+  const changeEveryVal = (
+    id: number,
+    arr: any,
+    type: string,
+    value = "",
+    inputType = ""
+  ) => {
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].children instanceof Array) {
-         changeEveryVal(id, arr[i].children, type,value,inputType);
-       }
+        changeEveryVal(id, arr[i].children, type, value, inputType);
+      }
       if (arr[i].id === id && type === "RadioChange") {
         arr[i].isDone = !arr[i].isDone;
       }
       if (arr[i].id === id && type === "isExtend") {
         arr[i].isContent = !arr[i].isContent;
       }
-       if (arr[i].id === id && type === "changeInputValue") {
-          if(inputType==='content')arr[i].content = value;
-          if(inputType==='title')arr[i].title = value;
-       }
-       if (arr[i].id === id && type === "deleteItem") {
-          arr.splice(i, 1);
+      if (arr[i].id === id && type === "changeInputValue") {
+        if (inputType === "content") arr[i].content = value;
+        if (inputType === "title") arr[i].title = value;
+      }
+      if (arr[i].id === id && type === "handleAddBottomDot") {
+        let maxId = findMaxArr.sort((a,b)=>a-b)[findMaxArr.length-1];
+        let idx =  arr.findIndex((el: { id: number; })=>el.id===id)
+        let item = {id:maxId+1, title:'标题',content:'内容'}
+        arr.splice(idx+1, 0, item)
+      }
+      if (arr[i].id === id && type === "handleAddChildrenDot") {
+        let maxId = findMaxArr.sort((a,b)=>a-b)[findMaxArr.length-1];
+        let idx =  arr.findIndex((el: { id: number; })=>el.id===id)
+        let item = {id:maxId+1, title:'标题',content:'内容'}
+        if(arr[idx]?.children)arr[idx]?.children.unshift(item)
+        if(!arr[idx]?.children)arr[idx].children=[item]
+       } 
+      if (arr[i].id === id && type === "deleteItem") {
+        arr.splice(i, 1);
       }
     }
     return arr;
@@ -178,6 +244,14 @@ const Commission: React.FC<CommissionProps> = (props) => {
         return (
           <div style={{ position: "relative" }}>
             <div className="info-wrapper" key={key}>
+              {/**新增节点 */}
+              {isEditable&&<div
+                className="dot-radio bottom"
+                onClick={(e) => handleAddDot(e, item.id, index)}
+              >
+                <Icon icon="plus-circle"></Icon>
+                <br />
+              </div>}
               <div
                 style={{
                   backgroundColor: item.isDone !== undefined ? rdsBgcolor : "",
@@ -215,77 +289,89 @@ const Commission: React.FC<CommissionProps> = (props) => {
               </div>
               <div className="info">
                 <div className="title">
-                {(whichInput==='title'&&clickCurrentId===item.id) ? (
-                  <Input
+                  {whichInput === "title" && clickCurrentId === item.id ? (
+                    <Input
                       type="text"
                       defaultValue={
-                        typeof item.title === 'string'?item.title:
-                        ReactDOMServer.renderToString(item.title)
+                        typeof item.title === "string"
+                          ? item.title
+                          : ReactDOMServer.renderToString(item.title)
                       }
-                     onChange={(e) => changeInputValue(e, item.id,'title')}
-                     onBlur={(e:any)=>{
+                      onChange={(e) => changeInputValue(e, item.id, "title")}
+                      onBlur={(e: any) => {
                         e.stopPropagation();
-                        setWhichInput('')
-                        setClickCurrentId(-1)
-                        ischangeData.length>0&&setDate(ischangeData)
-                        ischangeData.length>0&&onChange && onChange(e, item.id, ischangeData);
-                        ischangeData=[]
-                     }}
-                     autoFocus
-                />):(
-                   <div 
-                      dangerouslySetInnerHTML={{__html:
-                        typeof item.title === 'string'?item.title:
-                        ReactDOMServer.renderToString(item.title)
+                        setWhichInput("");
+                        setClickCurrentId(-1);
+                        ischangeData.length > 0 && setDate(ischangeData);
+                        ischangeData.length > 0 &&
+                          onChange &&
+                          onChange(e, item.id, ischangeData);
+                        ischangeData = [];
                       }}
-                     onClick={()=>{
-                     if(!isEditable)return
-                     setClickCurrentId(item.id);
-                     setWhichInput('title')
-                  }}/>)
-                  }
-                  </div>
+                      autoFocus
+                    />
+                  ) : (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          typeof item.title === "string"
+                            ? item.title
+                            : ReactDOMServer.renderToString(item.title),
+                      }}
+                      onClick={() => {
+                        if (!isEditable) return;
+                        setClickCurrentId(item.id);
+                        setWhichInput("title");
+                      }}
+                    />
+                  )}
+                </div>
                 {!item.isContent && (
                   <div className="content">
-                    {(whichInput==='content'&&clickCurrentId===item.id) ? (
-                     <Input
+                    {whichInput === "content" && clickCurrentId === item.id ? (
+                      <Input
                         type="text"
                         defaultValue={
-                           typeof item.content === 'string'?item.content:
-                           ReactDOMServer.renderToString(item.content)
+                          typeof item.content === "string"
+                            ? item.content
+                            : ReactDOMServer.renderToString(item.content)
                         }
-                        onChange={(e) => changeInputValue(e, item.id,'content')}
-                        onBlur={(e:any)=>{
-                           e.stopPropagation();
-                           setWhichInput('')
-                           setClickCurrentId(-1)
-                           ischangeData.length>0&&setDate(ischangeData)
-                           ischangeData.length>0&&onChange && onChange(e, item.id, ischangeData);
-                           ischangeData=[]
+                        onChange={(e) =>
+                          changeInputValue(e, item.id, "content")
+                        }
+                        onBlur={(e: any) => {
+                          e.stopPropagation();
+                          setWhichInput("");
+                          setClickCurrentId(-1);
+                          ischangeData.length > 0 && setDate(ischangeData);
+                          ischangeData.length > 0 &&
+                            onChange &&
+                            onChange(e, item.id, ischangeData);
+                          ischangeData = [];
                         }}
                         autoFocus
-                   />
+                      />
                     ) : (
-                     <div 
-                        dangerouslySetInnerHTML={{__html:
-                          typeof item.content === 'string'?item.content:
-                          ReactDOMServer.renderToString(item.content)
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            typeof item.content === "string"
+                              ? item.content
+                              : ReactDOMServer.renderToString(item.content),
                         }}
-                        onClick={(e)=>{
-                        if(!isEditable)return
-                        e.stopPropagation()
-                        setClickCurrentId(item.id);
-                        setWhichInput('content')
-                     }}/>
+                        onClick={(e) => {
+                          if (!isEditable) return;
+                          e.stopPropagation();
+                          setClickCurrentId(item.id);
+                          setWhichInput("content");
+                        }}
+                      />
                     )}
                   </div>
                 )}
               </div>
               {renderTree(item.children)}
             </div>
-            {index !== 0 && index !== hasChildNumber && (
-              <div className="lengLine"></div>
-            )}
           </div>
         );
       });
@@ -300,9 +386,9 @@ const Commission: React.FC<CommissionProps> = (props) => {
 
 Commission.defaultProps = {
   theme: "primary",
-  isEditable:false,
-  isExpand:false,
-  isHandle:false
+  isEditable: false,
+  isExpand: false,
+  isHandle: false,
 };
 
 export default Commission;
