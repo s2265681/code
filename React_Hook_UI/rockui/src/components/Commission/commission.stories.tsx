@@ -247,7 +247,7 @@ const defaultCommissio6 = () => (
 const defaultCommissio7 = () => (
   <div className="block alerts">
     <div style={{ display: "flex" }}>
-      <Commission dataSource={data33} theme="danger" isEditable/>
+      <Commission dataSource={data33} theme="danger" isEditable isHandle/>
     </div>
   </div>
 );

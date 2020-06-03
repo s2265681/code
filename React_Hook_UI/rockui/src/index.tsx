@@ -1,16 +1,16 @@
 // 页面展示
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/index.scss';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-ReactDOM.render(
-<React.StrictMode>
-    <App/>
-</React.StrictMode>,
-document.getElementById('root')
-);
-serviceWorker.unregister();
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import './styles/index.scss';
+// import App from './App';
+// import * as serviceWorker from './serviceWorker';
+// ReactDOM.render(
+// <React.StrictMode>
+//     <App/>
+// </React.StrictMode>,
+// document.getElementById('root')
+// );
+// serviceWorker.unregister();
 
 // 打包组件发布
 import { library } from '@fortawesome/fontawesome-svg-core';
