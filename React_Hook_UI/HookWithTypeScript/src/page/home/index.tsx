@@ -343,6 +343,7 @@ const Home: React.FC<Props> = (props) => {
               onChange={(e,itemId,_newData)=>{
                 setPlanDate(_.cloneDeep(_newData))
               }}
+              isEditable
              />
             <Commission 
             dataSource={planDate} 

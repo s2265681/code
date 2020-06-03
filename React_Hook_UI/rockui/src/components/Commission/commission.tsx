@@ -170,7 +170,7 @@ const Commission: React.FC<CommissionProps> = (props) => {
   };
 
   const renderTree = (_dataSource: any[]) => {
-    let hasChildNumber = dataSource.filter((el) => el.children).length;
+    let hasChildNumber = _dataSource?.filter((el) => el?.children).length;
     if (_dataSource instanceof Array) {
       return _dataSource.map((item, index) => {
         key++;
