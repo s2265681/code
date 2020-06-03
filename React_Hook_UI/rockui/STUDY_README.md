@@ -328,7 +328,29 @@ e.stopPropagation();
  阻止捕获，也可以用e.stopPropagation
  也可以用e.stopImmediatePropagation
  
- // e.pre
+ //阻止默认事件
+ e.preventDefault()
 
 // 阻止事件捕获
 [](https://www.cnblogs.com/zhuzhenwei918/p/6139880.html)
+
+Commission的时候，每次修改content的时候，需要setData,Input的focus会消失，加了一个autoFocus解决，每次更新后会自动focus
+
+Commission 两个外层的连接到一起，样式对不齐问题，，解决方案，插入一个div元素去撑出空间，判断那个时候循环时机，根据index!==0&&index!==data.length    data还要通过map判断是否有children，通过map拿到返回结果
+
+解决input输入无法输入中文，
+切光标会刷新到最后面：原因是每次改变input的值的时候触发了更新导致的出错。
+
+：fix method 将value改为defaultValue 非受控的形式，不去通过setDate改变组件值，不去重发更新则可以。
+  将更新移到了onBlur里面，通过一个变量判断。如果有更改，去setData，没有更改不去触发，
+  解决性能问题的同时解决了bug
+。。。
+
+
+## renderDOMServer SSR 服务端渲染 
+react的DOM转化成html
+let domString = ReactDOMServer.renderToString(<div>react element</div>)
+
+<div dangerouslySetInnerHTML={__html:domString}>
+http://www.react-china.org/
+

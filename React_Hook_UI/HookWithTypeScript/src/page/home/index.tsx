@@ -253,7 +253,7 @@ const Home: React.FC<Props> = (props) => {
 
   console.log(planDate,'planDate>>>');
   return (
-    <Animation>
+    <Animation delayTime="slow">
         <div className="home_wrapper">
           首页
           <br />

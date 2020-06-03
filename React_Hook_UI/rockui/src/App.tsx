@@ -118,88 +118,40 @@ const columns = [
  const data1 = [{
   id:1,
   title:'2020年',
-  content:'工作总结',
-  children:[{
-     id:2,
-     title:'1月',
-     content:'1月份提纲',
-     children:[{
-         id:4,
-         title:'11日',
-         content:<div>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/>div111<br/></div>,
-         isDone:true,
-      },
-      {
-         id:5,
-         title:'12日',
-         content:'12提纲+++++',
-         isDone:false,
-      },
-      {
-        id:41,
-        title:'13日',
-        content:'11提纲',
-        isDone:true,
-     },
-     {
-        id:52,
-        title:'14日',
-        content:'12提纲+++++',
-        isDone:false,
-     },
-     ]
-  },
-  {
-     id:3,
-     title:'2月',
-     content:'1月份提纲',
-     children:[{
-      id:47,
-      title:'11日',
-      content:'11提纲',
-      isDone:true,
-   }]
-  }]
+  content: 
+    <p style={{ backgroundColor: "#ff0" }}>
+      <div style={{ color: "#f00" }}>122</div>
+    </p>
 },{
-  id:6,
+  id:2,
   title:'2021年',
   content:'工作总结',
   children:[{
-     id:7,
-     title:'1月',
-     content:'1月份提纲',
-     children:[{
-         id:8,
-         title:'11日',
-         content:'11提纲',
-         isDone:true,
-      },
-      {
-         id:9,
-         title:'12日',
-         content:'12提纲+++++',
-         isDone:false,
-      },
-     ]
-  },
-  {
-     id:10,
-     title:'2月',
-     content:'1月份提纲'
+    id:3,
+    title:'2021-01年',
+    content:'工作总结',
+    children:[{
+      id:4,
+      title:'2021-01年',
+      content:'工作总结',
+      children:[{
+        id:5,
+        title:'2021-01年',
+        content:'工作总结',
+      }]
+    }]
   }]
 }]
+
 
 const App: React.FC = () => {
   const [toggle,setToggle] = useState(true)
   const [_newData,setNewDate] = useState(data1)
-
-
-  const [planDate, setPlanDate] = useState(data1)
-
-  const planChange=(e: any,item: any,_newData: any)=>{
+  
+  const planChange=(e: any,itemId: any,_newData: any)=>{
     setNewDate(_newData)
   }
-  
+
   return (
     <div className="App">
     {/**
@@ -210,20 +162,23 @@ const App: React.FC = () => {
             {dot:'我属于第一个节点',parentId:1, id:3 , isDone:true}
            ]
         // 
+         <Commission 
+                dataSource={planDate} 
+                isHandle 
+                theme="info"
+                onChange={(e,itemId,_newData)=>{
+                  setPlanDate(_newData)
+                }}
+             />
     */}
     <div style={{display:'flex'}}>
             <Commission 
-              dataSource={planDate} 
-              isHandle 
-              theme="info"
-              onChange={(e,itemId,_newData)=>{
-                setPlanDate(_newData)
-              }}
-             />
-            <Commission 
-            dataSource={planDate} 
-            isExpand 
-            theme="warning"
+                dataSource={_newData} 
+                isExpand = {false}
+                theme="info"
+                isHandle
+                isEditable
+                onChange={(e: any,itemId: any,_newData: any)=>planChange(e,itemId,_newData)}
              />
           </div>
 {/*

@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 // import { action } from '@storybook/addon-actions';
 import Commission from "./commission";
+import Icon from '../Icon';
 
 const data1 = [
   {
@@ -69,22 +70,22 @@ const data33 = [
         title: "html 常用标签",
         content: (
           <p style={{ backgroundColor: "#ff0" }}>
-            <div>注释</div>
-            <div> h1~h6</div>
-            <div>标题标签</div>
-            <div>段落标签</div>
+            <div style={{ backgroundColor: "#ff0" }}>注释</div>
+            <div style={{ color: "#f00" }}> h1~h6</div>
+            <div style={{ color: "#f0f" }}>标题标签</div>
+            <h3>段落标签</h3>
           </p>
         ),
       },
       {
         id: 3,
         title: "Input",
-        content: "2月份提纲",
+        content: <div><Icon icon="coffee"/>2月份提纲</div>,
         children: [
           {
             id: 4,
             title: "button",
-            content: "button种类1",
+            content: <img style={{width:'100px',height:'100px'}} src="http://t9.baidu.com/it/u=4169540006,4220376401&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1591765858&t=38242a64e963c63baeed7dba7d76a1f1"></img>,
             children: [
               {
                 id: 5,
@@ -242,11 +243,21 @@ const defaultCommissio6 = () => (
     </div>
   </div>
 );
+
+const defaultCommissio7 = () => (
+  <div className="block alerts">
+    <div style={{ display: "flex" }}>
+      <Commission dataSource={data33} theme="danger" isEditable/>
+    </div>
+  </div>
+);
+
 storiesOf("Commissio 日程待办", module)
   .add("简单的待办", defaultCommissio1)
   .add("简单的待办--配置主题色", defaultCommissio2)
   .add("创建的日程", defaultCommissio3)
   .add("展示计划完成情况", defaultCommissio4)
-  .add("鼠标滑入操作计划完成情况", defaultCommissio5)
-  .add("操作是否可以可展开", defaultCommissio6);
+  .add("鼠标滑入操作 isHandle", defaultCommissio5)
+  .add("操作是否可以可展开 isExpand", defaultCommissio6)
+  .add("点击文字具有编辑功能，支持自定义html，输入isEditable", defaultCommissio7);
 

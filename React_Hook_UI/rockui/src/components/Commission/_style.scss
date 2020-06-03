@@ -6,7 +6,7 @@
    .info-wrapper{
        position: relative;
         width: 100%;
-        padding: 20px 20px;
+        padding: 0px 20px;
         .dot-radio{
             width: 25px;
             height: 25px;
@@ -31,8 +31,8 @@
         }
         .info{
             position: relative;
-            top: -23px;
-            min-height: 80px;
+            top: -5px;
+            min-height: 130px;
             .title{ 
                  font-size: 23px;
             }
@@ -43,11 +43,23 @@
    }
 }
 
+.lengLine{
+    position: relative;
+    top: 0px;
+    height: 80px;
+}
+
 .commission-primary{
     .info-wrapper{
         .dot-radio{
             @include dot-radio-color($primary);
         }
+        @include commission-border($primary);
+        .lengLine{
+            @include commission-border($primary)
+        }
+    }
+    .lengLine{
         @include commission-border($primary)
     }
 }
@@ -59,6 +71,9 @@
             @include dot-radio-color($warning)
         }
     }
+    .lengLine{
+        @include commission-border($warning)
+    }
 }
 
 .commission-danger{
@@ -68,6 +83,9 @@
             @include dot-radio-color($danger)
         }
     }
+    .lengLine{
+        @include commission-border($danger)
+    }
 }
 
 .commission-info{
@@ -76,5 +94,8 @@
         .dot-radio{
             @include dot-radio-color($info)
         }
+    }
+    .lengLine{
+        @include commission-border($info)
     }
 }
