@@ -115,34 +115,26 @@ const columns = [
   }
 ];
 
- const data1 = [{
-  id:1,
-  title:'2020年',
-  content: 
-    <p style={{ backgroundColor: "#ff0" }}>
-      <div style={{ color: "#f00" }}>122</div>
-    </p>
-},{
-  id:2,
-  title:'2021年',
-  content:'工作总结',
-  children:[{
-    id:3,
-    title:'2021-01年',
-    content:'工作总结',
-    children:[{
-      id:4,
-      title:'2021-01年',
-      content:'工作总结',
-      children:[{
-        id:5,
-        title:'2021-01年',
-        content:'工作总结',
-      }]
-    }]
-  }]
-}]
-
+ const data1 =  [
+  {
+    id: 1,
+    title: "2020年",
+    content: "工作总结",
+    children: [
+      {
+        id: 2,
+        title: "1月",
+        content: "1月份提纲",
+      },
+      {
+        id: 3,
+        title: "2月",
+        content: "1月份提纲"
+      },
+    ],
+  },
+  
+];
 
 const App: React.FC = () => {
   const [toggle,setToggle] = useState(true)

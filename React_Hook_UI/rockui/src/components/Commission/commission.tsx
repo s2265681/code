@@ -142,13 +142,16 @@ const Commission: React.FC<CommissionProps> = (props) => {
   };
 
   const addToBottomDot=(e: any, itemId: number,index:number)=>{
+    console.log('eee');
     let _newData = changeEveryVal(
       itemId,
       _.cloneDeep(_dataSource),
       "handleAddBottomDot"
     );
+    console.log(_newData,'bottom _newData');
     onChange && onChange(e, itemId, _newData);
     setDate(_newData);
+    setClickCurrentId(-1);
   }
 
 
@@ -168,12 +171,12 @@ const Commission: React.FC<CommissionProps> = (props) => {
     for (let i = 0; i < _arr.length; i++) {
         if (_arr[i].children instanceof Array) {
              findAllId(_arr[i].children);
-             findMaxArr.push(_arr[i].children[0].id)
+             findMaxArr.push(_arr[i].children[0]&&_arr[i].id)
           }else{
-            findMaxArr.push(_arr[i].id)
+            findMaxArr.push(_arr[i]&&_arr[i].id)
           }
+          findMaxArr = findMaxArr.filter(el=>el!==undefined)
       }
-        return findMaxArr
   }
 
   const handleClick = (
@@ -201,30 +204,30 @@ const Commission: React.FC<CommissionProps> = (props) => {
       if (arr[i].children instanceof Array) {
         changeEveryVal(id, arr[i].children, type, value, inputType);
       }
-      if (arr[i].id === id && type === "RadioChange") {
+      if (arr[i]?.id === id && type === "RadioChange") {
         arr[i].isDone = !arr[i].isDone;
       }
-      if (arr[i].id === id && type === "isExtend") {
+      if (arr[i]?.id === id && type === "isExtend") {
         arr[i].isContent = !arr[i].isContent;
       }
-      if (arr[i].id === id && type === "changeInputValue") {
+      if (arr[i]?.id === id && type === "changeInputValue") {
         if (inputType === "content") arr[i].content = value;
         if (inputType === "title") arr[i].title = value;
       }
       if (arr[i].id === id && type === "handleAddBottomDot") {
-        let maxId = findMaxArr.sort((a,b)=>a-b)[findMaxArr.length-1];
-        let idx =  arr.findIndex((el: { id: number; })=>el.id===id)
-        let item = {id:maxId+1, title:'标题',content:'内容'}
-        arr.splice(idx+1, 0, item)
+          let maxId =findMaxArr.sort((a,b)=>a-b)[findMaxArr.length-1]
+          let item = {id:maxId+1, title:'标题',content:'内容'}
+          let idx =  arr.findIndex((el: { id: number; })=>el?.id===id)
+          arr.splice(idx+1, 0, item)
       }
-      if (arr[i].id === id && type === "handleAddChildrenDot") {
-        let maxId = findMaxArr.sort((a,b)=>a-b)[findMaxArr.length-1];
-        let idx =  arr.findIndex((el: { id: number; })=>el.id===id)
-        let item = {id:maxId+1, title:'标题',content:'内容'}
-        if(arr[idx]?.children)arr[idx]?.children.unshift(item)
-        if(!arr[idx]?.children)arr[idx].children=[item]
+      if (arr[i]?.id === id && type === "handleAddChildrenDot") {
+          let maxId = findMaxArr.sort((a,b)=>a-b)[findMaxArr.length-1];
+          let idx =  arr.findIndex((el: { id: number; })=>el?.id===id)
+          let item = {id:maxId+1, title:'标题',content:'内容'}
+          if(arr[idx].children)arr[idx].children.unshift(item)
+          if(!arr[idx].children)arr[idx].children=[item]
        } 
-      if (arr[i].id === id && type === "deleteItem") {
+      if (arr[i]&&arr[i].id === id && type === "deleteItem") {
         arr.splice(i, 1);
       }
     }
@@ -236,7 +239,7 @@ const Commission: React.FC<CommissionProps> = (props) => {
   };
 
   const renderTree = (_dataSource: any[]) => {
-    let hasChildNumber = _dataSource?.filter((el) => el?.children).length;
+    // let hasChildNumber = _dataSource?.filter((el) => el?.children).length;
     if (_dataSource instanceof Array) {
       return _dataSource.map((item, index) => {
         key++;
@@ -273,7 +276,7 @@ const Commission: React.FC<CommissionProps> = (props) => {
                     <input
                       type="radio"
                       key={item.id}
-                      checked={item.isDone}
+                      defaultChecked={item.isDone}
                       onClick={(e) =>
                         radioChange && radioChange(e, item.id, index)
                       }
