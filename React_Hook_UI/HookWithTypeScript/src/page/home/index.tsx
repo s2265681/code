@@ -156,15 +156,8 @@ const dataSource = [
 const commissionData = [
   {
     id: 1,
-    title: "2020年",
-    content: "工作总结",
-    children: [
-      {
-        id: 2,
-        title: "1月",
-        content: "1月份提纲"
-      }
-    ]
+    title: "",
+    content: ""
   }
 ]
 
@@ -180,6 +173,7 @@ const Home: React.FC<Props> = (props) => {
 
   console.log(planDate,'planDate>>>');
   return (
+    <Animation>
         <div className="home_wrapper">
           首页
           <br />
@@ -258,7 +252,6 @@ const Home: React.FC<Props> = (props) => {
           <br />
           <Table
             dataSource={dataSource}
-            // columns={columns}
             columns={columns}
           />
           <div style={{display:'flex'}}>
@@ -271,13 +264,9 @@ const Home: React.FC<Props> = (props) => {
               }}
               isEditable
              />
-            <Commission 
-            dataSource={planDate} 
-            isExpand 
-            theme="warning"
-             />
           </div>
         </div>
+        </Animation>
   );
 };
 
