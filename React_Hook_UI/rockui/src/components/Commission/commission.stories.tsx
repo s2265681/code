@@ -107,6 +107,39 @@ const data33 = [
   },
 ];
 
+
+const data333 = [
+  {
+    id: 1,
+    title: "2020年",
+    content: "工作总结",
+    children: [
+      {
+        id: 2,
+        title: "markdown语法测试",
+        content: "# 一级标题  ## 二级标题  ### 三级标题",
+      },
+      {
+        id: 3,
+        title: "语法",
+        content:
+          "![图片](http://img0.imgtn.bdimg.com/it/u=2624811453,2350881067&fm=26&gp=0.jpg)",
+      },
+      {
+        id: 4,
+        title: "百度",
+        content: "[百度]](http://www.baidu.com)",
+      },
+      {
+        id: 5,
+        title: "表格",
+        content: "name | 价格 |  数量  \r  -|-|-    \r 香蕉 | $1 | 5 |   \r 苹果 | $1 | 6 |   \r 草莓 | $1 | 7 |",
+      },
+    ],
+  },
+];
+
+
 const data4 = [
   {
     id: 1,
@@ -252,6 +285,15 @@ const defaultCommissio7 = () => (
   </div>
 );
 
+
+const defaultCommissio8 = () => (
+  <div className="block alerts">
+    <div style={{ display: "flex" }}>
+      <Commission dataSource={data333} theme="info" isEditable isHandle/>
+    </div>
+  </div>
+);
+
 storiesOf("Commissio 日程待办", module)
   .add("简单的待办", defaultCommissio1)
   .add("简单的待办--配置主题色", defaultCommissio2)
@@ -259,5 +301,5 @@ storiesOf("Commissio 日程待办", module)
   .add("展示计划完成情况", defaultCommissio4)
   .add("鼠标滑入操作 isHandle", defaultCommissio5)
   .add("操作是否可以可展开 isExpand", defaultCommissio6)
-  .add("点击文字具有编辑功能，支持自定义html，输入isEditable", defaultCommissio7);
-
+  .add("点击文字具有编辑功能，支持自定义html，输入isEditable", defaultCommissio7)
+  .add("新增支持markdown语法", defaultCommissio8);

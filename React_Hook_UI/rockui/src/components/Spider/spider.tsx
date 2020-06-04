@@ -70,7 +70,7 @@ const Spider: React.FC<SpiderProps>=(props)=> {
     return (
         <div className="spider-container" {...restProps} >
                  <div className="spider" style={{ height }} >
-                  <Animation name="fade" intDir={dir==='left'?'right':'left'}>
+                  <Animation changeChild={true} name="fade" intDir={dir==='left'?'right':'left'}>
                      {child}
                     </Animation>
                   </div>

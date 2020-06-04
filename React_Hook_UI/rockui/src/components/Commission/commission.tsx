@@ -4,6 +4,9 @@ import Icon from "../Icon";
 import Input from "../Input";
 import _ from "lodash";
 import ReactDOMServer from "react-dom/server";
+import Markdown from 'react-markdown/with-html'
+import 'highlight.js/styles/solarized-light.css'
+import Util from './util'
 
 interface dataProps {
   /**id为唯一标示，必须为唯一值 */
@@ -116,11 +119,12 @@ const Commission: React.FC<CommissionProps> = (props) => {
     setDate(_newData);
   };
 
-  // 修改content的值
+  // 修改内容的值
   const changeInputValue = (e: any, itemId: number, inputType: string) => {
     const { value } = e.target;
     // 阻止事件冒泡捕获
     e.stopPropagation();
+    // if(!value)return
     ischangeData = changeEveryVal(
       itemId,
       _.cloneDeep(_dataSource),
@@ -142,13 +146,11 @@ const Commission: React.FC<CommissionProps> = (props) => {
   };
 
   const addToBottomDot=(e: any, itemId: number,index:number)=>{
-    console.log('eee');
     let _newData = changeEveryVal(
       itemId,
       _.cloneDeep(_dataSource),
       "handleAddBottomDot"
     );
-    console.log(_newData,'bottom _newData');
     onChange && onChange(e, itemId, _newData);
     setDate(_newData);
     setClickCurrentId(-1);
@@ -216,14 +218,14 @@ const Commission: React.FC<CommissionProps> = (props) => {
       }
       if (arr[i].id === id && type === "handleAddBottomDot") {
           let maxId =findMaxArr.sort((a,b)=>a-b)[findMaxArr.length-1]
-          let item = {id:maxId+1, title:'标题',content:'内容'}
+          let item = {id:maxId+1, title:'',content:''}
           let idx =  arr.findIndex((el: { id: number; })=>el?.id===id)
           arr.splice(idx+1, 0, item)
       }
       if (arr[i]?.id === id && type === "handleAddChildrenDot") {
           let maxId = findMaxArr.sort((a,b)=>a-b)[findMaxArr.length-1];
           let idx =  arr.findIndex((el: { id: number; })=>el?.id===id)
-          let item = {id:maxId+1, title:'标题',content:'内容'}
+          let item = {id:maxId+1, title:'',content:''}
           if(arr[idx].children)arr[idx].children.unshift(item)
           if(!arr[idx].children)arr[idx].children=[item]
        } 
@@ -317,9 +319,10 @@ const Commission: React.FC<CommissionProps> = (props) => {
                     <div
                       dangerouslySetInnerHTML={{
                         __html:
-                          typeof item.title === "string"
+                        item.title ? typeof item.title === "string"
                             ? item.title
-                            : ReactDOMServer.renderToString(item.title),
+                            : ReactDOMServer.renderToString(item.title):
+                            '点击输入标题(支持文字、html)'
                       }}
                       onClick={() => {
                         if (!isEditable) return;
@@ -332,43 +335,49 @@ const Commission: React.FC<CommissionProps> = (props) => {
                 {!item.isContent && (
                   <div className="content">
                     {whichInput === "content" && clickCurrentId === item.id ? (
-                      <Input
-                        type="text"
-                        defaultValue={
-                          typeof item.content === "string"
-                            ? item.content
-                            : ReactDOMServer.renderToString(item.content)
-                        }
-                        onChange={(e) =>
-                          changeInputValue(e, item.id, "content")
-                        }
-                        onBlur={(e: any) => {
-                          e.stopPropagation();
-                          setWhichInput("");
-                          setClickCurrentId(-1);
-                          ischangeData.length > 0 && setDate(ischangeData);
-                          ischangeData.length > 0 &&
-                            onChange &&
-                            onChange(e, item.id, ischangeData);
-                          ischangeData = [];
-                        }}
-                        autoFocus
-                      />
-                    ) : (
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html:
+                      <textarea 
+                          placeholder="请输入内容，支持markdown语法，html标签"
+                          style={{width:"100%",minHeight:'130px'}}
+                          defaultValue={
                             typeof item.content === "string"
                               ? item.content
-                              : ReactDOMServer.renderToString(item.content),
-                        }}
-                        onClick={(e) => {
-                          if (!isEditable) return;
-                          e.stopPropagation();
-                          setClickCurrentId(item.id);
-                          setWhichInput("content");
-                        }}
-                      />
+                              : ReactDOMServer.renderToString(item.content)
+                          }
+                          onChange={(e) =>
+                            changeInputValue(e, item.id, "content")
+                          }
+                          onBlur={(e: any) => {
+                              e.stopPropagation();
+                              setWhichInput("");
+                              setClickCurrentId(-1);
+                              ischangeData.length > 0 && setDate(ischangeData);
+                              ischangeData.length > 0 &&
+                                onChange &&
+                                onChange(e, item.id, ischangeData);
+                              ischangeData = [];
+                            }}
+                            autoFocus
+                          />
+                    ) : (
+                      <div  
+                       onClick={(e) => {
+                        if (!isEditable) return;
+                        e.stopPropagation();
+                        setClickCurrentId(item.id);
+                        setWhichInput("content");
+                      }}>
+                       {Util.isTestMarkDown.test(item.content)?<Markdown className="hljs" source={item.content} />:
+                       <div
+                       style={{width:'100%',minHeight:100,cursor:'pointer'}}
+                       dangerouslySetInnerHTML={{
+                         __html:
+                         item.content ? typeof item.content === "string"
+                             ? item.content
+                             : ReactDOMServer.renderToString(item.content) 
+                             : '点击输入内容，支持markdown语法、html标签'
+                       }}
+                      />}
+                      </div>
                     )}
                   </div>
                 )}

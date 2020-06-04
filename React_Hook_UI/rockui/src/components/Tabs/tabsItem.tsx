@@ -27,7 +27,7 @@ const TabsItem: React.FC<TabsItemProps> = (props) => {
         <li className={classes} style={style} onClick={handleClick}>
            {label}
         </li>
-        <Animation name="fade">
+        <Animation changeChild name="fade">
         <div style={{display: context.index === index?'block':'none'}}>
            {children}
         </div>

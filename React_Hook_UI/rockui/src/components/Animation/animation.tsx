@@ -17,6 +17,8 @@ interface AnimationProps extends App{
     name?:'fade' | 'slip';
     /**children必填 */
     children:any
+    /** changeChild 是否会根据子元素的更新而调用，默认不会*/
+    changeChild?:boolean;
     /**className */
     className?:string|object;
     intDir?:"left" | "right" | "top" | "bottom";
@@ -43,7 +45,7 @@ let timer:any;
  * @extends {React.FC<AnimationProps>}
  */
 const Animation:React.FC<AnimationProps>=(props)=> {
-    const { className,name,isShow,children, delayTime="middle" , intDir="",outDir="" } = props;
+    const { className,name,isShow,children, delayTime="middle" , intDir="",outDir="",changeChild } = props;
     const [classes,setClassess] = useState("")
     const [delayClear,setDelayClear] = useState(true);
     const childrenName  = children.props.className;
@@ -54,7 +56,7 @@ const Animation:React.FC<AnimationProps>=(props)=> {
            setDelayClear(true)
            clearTimeout(timer)
         }
-    },[isShow,children])
+    },[isShow,changeChild&&children])
 
     const handleAnimate=()=>{
         if(isShow){
@@ -96,7 +98,8 @@ const Animation:React.FC<AnimationProps>=(props)=> {
 Animation.defaultProps={
     name:'fade',
     isShow:true,
-    delayTime:"middle"
+    delayTime:"middle",
+    changeChild:false
 }
 
 export default Animation;

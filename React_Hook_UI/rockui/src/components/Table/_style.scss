@@ -40,8 +40,7 @@
     }
     // tbody
     .tbody_wrapper {
-        overflow-x: scroll;
-        overflow-y: scroll;
+        overflow: scroll !important;
         width: 100%;
         overflow: hidden;
         .t_tbody {

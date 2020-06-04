@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Button, { ButtonSize, ButtonType } from "./components/Button/button";
 import Alert from "./components/Alert/alert";
 import Menu from "./components/Menu/menu";
@@ -6,14 +6,14 @@ import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
 import TabItem from "./components/Tabs/tabsItem";
 import Tabs from "./components/Tabs/tabs";
-import Icon from './components/Icon/icon'
-import Bg from './components/Bg'
-import Spider from './components/Spider';
+import Icon from "./components/Icon/icon";
+import Bg from "./components/Bg";
+import Spider from "./components/Spider";
 import Table from "./components/Table";
 import Animation from "./components/Animation";
 import Commission from "./components/Commission";
 
-import './index.css';
+import "./index.css";
 // import Spin from './components/Spin'
 
 const dataSource = [
@@ -23,9 +23,9 @@ const dataSource = [
     age: 32,
     address: "西湖区湖底公园1号",
     type: 1,
-    description:'胡彦斌是西湖区湖底公园1号的',
-    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
-
+    description: "胡彦斌是西湖区湖底公园1号的",
+    Pic:
+      "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "2",
@@ -33,9 +33,9 @@ const dataSource = [
     age: 42,
     address: "西湖区湖底公园1号",
     type: 2,
-    description:'胡彦祖是西湖区湖底公园1号的',
-    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
-
+    description: "胡彦祖是西湖区湖底公园1号的",
+    Pic:
+      "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "3",
@@ -43,9 +43,9 @@ const dataSource = [
     age: 22,
     address: "西湖区湖底公园1号",
     type: 3,
-    description:'王祖蓝是西湖区湖底公园1号的',
-    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
-
+    description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:
+      "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "4",
@@ -53,9 +53,9 @@ const dataSource = [
     age: 22,
     address: "西湖区湖底公园1号",
     type: 3,
-    description:'王祖蓝是西湖区湖底公园1号的',
-    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
-
+    description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:
+      "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
   },
   {
     id: "5",
@@ -63,10 +63,10 @@ const dataSource = [
     age: 22,
     address: "西湖区湖底公园1号",
     type: 3,
-    description:'王祖蓝是西湖区湖底公园1号的',
-    Pic:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
-
-  }
+    description: "王祖蓝是西湖区湖底公园1号的",
+    Pic:
+      "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=892160461,3145855963&fm=26&gp=0.jpg",
+  },
 ];
 
 // columns
@@ -78,17 +78,19 @@ const columns = [
     // width:100
   },
   {
-    title:'图片',
-    dataIndex:'Pic',
-    key:'Pic',
+    title: "图片",
+    dataIndex: "Pic",
+    key: "Pic",
     // width:300,
-    render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
-   },
+    render: (t: string) => (
+      <img style={{ width: 150, height: 150 }} src={t} alt={t}></img>
+    ),
+  },
   {
     title: "年龄",
     dataIndex: "age",
     key: "age",
-    width:100,
+    width: 100,
     // sorter: {
     //   compare: (a: { age: number; }, b: { age: number; }) => a.age - b.age
     // }
@@ -111,11 +113,11 @@ const columns = [
           {t === 1 ? "蔬菜" : t === 2 ? "水果" : "主食"}
         </span>
       );
-    }
-  }
+    },
+  },
 ];
 
- const data1 =  [
+const data1 = [
   {
     id: 1,
     title: "2020年",
@@ -123,95 +125,60 @@ const columns = [
     children: [
       {
         id: 2,
-        title: "1月",
-        content: "1月份提纲",
-        children: [
-          {
-            id: 4,
-            title: "11日",
-            content: "11提纲",
-            isDone: true,
-          },
-          {
-            id: 5,
-            title: "12日",
-            content: "12提纲+++++",
-            isDone: false,
-          },
-          {
-            id: 41,
-            title: "13日",
-            content: "11提纲",
-            isDone: true,
-          },
-          {
-            id: 52,
-            title: "14日",
-            content: "12提纲+++++",
-            isDone: false,
-          },
-        ],
+        title: "markdown语法测试",
+        content: "# 一级标题  ## 二级标题  ### 三级标题",
       },
       {
         id: 3,
-        title: "2月",
-        content: "1月份提纲",
-        children: [
-          {
-            id: 47,
-            title: "11日",
-            content: "11提纲",
-            isDone: true,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 6,
-    title: "2021年",
-    content: "工作总结",
-    isDone: true,
-    children: [
-      {
-        id: 7,
-        title: "1月",
-        content: "1月份提纲",
-        children: [
-          {
-            id: 8,
-            title: "11日",
-            content: "11提纲",
-            isDone: true,
-          },
-          {
-            id: 9,
-            title: "12日",
-            content: "12提纲+++++",
-            isDone: false,
-          },
-        ],
+        title: "语法",
+        content:
+          "![图片](http://img0.imgtn.bdimg.com/it/u=2624811453,2350881067&fm=26&gp=0.jpg)",
       },
       {
-        id: 10,
-        title: "2月",
-        content: "1月份提纲",
+        id: 4,
+        title: "百度",
+        content: "[百度]](http://www.baidu.com)",
+      },
+      {
+        id: 5,
+        title: "表格",
+        content: "name | 价格 |  数量  \r  -|-|-    \r 香蕉 | $1 | 5 |   \r 苹果 | $1 | 6 |   \r 草莓 | $1 | 7 |",
       },
     ],
   },
 ];
 
+// name | 价格 |  数量  
+// -|-|-
+// 香蕉 | $1 | 5 |
+// 苹果 | $1 | 6 |
+// 草莓 | $1 | 7 |
+
 const App: React.FC = () => {
-  const [toggle,setToggle] = useState(true)
-  const [_newData,setNewDate] = useState(data1)
-  
-  const planChange=(e: any,itemId: any,_newData: any)=>{
-    setNewDate(_newData)
-  }
+  const [toggle, setToggle] = useState(true);
+  const [_newData, setNewDate] = useState(data1);
+
+  const planChange = (e: any, itemId: any, _newData: any) => {
+    setNewDate(_newData);
+  };
 
   return (
     <div className="App">
-    {/**
+    <Commission 
+        dataSource={data1} 
+        isHandle 
+        theme="info"
+        isEditable
+    />
+      {/**
+        <Table
+    dataSource={dataSource}
+    columns={columns}
+    borderd
+    isTheme={"sepia(.6)"}
+    scroll={{ y: 200 }}
+  />
+
         // 主题色 theme "success" | "warning" | 'info' | 'danger'
         // dataSource [
             {dot:'第一个节点内容', id:'1', isDone:false},
@@ -219,26 +186,12 @@ const App: React.FC = () => {
             {dot:'我属于第一个节点',parentId:1, id:3 , isDone:true}
            ]
         // 
-         <Commission 
-                dataSource={planDate} 
-                isHandle 
-                theme="info"
-                onChange={(e,itemId,_newData)=>{
-                  setPlanDate(_newData)
-                }}
-             />
+       
     */}
-    <div style={{display:'flex'}}>
-            <Commission 
-                dataSource={_newData} 
-                isExpand = {false}
-                theme="info"
-                isHandle
-                isEditable
-                onChange={(e: any,itemId: any,_newData: any)=>planChange(e,itemId,_newData)}
-             />
+      {/*<div style={{display:'flex'}}>
+          
           </div>
-{/*
+
     <Menu
         defaultIndex={'0'}
         onSelect={(index) => console.log(index)}
@@ -291,19 +244,10 @@ const App: React.FC = () => {
     </div>
 
 
-    <Spider   
-          autoplay={false}
-          initIdx={0}
-          deployTime={3000} 
-          height={400}
-        >
-          <img src="http://img3.imgtn.bdimg.com/it/u=1553709961,3652782060&fm=26&gp=0.jpg" alt="图一"/>
-          <img src="http://img4.imgtn.bdimg.com/it/u=3471735586,1899139408&fm=26&gp=0.jpg" alt="图二"/>
-          <img src="http://img2.imgtn.bdimg.com/it/u=1303806583,1572175195&fm=26&gp=0.jpg" alt="图三"/>
-      </Spider>
+ 
   */}
-   
-          {/* 
+
+      {/* 
 
              <Button btnType="default" onClick={()=>setToggle(!toggle)}>toggle Animate</Button>
     <Animation 
