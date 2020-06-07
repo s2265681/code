@@ -445,7 +445,7 @@ const allTable = () => (
     dataSource={dataSource2}
     columns={columns2}
     borderd
-    // isTheme={"sepia(.6)"}
+    isTheme={"sepia(.6)"}
     scroll={{ y: 600 }}
     expandable={{
       expandedRowRender: (record) => (

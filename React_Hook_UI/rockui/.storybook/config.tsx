@@ -6,15 +6,14 @@ import {withInfo} from '@storybook/addon-info';
 
 
 // 配置全局的居中 addDecorator 中添加插件
-// const wrapperStyles: React.CSSProperties={
-//    padding:"20px 40px"
-// // }
-// var CenterDecorator=(storyFn:any)=><div>
-// <h3>组件演示</h3>
-// {storyFn()}
-// </div>
-// addDecorator(CenterDecorator)
-addDecorator(story =><div>{story()}</div>)
+const wrapperStyles: React.CSSProperties={
+   padding:"20px 40px"
+}
+const CenterDecorator=(storyFn:any)=><div style={wrapperStyles}>
+<h3>组件演示</h3>
+{storyFn()}
+</div>
+addDecorator(CenterDecorator)
 addDecorator(withInfo)
 addParameters({
     info:{
@@ -23,9 +22,9 @@ addParameters({
     }
 })
 
-var loaderFn = () => {
-    var allExports = [require('../src/welcome.stories.tsx')];
-    var req = require.context('../src/components', true, /\.stories\.tsx$/);
+const loaderFn = () => {
+    const allExports = [require('../src/welcome.stories.tsx')];
+    const req = require.context('../src/components', true, /\.stories\.tsx$/);
     req.keys().forEach(fname => allExports.push(req(fname)));
     return allExports;
   };
