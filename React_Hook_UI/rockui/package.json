@@ -2,7 +2,7 @@
   "name": "rockui",
   "version": "0.4.6",
   "private": false,
-  "homepage": "http://project.rockshang.cn/rockui/",
+  "homepage": "https://s2265681.github.io/code/React_Hook_UI/HookWithTypeScript/build/index.html",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
