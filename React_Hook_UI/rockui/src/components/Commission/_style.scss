@@ -89,6 +89,16 @@
             }
           }
         }
+        .dot-radio::after {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: -10px;
+            width: 76px;
+            height: 52px;
+            background: transparent;
+            cursor: pointer;
+        }
         .bottom{
             position:absolute;
             bottom: 0px !important;

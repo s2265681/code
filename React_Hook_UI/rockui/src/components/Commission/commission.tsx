@@ -8,7 +8,6 @@ import Markdown from 'react-markdown/with-html'
 import 'highlight.js/styles/solarized-light.css'
 import Util from './util'
 
-
 interface dataProps {
   /**id为唯一标示，必须为唯一值 */
   id: number;
@@ -157,6 +156,16 @@ const Commission: React.FC<CommissionProps> = (props) => {
     setClickCurrentId(-1);
   }
 
+  // 递归遍历给下面的children里面都加上isContent
+  const addIsContent =(array: any,type: any)=>{
+      array.forEach((el: { isContent: boolean; children: any; })=>{
+        el.isContent = !type
+        if(el.children&&el.children instanceof Array){
+          addIsContent(el.children,type)
+        }
+     })
+    return array;
+  }
 
   const addToChildrenDot=(e: any, itemId: number,index:number)=>{
     let _newData = changeEveryVal(
@@ -209,10 +218,10 @@ const Commission: React.FC<CommissionProps> = (props) => {
       }
       if (arr[i]?.id === id && type === "isExtend") {
         let arrA = arr[i]
-        arrA.isContent = !arrA.isContent
-        for(let j=0;j<arrA.children?.length;j++){
-            arrA.children[j].isContent = !arrA.children[j].isContent 
-         }
+        arrA.isContent = !arrA.isContent;
+          if(arrA.children &&  arrA.children instanceof Array){
+             addIsContent(arrA.children,!arrA.isContent)
+          }
       }
       if (arr[i]?.id === id && type === "changeInputValue") {
         if (inputType === "content") arr[i].content = value;
@@ -304,7 +313,7 @@ const Commission: React.FC<CommissionProps> = (props) => {
                 )}
                 
               </div>
-              <div className="info"  style={{minHeight :item.content ? '0px' : '130px'}}>
+              <div className="info"  style={{minHeight :item.isContent ? '0px' : '130px'}}>
                 <div className="title">
                   {whichInput === "title" && clickCurrentId === item.id ? (
                     <Input
@@ -378,7 +387,12 @@ const Commission: React.FC<CommissionProps> = (props) => {
                         setClickCurrentId(item.id);
                         setWhichInput("content");
                       }}>
-                       {Util.isTestMarkDown.test(item.content)?<Markdown className="hljs"  source={item.content} />:
+                       {Util.isTestMarkDown.test(item.content)?<Markdown 
+                         className="hljs"  
+                         source={item.content}
+                   
+                        //  language="javascript"
+                        />:
                        <div
                        style={{width:'100%',minHeight:100,cursor:'pointer'}}
                        dangerouslySetInnerHTML={{
