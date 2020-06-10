@@ -97,6 +97,16 @@ var Commission = function (props) {
         setDate(_newData);
         setClickCurrentId(-1);
     };
+    // 递归遍历给下面的children里面都加上isContent
+    var addIsContent = function (array, type) {
+        array.forEach(function (el) {
+            el.isContent = !type;
+            if (el.children && el.children instanceof Array) {
+                addIsContent(el.children, type);
+            }
+        });
+        return array;
+    };
     var addToChildrenDot = function (e, itemId, index) {
         var _newData = changeEveryVal(itemId, _.cloneDeep(_dataSource), "handleAddChildrenDot");
         onChange && onChange(e, itemId, _newData);
@@ -125,7 +135,7 @@ var Commission = function (props) {
     var changeEveryVal = function (id, arr, type, value, inputType) {
         if (value === void 0) { value = ""; }
         if (inputType === void 0) { inputType = ""; }
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d;
         for (var i = 0; i < arr.length; i++) {
             if (arr[i].children instanceof Array) {
                 changeEveryVal(id, arr[i].children, type, value, inputType);
@@ -136,11 +146,11 @@ var Commission = function (props) {
             if (((_b = arr[i]) === null || _b === void 0 ? void 0 : _b.id) === id && type === "isExtend") {
                 var arrA = arr[i];
                 arrA.isContent = !arrA.isContent;
-                for (var j = 0; j < ((_c = arrA.children) === null || _c === void 0 ? void 0 : _c.length); j++) {
-                    arrA.children[j].isContent = !arrA.children[j].isContent;
+                if (arrA.children && arrA.children instanceof Array) {
+                    addIsContent(arrA.children, !arrA.isContent);
                 }
             }
-            if (((_d = arr[i]) === null || _d === void 0 ? void 0 : _d.id) === id && type === "changeInputValue") {
+            if (((_c = arr[i]) === null || _c === void 0 ? void 0 : _c.id) === id && type === "changeInputValue") {
                 if (inputType === "content")
                     arr[i].content = value;
                 if (inputType === "title")
@@ -154,7 +164,7 @@ var Commission = function (props) {
                 var idx = arr.findIndex(function (el) { var _a; return ((_a = el) === null || _a === void 0 ? void 0 : _a.id) === id; });
                 arr.splice(idx + 1, 0, item);
             }
-            if (((_e = arr[i]) === null || _e === void 0 ? void 0 : _e.id) === id && type === "handleAddChildrenDot") {
+            if (((_d = arr[i]) === null || _d === void 0 ? void 0 : _d.id) === id && type === "handleAddChildrenDot") {
                 var ids = findAllId(_dataSource);
                 var idsLength = ids.length;
                 var maxId = ids.sort(function (a, b) { return a - b; })[idsLength - 1];
@@ -202,7 +212,7 @@ var Commission = function (props) {
                                             return radioChange && radioChange(e, item.id, index);
                                         } }))),
                             isExpand && clickCurrentId === item.id ? (React.createElement(Icon, { icon: "chevron-up", size: "1x", onClick: function (e) { return handleClick(e, item.id, index); } })) : isExpand && clickCurrentId !== item.id ? (React.createElement(Icon, { icon: "chevron-down", size: "1x", onClick: function (e) { return handleClick(e, item.id, index); } })) : ("")),
-                        React.createElement("div", { className: "info", style: { minHeight: item.content ? '0px' : '130px' } },
+                        React.createElement("div", { className: "info", style: { minHeight: item.isContent ? '0px' : '130px' } },
                             React.createElement("div", { className: "title" }, whichInput === "title" && clickCurrentId === item.id ? (React.createElement(Input, { type: "text", defaultValue: typeof item.title === "string"
                                     ? item.title
                                     : ReactDOMServer.renderToString(item.title), onChange: function (e) { return changeInputValue(e, item.id, "title"); }, onBlur: function (e) {

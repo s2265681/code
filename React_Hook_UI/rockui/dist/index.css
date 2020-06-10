@@ -1202,6 +1202,15 @@ main {
         display: flex;
         align-items: center;
         justify-content: space-evenly; }
+    .commission .info-wrapper .dot-radio::after {
+      content: '';
+      position: absolute;
+      top: -16px;
+      left: -10px;
+      width: 76px;
+      height: 52px;
+      background: transparent;
+      cursor: pointer; }
     .commission .info-wrapper .bottom {
       position: absolute;
       bottom: 0px !important;
