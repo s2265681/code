@@ -14,6 +14,7 @@ import {
   Spider,
   Spin,
   Animation,
+  Commission
 } from "rockui";
 // const {AlertType}  = Alert;
 // import {Table} from "antd";
@@ -152,7 +153,25 @@ const dataSource = [
 ];
 
 
+const commissionData = [
+  {
+    id: 1,
+    title: "",
+    content: ""
+  }
+]
+
 const Home: React.FC<Props> = (props) => {
+  let localdate:string =localStorage.getItem('PLANDATA')||"";
+  let localdateArr:Array<any> =localdate&&JSON.parse(localdate) || [];
+  let initDate = localdateArr.length!==0?localdateArr:commissionData||[];
+  const [planDate, setPlanDate] = useState(initDate)
+
+  useEffect(()=>{
+    localStorage.setItem("PLANDATA",JSON.stringify(planDate))
+  },[planDate])
+
+  console.log(planDate,'planDate>>>');
   return (
     <Animation>
         <div className="home_wrapper">
@@ -234,12 +253,19 @@ const Home: React.FC<Props> = (props) => {
           <Table
             dataSource={dataSource}
             columns={columns}
-            scroll={{
-                y : 600
-            }}
           />
+          <div style={{display:'flex'}}>
+            <Commission 
+              dataSource={planDate} 
+              isHandle 
+              theme="info"
+              onChange={(e,itemId,_newData)=>{
+                setPlanDate(_.cloneDeep(_newData))
+              }}
+              isEditable
+             />
+          </div>
         </div>
-        
         </Animation>
   );
 };
