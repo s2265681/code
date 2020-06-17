@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext,createContext } from "react";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import _ from "lodash";
-import RockUi from "./doc_rockui";
-import Doc1 from "./doc1";
-import Doc2 from "./doc2";
+import F_nav from "./f_nav";
+import Drag from "./drag";
+// import Doc2 from "./doc2";
 import "./index.css";
 import { Menu } from "rockui";
 
@@ -11,10 +11,9 @@ const { MenuItem, SubMenu } = Menu;
 
 interface Props {}
 
-const UiDoc: React.FC<Props> = (props) => {
-  // localStorage.setItem("PLANDATA2",JSON.stringify(commissionData))
+const Index: React.FC<Props> = (props) => {
   return (
-    <div className="uidoc_wrapper">
+    <div className="function_wrapper">
       <div className="left_menu">
         <Menu
           mode="vertical"
@@ -22,18 +21,18 @@ const UiDoc: React.FC<Props> = (props) => {
           onSelect={(index) => console.log(index)}
         >
           <MenuItem key={1}>
-            <Link to="/uidoc/">
-              <div>RockUi</div>
+            <Link to="/f_nav/">
+              <div>导航</div>
             </Link>
           </MenuItem>
 
           <MenuItem key={2}>
-            <Link to="/uidoc/doc1">
-              <div>12</div>
+            <Link to="/function/drag">
+              <div>拖拽</div>
             </Link>
           </MenuItem>
           <MenuItem key={3}>
-            <Link to="/uidoc/doc2">
+            <Link to="/function/doc2">
               <div>文档2</div>
             </Link>
           </MenuItem>
@@ -42,13 +41,13 @@ const UiDoc: React.FC<Props> = (props) => {
 
       <div className="right_menu">
         <Router>
-          <Route path="/uidoc" exact component={RockUi}></Route>
-          <Route path="/uidoc/doc1" component={Doc1}></Route>
-          <Route path="/uidoc/doc2" component={Doc2}></Route>
+          <Route path="/function" exact component={F_nav}></Route>
+          <Route path="/function/drag" component={Drag}></Route>
+          {/*<Route path="/function/drag" component={Drag}></Route>*/}
         </Router>
       </div>
     </div>
   );
 };
 
-export default UiDoc;
+export default Index;

@@ -36,11 +36,11 @@ export default function State() {
           <li>
             <pre>
               {`const UseForm = initialValues =>  {
-const [values,setValues] = useState(initialValues)
-return  [ values, e=>{setValues({...values,
-    [e.target.name]:e.target.value
-})}]
-`}
+                const [values,setValues] = useState(initialValues)
+                return  [ values, e=>{setValues({...values,
+                    [e.target.name]:e.target.value
+                })}]
+                `}
             </pre>
           </li>
         </ul>
