@@ -35,8 +35,8 @@ const Drag: React.FC<any> = (props) => {
 
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>){
-    let offset = e.pageY - currentPageY
-    debugger
+    let offset = e.pageY - startPageY
+    // debugger
     if(offset > lineHeight && draggingIndex < List.length){
        offset -= lineHeight;
        let newList = move(List,draggingIndex,draggingIndex+1)
