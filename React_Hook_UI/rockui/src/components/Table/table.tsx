@@ -95,10 +95,13 @@ interface TableProps {
     x?: number | string;
     y?: number | string;
   };
+  /** 是否设置拖拽 */
+  isDrag?:boolean;
   className?:any
 }
 
 let tbodyTds:any;
+let lineHeight:number = 50;
 const Table: React.FC<TableProps> = (props) => {
   const {
     dataSource,
@@ -109,6 +112,7 @@ const Table: React.FC<TableProps> = (props) => {
     isTheme,
     expandable,
     scroll = {},
+    isDrag,
     className
   } = props;
   const {
@@ -130,22 +134,25 @@ const Table: React.FC<TableProps> = (props) => {
   const [_dataSource, setSourceData] = useState(dataSource);
   // 设置排序
   const [isAscOrder, setOrder] = useState(false);
-  // 设置鼠标滑入变色
-  const [isColorIndex, getColor] = useState<number>(-1);
   // 设置展开值
   let [isExpend, setIsExpend] = useState<any>({});
   // 设置选中的key
   const [selectedKeys, setSelectKeys] = useState(selectedRowKeys || []);
-  // 设置行选中
-  // const [isRowChoosed,setIsRowChoosed] = useState(false)
+  // 设置拖拽起始点
+  const [startPoint,setStartPoint] = useState<number>(0);
+  // 设置移动的当前位置
+  const [currentPoint,setCurrentPoint] = useState<number>(0);
+  // 设置当前拖拽的行索引值
+  const [dragIndex,setDragIndex] = useState<number>(-1);
+  // 设置是否开始拖拽
+  const [draging,setDraging] = useState<boolean>(false)
+   
 
   // 初始化
   useEffect(() => {
     {
       columns.map((c) => c && c.sorter instanceof Object && order(c.sorter));
-        // setIsRowChoosed(false)
     }
-
   }, []);
 
   useEffect(() => {
@@ -154,7 +161,6 @@ const Table: React.FC<TableProps> = (props) => {
 
   // 渲染cloumn
   const renderCloumn = () => {
-    
     return columns.map(({ width, title, sorter, key },idx) => {
       let isT = type||expandable;
       tbodyTds = Tbody&&Tbody.current?.children[0].children[0].children;
@@ -267,7 +273,6 @@ const Table: React.FC<TableProps> = (props) => {
       )
     );
   };
-
  
   // 设置身体头部类型
   const renderBodyTitle = (rowKeyOrIndex: number) => {
@@ -297,7 +302,6 @@ const Table: React.FC<TableProps> = (props) => {
       onChange && onChange([]);
     }
   }
-
 
   // 设置展开占位
   const isExpandable = () => {
@@ -343,7 +347,55 @@ const Table: React.FC<TableProps> = (props) => {
     );
   };
 
+ // 设置拖拽样式
+ const setdragSty = (index:number) => {
+   console.log(currentPoint,'currentPoint')
+   if(index!==dragIndex)return {}
+   return {
+     backgroundColor:'#eee',
+     opacity:'0.3',
+     transform:`translate(10px,${currentPoint}px)`
+   }
+ }
 
+ // 设置拖拽开始
+const handleMouseDown =(e: React.MouseEvent<HTMLTableRowElement, MouseEvent>,index: number)=>{
+    setDraging(true);
+    setStartPoint(e.pageY)
+    setDragIndex(index)
+    let tbodyTrHeight = Tbody&&Tbody.current?.children[index]?.clientHeight;
+    lineHeight = tbodyTrHeight?tbodyTrHeight/3*2:lineHeight
+ }
+
+ // 设置拖拽移动中
+ const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
+     let offset = e.pageY - startPoint;
+     if(offset>lineHeight&&dragIndex<_dataSource.length){  // 向下交换位置
+         setSourceData(move(_dataSource,dragIndex,dragIndex+1))
+         setDragIndex(dragIndex+1)
+         setStartPoint(startPoint+lineHeight)
+     }else if(offset<-lineHeight&&dragIndex>0){            // 向上交换位置
+      setSourceData(move(_dataSource,dragIndex,dragIndex+1))
+      setDragIndex(dragIndex-1)
+      setStartPoint(startPoint-lineHeight)
+     }
+     setCurrentPoint(offset)
+ }
+
+ // 设置拖拽移动结束的时候
+ const handleonMouseUp = (e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
+    setDragIndex(-1)
+    setDraging(false)
+    setCurrentPoint(0)
+    setStartPoint(0)
+ }
+
+ // 设置移动位置，交换数组值
+ const move = (list: any[],before_index: number,to_index: number)=>{
+     let listData = list.slice();
+     listData.splice(to_index,0,listData.splice(before_index,1)[0])
+     return listData
+ }
 
   const tableclasses = classNames("table-container", className, {
     "table-borderd": borderd,
@@ -380,12 +432,14 @@ const Table: React.FC<TableProps> = (props) => {
                     <tr
                       className="t_tr"
                       style={{
-                        background: isColorIndex === didx ? "#fafafa" : "",
+                        // background: isColorIndex === didx ? "#fafafa" : "",
                         cursor: type&& rowChoosed ? "pointer" : "",
-                        transition: "background .3s ease"
+                        transition: "background .3s ease",
+                        ...setdragSty(didx)
                       }}
-                      onMouseOver={() => getColor(didx)}
-                      onMouseOut={() => getColor(-1)}
+                      // onMouseOver={() => getColor(didx)}
+                      // onMouseOut={() => getColor(-1)}
+                      onMouseDown={(e)=>{handleMouseDown(e,didx)}}
                     >
 
                     {( type||expandable )&& <div className="firstColomnsTitle">
@@ -414,6 +468,13 @@ const Table: React.FC<TableProps> = (props) => {
         {/* Loading */}
         {renderLoading()}
       </table>
+      {(isDrag&&draging)&&
+        <div
+          onMouseMove={(e)=>{handleMouseMove(e)}}
+          onMouseUp={(e)=>{handleonMouseUp(e)}}
+          className="show_mask"
+        >
+        </div>}
    
     </div>
   );
@@ -424,5 +485,6 @@ Table.defaultProps = {
   borderd: false,
   loading: false,
   isTheme: "",
+  isDrag:false
 };
 export default Table;

@@ -88,6 +88,8 @@ interface TableProps {
         x?: number | string;
         y?: number | string;
     };
+    /** 是否设置拖拽 */
+    isDrag?: boolean;
     className?: any;
 }
 declare const Table: React.FC<TableProps>;

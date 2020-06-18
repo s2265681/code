@@ -1,12 +1,24 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
 import Spin from '../Spin';
 import Icon from '../Icon/icon';
 import _ from 'lodash';
 var tbodyTds;
+var lineHeight = 120;
 var Table = function (props) {
     var _a, _b, _c, _d, _e;
-    var dataSource = props.dataSource, columns = props.columns, _f = props.rowSelection, rowSelection = _f === void 0 ? {} : _f, borderd = props.borderd, loading = props.loading, isTheme = props.isTheme, expandable = props.expandable, _g = props.scroll, scroll = _g === void 0 ? {} : _g, className = props.className;
+    var dataSource = props.dataSource, columns = props.columns, _f = props.rowSelection, rowSelection = _f === void 0 ? {} : _f, borderd = props.borderd, loading = props.loading, isTheme = props.isTheme, expandable = props.expandable, _g = props.scroll, scroll = _g === void 0 ? {} : _g, isDrag = props.isDrag, className = props.className;
     var _h = rowSelection.type, type = _h === void 0 ? "" : _h, _j = rowSelection.selectedRowKeys, selectedRowKeys = _j === void 0 ? [] : _j, onChange = rowSelection.onChange, _k = rowSelection.rowKey, rowKey = _k === void 0 ? "" : _k, _l = rowSelection.rowChoosed, rowChoosed = _l === void 0 ? false : _l;
     var expandedRowRender = expandable && expandable.expandedRowRender;
     var onExpand = (_a = expandable) === null || _a === void 0 ? void 0 : _a.onExpand;
@@ -17,19 +29,22 @@ var Table = function (props) {
     var _m = useState(dataSource), _dataSource = _m[0], setSourceData = _m[1];
     // 设置排序
     var _o = useState(false), isAscOrder = _o[0], setOrder = _o[1];
-    // 设置鼠标滑入变色
-    var _p = useState(-1), isColorIndex = _p[0], getColor = _p[1];
     // 设置展开值
-    var _q = useState({}), isExpend = _q[0], setIsExpend = _q[1];
+    var _p = useState({}), isExpend = _p[0], setIsExpend = _p[1];
     // 设置选中的key
-    var _r = useState(selectedRowKeys || []), selectedKeys = _r[0], setSelectKeys = _r[1];
-    // 设置行选中
-    // const [isRowChoosed,setIsRowChoosed] = useState(false)
+    var _q = useState(selectedRowKeys || []), selectedKeys = _q[0], setSelectKeys = _q[1];
+    // 设置拖拽起始点
+    var _r = useState(0), startPoint = _r[0], setStartPoint = _r[1];
+    // 设置移动的当前位置
+    var _s = useState(0), currentPoint = _s[0], setCurrentPoint = _s[1];
+    // 设置当前拖拽的行索引值
+    var _t = useState(-1), dragIndex = _t[0], setDragIndex = _t[1];
+    // 设置是否开始拖拽
+    var _u = useState(false), draging = _u[0], setDraging = _u[1];
     // 初始化
     useEffect(function () {
         {
             columns.map(function (c) { return c && c.sorter instanceof Object && order(c.sorter); });
-            // setIsRowChoosed(false)
         }
     }, []);
     useEffect(function () {
@@ -156,6 +171,51 @@ var Table = function (props) {
             React.createElement("tr", { className: "expendContent" },
                 React.createElement("td", { colSpan: Number(columns.length) + 1 }, expandedRowRender && expandedRowRender(d))))));
     };
+    // 设置拖拽样式
+    var setdragSty = function (index) {
+        console.log(currentPoint, 'currentPoint');
+        if (index !== dragIndex)
+            return {};
+        return {
+            backgroundColor: '#eee',
+            opacity: '0.3',
+            transform: "translate(5px," + currentPoint + "px)"
+        };
+    };
+    // 设置拖拽开始
+    var handleMouseDown = function (e, index) {
+        setDraging(true);
+        setStartPoint(e.pageY);
+        setDragIndex(index);
+    };
+    // 设置拖拽移动中
+    var handleMouseMove = function (e) {
+        var offset = e.pageY - startPoint;
+        if (offset > lineHeight && dragIndex < _dataSource.length) { // 向下交换位置
+            setSourceData(move(_dataSource, dragIndex, dragIndex + 1));
+            setDragIndex(dragIndex + 1);
+            setStartPoint(startPoint + lineHeight);
+        }
+        else if (offset < -lineHeight && dragIndex > 0) { // 向上交换位置
+            setSourceData(move(_dataSource, dragIndex, dragIndex + 1));
+            setDragIndex(dragIndex - 1);
+            setStartPoint(startPoint - lineHeight);
+        }
+        setCurrentPoint(offset);
+    };
+    // 设置拖拽移动结束的时候
+    var handleonMouseUp = function (e) {
+        setDragIndex(-1);
+        setDraging(false);
+        setCurrentPoint(0);
+        setStartPoint(0);
+    };
+    // 设置移动位置，交换数组值
+    var move = function (list, before_index, to_index) {
+        var listData = list.slice();
+        listData.splice(to_index, 0, listData.splice(before_index, 1)[0]);
+        return listData;
+    };
     var tableclasses = classNames("table-container", className, {
         "table-borderd": borderd,
         "table-loading": loading
@@ -174,23 +234,27 @@ var Table = function (props) {
                     var rowKeyOrIndex = rowKey ? dRowKey : didx;
                     return (React.createElement(React.Fragment, null,
                         React.createElement("label", { htmlFor: rowChoosed ? "check+" + rowKeyOrIndex : "", key: d.key },
-                            React.createElement("tr", { className: "t_tr", style: {
-                                    background: isColorIndex === didx ? "#fafafa" : "",
-                                    cursor: type && rowChoosed ? "pointer" : "",
-                                    transition: "background .3s ease"
-                                }, onMouseOver: function () { return getColor(didx); }, onMouseOut: function () { return getColor(-1); } },
+                            React.createElement("tr", { className: "t_tr", style: __assign({ 
+                                    // background: isColorIndex === didx ? "#fafafa" : "",
+                                    cursor: type && rowChoosed ? "pointer" : "", transition: "background .3s ease" }, setdragSty(didx)), 
+                                // onMouseOver={() => getColor(didx)}
+                                // onMouseOut={() => getColor(-1)}
+                                onMouseDown: function (e) { handleMouseDown(e, didx); } },
                                 (type || expandable) && React.createElement("div", { className: "firstColomnsTitle" },
                                     renderExpandIcon(rowKeyOrIndex, d),
                                     renderBodyTitle(rowKeyOrIndex)),
                                 columns.map(function (c) { return (React.createElement("td", { style: { width: (c && c.width), flexGrow: (c && c.width) ? 0 : 1 } }, renderSource(c, d, didx))); }))),
                         renderExpandContent(rowKeyOrIndex, d)));
                 }))),
-            renderLoading())));
+            renderLoading()),
+        (isDrag && draging) &&
+            React.createElement("div", { onMouseMove: function (e) { handleMouseMove(e); }, onMouseUp: function (e) { handleonMouseUp(e); }, className: "show_mask" })));
 };
 Table.defaultProps = {
     rowSelection: {},
     borderd: false,
     loading: false,
     isTheme: "",
+    isDrag: false
 };
 export default Table;

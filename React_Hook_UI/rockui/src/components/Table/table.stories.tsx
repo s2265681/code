@@ -174,13 +174,13 @@ const columns2 = [
     dataIndex: "name",
     key: "name",
   },
-  {
-    title:'图片',
-    dataIndex:'Pic',
-    key:'Pic',
-    width:200,
-    render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
-   },
+  // {
+  //   title:'图片',
+  //   dataIndex:'Pic',
+  //   key:'Pic',
+  //   width:200,
+  //   render:(t:string)=><img style={{width:150,height:150}} src={t} alt={t}></img>
+  //  },
   {
     title: "年龄",
     dataIndex: "age",
@@ -439,6 +439,18 @@ const withLoadingTable = () => (
   </Animation>
 );
 
+
+const dragTable = () => (
+  <Animation>
+  <Table
+    dataSource={dataSource2}
+    columns={columns2}
+    borderd
+    isDrag
+  />
+  </Animation>
+);
+
 const allTable = () => (
   <Animation>
   <Table
@@ -447,6 +459,7 @@ const allTable = () => (
     borderd
     isTheme={"sepia(.6)"}
     scroll={{ y: 600 }}
+    isDrag
     expandable={{
       expandedRowRender: (record) => (
         <span style={{ color: "rgb(100, 155, 0)" }}>{record.description}</span>
@@ -479,4 +492,5 @@ storiesOf("Table 表格", module)
   .add("带过排序的Table", sortTable1)
   .add("带过render操作的Table，类型转换，获取行数据", renderTable1)
   .add("可设置超出高度滚动的Table", scrollTable1)
+  .add("可设置拖拽Table", dragTable)
   .add("所有功能展示Table", allTable);
